@@ -41,7 +41,7 @@ O projeto visa criar uma plataforma digital que simule ambientes de investimento
 
 Este projeto busca preencher a lacuna na educação financeira entre jovens, fornecendo uma ferramenta prática e educativa. Ao desenvolver essa plataforma, espera-se contribuir para a formação de uma geração mais preparada e consciente financeiramente.
 
-### Recursos
+## Recursos
 
 Recursos e tecnologias utilizadas
 
