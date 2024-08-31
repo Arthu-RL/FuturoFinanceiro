@@ -8,8 +8,8 @@ O projeto visa criar uma plataforma digital que simule ambientes de investimento
 
 ## Cursos Envolvidos
 
-- **Engenharia de Produção**
 - **Sistemas de Informação**
+- **Engenharia de Produção**
 
 ## Objetivos do Projeto
 
