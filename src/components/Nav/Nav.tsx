@@ -5,8 +5,8 @@ function Nav() {
   return (
     <nav className='nav'>
       <ul className='nav-list'>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/Invest">Invest</Link></li>
+        <li><Link to="/home">Home</Link></li>
+        <li><Link to="/invest">Invest</Link></li>
         <li><p>Saldo: var</p></li>
       </ul>
     </nav>
