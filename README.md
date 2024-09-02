@@ -6,9 +6,7 @@
   - [Instalação](#instalação)
 - [Uso](#uso)
 - [Estrutura de Arquivos](#estrutura-de-arquivos)
-- [Contribuições](#contribuições)
-- [Licença](#licença)
-- [Contato](#contato)
+- [Como Contribuir](#como-contribuir)
 
 ## Sobre o Projeto
 
@@ -112,16 +110,6 @@ nome-do-projeto/
 └── README.md           # Documentação do projeto
 ```
 
-## Contribuições
+## Como Contribuir
 
-Para fazer contribuições, siga os passos:
-
-- Faça um fork do projeto
-- Crie uma branch para sua feature (git checkout -b feature/NovaFeature)
-- Faça commit das suas alterações (git commit -m 'Adiciona NovaFeature')
-- Faça o push para a branch (git push origin feature/NovaFeature)
-- Abra um Pull Request
-
-## Licença
-
-## Contato
+Se você deseja contribuir com este projeto, por favor, consulte o [CONTRIBUTING.md](./CONTRIBUTING.md) para obter diretrizes detalhadas sobre como proceder.
