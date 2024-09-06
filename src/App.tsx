@@ -5,13 +5,14 @@ import Invest from './components/Invest/Invest';
 
 /*
 * Trabalhos a fazer (TODOS) 
-* 1- Rotas de Explicação da aplicação, divulgação app android etc
-*   1.1- Rota Sobre
-*   1.2- Rota Contato
+* 1- Rotas de explicação da aplicação, motivação, contato, divulgação app android etc
+*   1.1- Rota Home
+*   1.2- Rota Sobre
+*   1.3- Rota Contato
 * 3- Fazer as abas de investimento, que já até estão na rota Invest.
-*   3.1- Invetimento risco baixo
-*   3.2- Invetimento risco médio
-*   3.3- Invetimento risco alto
+*   3.1- investimento risco baixo
+*   3.2- investimento risco médio
+*   3.3- investimento risco alto
 * 4- Ao clicar na aba de investimento, para aonde vai ? provavelmente outra página do investimento em expecífico,
 * que terá informações sobre o investimento, gráfico de oscilação do preço etc.
 * 5- Lógica de investimento e desconto do saldo (Será a mesma em todo o código)
@@ -22,7 +23,7 @@ import Invest from './components/Invest/Invest';
 * 7- Fazer principal estilo do app
 *   7.1- Aplicar estilo nas Rotas
 *   7.2- Aplicar estilos nas abas de investimento
-*/
+*/'
 function App() {
   return (
     <>
