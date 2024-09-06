@@ -23,7 +23,7 @@ import Invest from './components/Invest/Invest';
 * 7- Fazer principal estilo do app
 *   7.1- Aplicar estilo nas Rotas
 *   7.2- Aplicar estilos nas abas de investimento
-*/'
+*/
 function App() {
   return (
     <>
