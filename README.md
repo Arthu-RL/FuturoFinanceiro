@@ -25,23 +25,23 @@ O projeto visa criar uma plataforma digital que simule ambientes de investimento
 
 Este projeto busca preencher a lacuna na educação financeira entre jovens, fornecendo uma ferramenta prática e educativa. Ao desenvolver essa plataforma, espera-se contribuir para a formação de uma geração mais preparada e consciente financeiramente.
 
-### Ferramentas e Bibliotecas Utilizadas:
+## Ferramentas e Bibliotecas Utilizadas:
 
 - **Tailwind**: Biblioteca para simplificar a escrita de CSS, proporcionando maior agilidade na criação de interfaces.
 - **ShadcnUI**: Biblioteca de UI altamente compatível com Tailwind, facilitando a estilização dos componentes.
 
-### Iniciar Ambiente de Desenvolvimento
+## Iniciar Ambiente de Desenvolvimento
 
 Siga as etapas abaixo para configurar e executar o projeto localmente para desenvolvimento.
 
-#### Pré-requisitos
+### Pré-requisitos
 
 Antes de começar, certifique-se de ter instalado:
 
 - Node.js (versão 16 ou superior)
 - npm (gerenciadores de pacotes)
 
-#### Passos de Instalação
+### Passos de Instalação
 
 1. Clone este repositório em sua máquina local:
 
@@ -69,24 +69,24 @@ Antes de começar, certifique-se de ter instalado:
 
 Agora a aplicação estará rodando localmente em `http://localhost:3000`.
 
-### Extensões Recomendadas para VS Code
+## Extensões Recomendadas para VS Code
 
-#### 1. ESLint
+### 1. ESLint
 
 - O ESLint ajuda a identificar e corrigir problemas no código JavaScript e TypeScript, promovendo práticas de codificação consistentes e evitando erros comuns.
 - **Instalação:** [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-#### 2. Prettier
+### 2. Prettier
 
 - O Prettier formata automaticamente o código para garantir um estilo consistente e limpo, aplicando regras de formatação ao salvar arquivos.
 - **Instalação:** [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-#### 3. Tailwind CSS IntelliSense
+### 3. Tailwind CSS IntelliSense
 
 - Oferece suporte para desenvolvimento com Tailwind CSS, com autocompletar e sugestões de classe diretamente no editor.
 - **Instalação:** [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
-### Estrutura de Arquivos
+## Estrutura de Arquivos
 
 Visão geral da estrutura de arquivos do projeto:
 
@@ -116,10 +116,10 @@ SimuladorInvestimentoWeb/
 └── TODO.md             # Lista de tarefas pendentes
 ```
 
-### Planejamento de Desenvolvimento
+## Planejamento de Desenvolvimento
 
 Para ver a lista completa de tarefas e pendências do projeto, consulte o [TODO.md](./TODO.md) Este arquivo contém todas as atividades e melhorias planejadas para o desenvolvimento do projeto.
 
-### Como Contribuir
+## Como Contribuir
 
 Se você deseja contribuir com este projeto, por favor, consulte o [CONTRIBUTING.md](./CONTRIBUTING.md) para obter diretrizes detalhadas sobre como proceder.
