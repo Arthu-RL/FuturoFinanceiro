@@ -67,7 +67,7 @@ Antes de começar, certifique-se de ter instalado:
    npm run dev
    ```
 
-Agora a aplicação estará rodando localmente em `http://localhost:3000`.
+Agora a aplicação estará rodando localmente em `http://localhost:5173`.
 
 ## Extensões Recomendadas para VS Code
 
