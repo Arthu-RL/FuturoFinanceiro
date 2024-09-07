@@ -1,20 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Nav from './components/Nav/Nav';
-import Home from './components/Home/Home';
-import Invest from './components/Invest/Invest';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Navbar } from '@/components/Navigation/Navbar';
+import { ThemeProvider } from './providers/theme-provider';
 
-function App() {
+import Routes from '@/routes';
+
+import '@/stylesheets/index.css';
+
+export default function App() {
   return (
-    <>
+    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
       <Router>
-        <Nav />
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/Invest" element={<Invest />} />
-        </Routes>
+        <Navbar />
+        <Routes />
       </Router>
-    </>
+    </ThemeProvider>
   );
 }
-
-export default App
