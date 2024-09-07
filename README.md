@@ -108,6 +108,7 @@ SimuladorInvestimentoWeb/
 │   └── vite-env.d.ts   # Arquivo de `type declarations` do Vite
 ├── .gitignore          # Arquivos ignorados pelo Git
 ├── .prettierrc         # Configurações do Prettier
+├── components.json     # Configurações do shadcnUI
 ├── CONTRIBUTING.md     # Como contribuir com o projeto
 ├── index.html          # Arquivo HTML principal
 ├── package.json        # Dependências e scripts do projeto
