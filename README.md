@@ -86,6 +86,37 @@ Agora a aplicação estará rodando localmente em `http://localhost:5173`.
 - Oferece suporte para desenvolvimento com Tailwind CSS, com autocompletar e sugestões de classe diretamente no editor.
 - **Instalação:** [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
+## Boas Práticas
+
+Para garantir a qualidade e a consistência do código no projeto, siga as boas práticas abaixo durante o desenvolvimento:
+
+### 1. Componentização
+
+- **Divida o código em componentes reutilizáveis**: Mantenha seus componentes React pequenos e focados em uma única responsabilidade.
+- **Nomeie componentes de forma clara**: Utilize nomes que descrevam de maneira objetiva a funcionalidade do componente.
+- **Evite duplicação de código**: Se um padrão se repete em várias partes do projeto, transforme-o em um componente reutilizável.
+
+### 2. Estado e Propriedades
+
+- **Use hooks com parcimônia**: Centralize o estado global em `providers` sempre que possível, minimizando a duplicação de estados locais.
+- **Evite lifting state desnecessário**: Prefira contextos de estado para compartilhar dados entre componentes em diferentes níveis.
+- **Propriedades claras e tipadas**: Defina e documente bem as `props` usando TypeScript, para garantir segurança e clareza no uso.
+
+### 3. Estilização
+
+- **Utilize classes do Tailwind CSS**: Evite a criação excessiva de arquivos CSS e prefira o uso de utilitários de estilo do Tailwind para estilização rápida e consistente.
+- **Manter classes organizadas**: Agrupe classes semelhantes para manter legibilidade no JSX.
+
+### 4. Organização de Pastas e Arquivos
+
+- **Agrupe por funcionalidade**: Organize componentes, hooks e rotas em pastas que sigam uma estrutura lógica, facilitando a manutenção e escalabilidade.
+- **Evite diretórios com muitos arquivos**: Sempre que o número de arquivos crescer significativamente, reavalie a estrutura do projeto e considere a criação de subdiretórios.
+
+### 5. Limpeza de Código
+
+- **Use ESLint e Prettier**: Mantenha o código limpo, padronizado e livre de erros comuns, utilizando as extensões recomendadas para linting e formatação automática.
+- **Remova código morto**: Evite manter código comentado ou funções que não estão mais sendo utilizadas.
+
 ## Estrutura de Arquivos
 
 Visão geral da estrutura de arquivos do projeto:
