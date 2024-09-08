@@ -27,8 +27,14 @@ Este projeto busca preencher a lacuna na educação financeira entre jovens, for
 
 ## Ferramentas e Bibliotecas Utilizadas:
 
+- **React.js**: Biblioteca JavaScript para construção de interfaces de usuário.
+- **TypeScript**: Linguagem de programação que adiciona tipagem estática ao JavaScript.
 - **Tailwind**: Biblioteca para simplificar a escrita de CSS, proporcionando maior agilidade na criação de interfaces.
 - **ShadcnUI**: Biblioteca de UI altamente compatível com Tailwind, facilitando a estilização dos componentes.
+- **Vite**: Ferramenta de build e desenvolvimento rápida e leve para projetos web modernos.
+- **ESLint**: Ferramenta de linting para JavaScript e TypeScript, ajudando a manter um código consistente e livre de erros.
+- **React Router DOM**: Biblioteca de roteamento para React, permitindo navegação dinâmica entre páginas em aplicativos de página única (SPA).
+- **Prettier**: Ferramenta de formatação de código que garante um estilo consistente, facilitando a legibilidade e manutenção do código.
 
 ## Iniciar Ambiente de Desenvolvimento
 
