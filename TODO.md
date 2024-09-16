@@ -20,7 +20,7 @@ Este documento lista as tarefas pendentes para o desenvolvimento do aplicativo d
 ### 3. Criar Abas de Investimento
 - **Status**: Aguardando responsável
 - **Subtarefas**:
-  - [ ] 3.1 - **Investimento de Risco Baixo** - [Responsável: ?]
+  - [ ] 3.1 - **Investimento de Risco Baixo** - [Responsável: Arthur Lima]
   - [ ] 3.2 - **Investimento de Risco Médio** - [Responsável: ?]
   - [ ] 3.3 - **Investimento de Risco Alto** - [Responsável: ?]
 
