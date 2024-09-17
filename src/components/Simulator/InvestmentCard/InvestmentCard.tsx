@@ -15,32 +15,13 @@ export default function InvestmentCard({ title, description }: InvestmentCardPro
       <Container>
         <div className='flex-1'>
           <CardHeader>
-            <CardTitle
-              style={{
-                fontSize: '24px',
-                width: '40vw',
-              }}
-              className='p-5'
-            >
-              {title}
-            </CardTitle>
-            <CardDescription
-              style={{
-                fontSize: '18px',
-                width: '40vw',
-              }}
-              className='w-full p-5 md:w-auto'
-            >
+            <CardTitle className='w-[calc(40vw)] p-5 text-[24px]'>{title}</CardTitle>
+            <CardDescription className='w-[calc(40vw)] p-5 text-[18px] md:w-auto'>
               {description}
             </CardDescription>
           </CardHeader>
         </div>
-        <CardContent
-          style={{
-            width: '80vw',
-          }}
-          className='w-full md:w-auto'
-        >
+        <CardContent className='w-[calc(80vw)] max-w-[800px]'>
           <Chart />
         </CardContent>
       </Container>
