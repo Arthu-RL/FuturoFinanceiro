@@ -17,19 +17,20 @@ const chartData = [
   { month: 'June', desktop: 214 },
 ];
 
-const chartConfig = {
-  desktop: {
-    label: 'Desktop',
-    color: 'hsl(var(--chart-1))',
-  },
-} satisfies ChartConfig;
+type ChartData = {
+  title: string;
+  description: string;
+  tredingText: string;
+  period: string;
+  chartConfig: ChartConfig;
+};
 
-export function Chart(data: object) {
+export function Chart({ title, description, tredingText, period, chartConfig }: ChartData) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Area Chart</CardTitle>
-        <CardDescription>Showing total visitors for the last 6 months</CardDescription>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -64,11 +65,9 @@ export function Chart(data: object) {
         <div className='flex w-full items-start gap-2 text-sm'>
           <div className='grid gap-2'>
             <div className='flex items-center gap-2 font-medium leading-none'>
-              Trending up by 5.2% this month <TrendingUp className='h-4 w-4' />
+              {tredingText} <TrendingUp className='h-4 w-4' />
             </div>
-            <div className='flex items-center gap-2 leading-none text-muted-foreground'>
-              January - June 2024
-            </div>
+            <div className='flex items-center gap-2 leading-none text-muted-foreground'>{period}</div>
           </div>
         </div>
       </CardFooter>

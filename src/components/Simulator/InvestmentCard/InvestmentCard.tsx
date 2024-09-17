@@ -3,6 +3,14 @@ import { Container } from '@/components/Simulator/Container/Container';
 import { Chart } from '@/components/Simulator/Chart/Chart';
 // import { Label } from '@/components/ui/label';
 // import { cn } from '@/lib/utils';
+import { ChartConfig } from '@/components/ui/chart';
+
+const chartConfig = {
+  desktop: {
+    label: 'Desktop',
+    color: 'hsl(var(--chart-1))',
+  },
+} satisfies ChartConfig;
 
 type InvestmentCardProps = {
   title: string;
@@ -22,7 +30,13 @@ export default function InvestmentCard({ title, description }: InvestmentCardPro
           </CardHeader>
         </div>
         <CardContent className='w-[calc(80vw)] max-w-[800px]'>
-          <Chart />
+          <Chart
+            title='Histórico de preços'
+            description='Oscilações da moeda *** em um dado período'
+            tredingText='Trending up by 5.2% this month'
+            period='January - June 2024'
+            chartConfig={chartConfig}
+          />
         </CardContent>
       </Container>
     </div>
