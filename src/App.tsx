@@ -1,7 +1,7 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { NavigationBar } from '@/components/Navigation/NavigationBar';
 import { Toaster } from './components/ui/sonner';
-import { BalanceProvider } from './hooks/useBalance';
+import { BalanceProvider } from './providers/balanceProvider';
 
 import Routes from '@/routes';
 

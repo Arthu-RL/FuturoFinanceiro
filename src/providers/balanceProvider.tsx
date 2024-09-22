@@ -1,17 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 type BalanceContextType = {
   balance: number;
   setBalance(value: number): void;
 };
 
-const BalanceContext = createContext<BalanceContextType | undefined>(undefined);
-
-export function useBalance(): BalanceContextType {
-  const context = useContext(BalanceContext);
-  if (!context) throw new Error('There is no context (undefined)');
-  return context;
-}
+export const BalanceContext = createContext<BalanceContextType | null>(null);
 
 export function BalanceProvider({ children }: { children: React.ReactNode }): JSX.Element {
   const [balance, setBalance] = useState<number>(1000);

@@ -5,8 +5,8 @@ export function Balance() {
   const { balance } = useBalance();
 
   return (
-      <Card className='p-4'>
-        <p>Saldo: {balance}</p>
-      </Card>
+    <Card className='p-4'>
+      <p>Saldo: {balance}</p>
+    </Card>
   );
 }
