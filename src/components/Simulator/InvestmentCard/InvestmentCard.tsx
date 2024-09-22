@@ -1,8 +1,6 @@
 import { CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Container } from '@/components/Simulator/Container/Container';
 import { Chart } from '@/components/Simulator/Chart/Chart';
-// import { Label } from '@/components/ui/label';
-// import { cn } from '@/lib/utils';
 import { ChartConfig } from '@/components/ui/chart';
 
 const chartConfig = {
@@ -19,7 +17,7 @@ type InvestmentCardProps = {
 
 export default function InvestmentCard({ title, description }: InvestmentCardProps) {
   return (
-    <div className='p-10'>
+    <div className='mt-10'>
       <Container>
         <div className='flex-1'>
           <CardHeader>
