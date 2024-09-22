@@ -11,7 +11,7 @@ export default function App() {
   return (
     <BalanceProvider>
       <Router>
-        <main className='min-h-screen py-12 pl-32'>
+        <main className='py-12 pl-32 max-sm:px-5 max-sm:pt-24'>
           <Routes />
           <NavigationBar />
         </main>
