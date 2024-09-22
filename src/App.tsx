@@ -1,23 +1,22 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Navbar } from '@/components/Navigation/Navbar';
-import { ThemeProvider } from './providers/theme-provider';
+import { NavigationBar } from '@/components/Navigation/NavigationBar';
 import { Toaster } from './components/ui/sonner';
 import { BalanceProvider } from './hooks/useBalance';
 
 import Routes from '@/routes';
 
-import '@/stylesheets/index.css';
+import '@/stylesheets/globals.css';
 
 export default function App() {
   return (
-    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <BalanceProvider>
-        <Router>
-          <Navbar />
+    <BalanceProvider>
+      <Router>
+        <main className='min-h-screen py-12 pl-32'>
           <Routes />
-        </Router>
-        <Toaster />
-      </BalanceProvider>
-    </ThemeProvider>
+          <NavigationBar />
+        </main>
+      </Router>
+      <Toaster />
+    </BalanceProvider>
   );
 }

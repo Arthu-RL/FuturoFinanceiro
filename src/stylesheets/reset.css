@@ -37,6 +37,11 @@ body {
   line-height: 1.5;
 }
 
+/* Ensure Navigation Bar Functions Properly When Dialog is Active */
+body:has(div[role='dialog']) {
+  pointer-events: initial !important;
+}
+
 /* Set react root element to full height */
 #root {
   min-height: 100vh;
