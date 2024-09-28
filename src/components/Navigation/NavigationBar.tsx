@@ -1,6 +1,7 @@
 import { NavigationLinks } from './NavigationLinks';
 import { Gamepad, Link, Shield, TrendingUp } from 'lucide-react';
 import { NavigationLogo } from './NavigationLogo';
+import { ThemeButton } from './ThemeButton';
 
 const investmentLinks = [
   { title: 'Ações e Títulos', href: '/investimentos/acoes-titulos' },
@@ -34,13 +35,14 @@ const additionalLinks = [
 
 export const NavigationBar = () => {
   return (
-    <header className='fixed left-0 top-0 z-[999] h-screen bg-stone-900 px-2.5 py-3 max-sm:h-fit max-sm:w-full max-sm:px-3.5 max-sm:py-1'>
-      <div className='container mx-auto flex h-14 max-w-screen-2xl flex-col items-center gap-2 max-sm:flex-row'>
+    <header className='fixed left-0 top-0 z-[999] h-screen bg-stone-900 px-2.5 py-3 max-sm:h-fit max-sm:w-full max-sm:px-3.5 max-sm:py-1.5'>
+      <div className='container mx-auto flex h-full max-w-screen-2xl flex-col items-center gap-2 max-sm:flex-row'>
         <NavigationLogo />
         <NavigationLinks title='Investimentos' Icon={TrendingUp} links={investmentLinks} />
         <NavigationLinks title='Perfis de Risco' Icon={Shield} links={riskProfileLinks} />
         <NavigationLinks title='Simulador' Icon={Gamepad} links={simulatorLinks} />
         <NavigationLinks title='Recursos Externos' Icon={Link} links={additionalLinks} />
+        <ThemeButton />
       </div>
     </header>
   );
