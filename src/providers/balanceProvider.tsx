@@ -1,24 +1,15 @@
-import React, { createContext, useState, useEffect } from 'react';
-
-type BalanceContextType = {
-  balance: number;
-  setBalance(value: number): void;
-};
-
-export const BalanceContext = createContext<BalanceContextType | null>(null);
+import { useState, useEffect } from 'react';
+import { BalanceContext } from './providers';
 
 export function BalanceProvider({ children }: { children: React.ReactNode }): JSX.Element {
-  const [balance, setBalance] = useState<number>(1000);
+  const [balance, setBalance] = useState<number>(Number(localStorage.getItem('balance') || 1000));
 
-  useEffect(() => {
-    const storedBalance = localStorage.getItem('balance');
-    if (storedBalance) setBalance(Number(storedBalance));
-    else localStorage.setItem('balance', '1000');
-  }, []);
-
-  useEffect(() => {
+  function updateBalance(balance: number) {
     localStorage.setItem('balance', balance.toString());
-  }, [balance]);
+    setBalance(balance);
+  }
 
-  return <BalanceContext.Provider value={{ balance, setBalance }}>{children}</BalanceContext.Provider>;
+  useEffect(() => {}, [balance]);
+
+  return <BalanceContext.Provider value={{ balance, updateBalance }}>{children}</BalanceContext.Provider>;
 }
