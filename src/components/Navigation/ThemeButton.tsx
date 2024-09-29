@@ -13,7 +13,7 @@ export const ThemeButton = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger onClick={toggleTheme} className='mt-auto max-sm:ml-auto'>
+      <DropdownMenuTrigger onClick={toggleTheme} className='mt-auto max-sm:ml-auto max-sm:mt-0'>
         <Button
           variant='outline'
           className='group size-10 rounded-full border-none bg-stone-900 p-2 hover:bg-stone-800 data-[state=open]:pointer-events-none data-[state=open]:bg-stone-800 max-sm:size-9'

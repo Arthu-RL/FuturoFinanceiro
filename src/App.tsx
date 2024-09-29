@@ -13,7 +13,7 @@ export default function App() {
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
       <BalanceProvider>
         <Router>
-          <main className='py-12 pl-32 max-sm:px-5 max-sm:pt-24'>
+          <main className='py-12 pl-28 pr-14 max-sm:px-5 max-sm:pt-20'>
             <Routes />
             <NavigationBar />
           </main>
