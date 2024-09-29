@@ -30,7 +30,7 @@ export const NavigationLinks = ({ title, links, Icon }: NavMenuProps) => {
           </Button>
         </SheetTrigger>
       </div>
-      <SheetContent side='left' className='pl-20 max-sm:w-4/5 max-sm:pl-4'>
+      <SheetContent side='left' className='pl-20 max-sm:w-8/12 max-sm:pl-4'>
         <SheetHeader className='mb-2 max-sm:mb-0'>
           <SheetTitle className='p-2 font-roboto text-xl font-semibold uppercase max-sm:mt-14 max-sm:text-left max-sm:text-lg'>
             {title}
