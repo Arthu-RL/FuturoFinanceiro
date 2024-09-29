@@ -33,15 +33,21 @@ const additionalLinks = [
   { title: 'Valor Econômico', href: 'https://valor.globo.com' },
 ];
 
+const links = [
+  { title: 'Investimentos', Icon: TrendingUp, links: investmentLinks },
+  { title: 'Perfis de Risco', Icon: Shield, links: riskProfileLinks },
+  { title: 'Simulador', Icon: Gamepad, links: simulatorLinks },
+  { title: 'Recursos Externos', Icon: Link, links: additionalLinks },
+];
+
 export const NavigationBar = () => {
   return (
     <header className='fixed left-0 top-0 z-[999] h-screen bg-stone-900 px-2.5 py-4 max-sm:h-fit max-sm:w-full max-sm:px-3.5 max-sm:py-1.5'>
       <div className='container mx-auto flex h-full max-w-screen-2xl flex-col items-center gap-2 max-sm:flex-row'>
         <NavigationLogo />
-        <NavigationLinks title='Investimentos' Icon={TrendingUp} links={investmentLinks} />
-        <NavigationLinks title='Perfis de Risco' Icon={Shield} links={riskProfileLinks} />
-        <NavigationLinks title='Simulador' Icon={Gamepad} links={simulatorLinks} />
-        <NavigationLinks title='Recursos Externos' Icon={Link} links={additionalLinks} />
+        {links.map((navigationContent) => (
+          <NavigationLinks key={navigationContent.title} {...navigationContent} />
+        ))}
         <ThemeButton />
       </div>
     </header>
