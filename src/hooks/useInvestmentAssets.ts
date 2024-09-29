@@ -1,4 +1,4 @@
-import type { InvestmentAssets, ProcessedInvestmentAssets } from '@/@types/investmentAssets';
+import type { InvestmentAssets, ProcessedInvestmentAssets } from '@/@types/investment';
 import { useFetch } from './useFetch';
 import { fetchCurrencyByCode } from '@/services/currency';
 import type { ConversionRates } from '@/@types/currency';

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useInvestmentAssets } from '@/hooks/useInvestmentAssets';
 import { investmentAssets } from '@/data/investmentAssets';
 import { Input } from '../ui/input';
-import type { ProcessedInvestmentAssets } from '@/@types/investmentAssets';
+import type { ProcessedInvestmentAssets } from '@/@types/investment';
 import { formatCurrency } from '@/utils/currency';
 import { translateAssetCategory, translateAssetProfile } from '@/utils/string';
 
@@ -147,7 +147,7 @@ export function InvestmentAssets() {
   const pageItemFirst = totalItems > 0 ? (currentPage - 1) * pagination.pageSize + 1 : 0;
 
   return (
-    <Card className='col-span-3 flex flex-col'>
+    <Card className='col-span-3 flex h-full flex-col'>
       <CardHeader className='flex flex-row items-start justify-between'>
         <div className='flex flex-col gap-2'>
           <CardTitle>Ativos Disponíveis para Compra</CardTitle>
@@ -177,7 +177,7 @@ export function InvestmentAssets() {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className='h-full'>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>

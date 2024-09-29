@@ -1,4 +1,4 @@
-import type { InvestmentAssets } from '@/@types/investmentAssets';
+import type { InvestmentAssets } from '@/@types/investment';
 
 export const investmentAssets: InvestmentAssets = {
   '1000sats': { name: 'SATS', profile: 'high-risk', alias: '1000SATS', type: 'Crypto' },
