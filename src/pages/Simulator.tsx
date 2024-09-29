@@ -1,4 +1,4 @@
-import { Summary } from '@/components/Simulator/Summary/Summary';
+import { Summary } from '@/components/Simulator/Summary';
 
 export default function Simulator() {
   return (

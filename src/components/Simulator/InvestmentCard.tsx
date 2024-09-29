@@ -1,6 +1,6 @@
 import { CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Container } from '@/components/Simulator/Container/Container';
-import { Chart } from '@/components/Simulator/Chart/Chart';
+import { Container } from '@/components/Simulator/Container';
+import { Chart } from '@/components/Simulator/Chart';
 import { ChartConfig } from '@/components/ui/chart';
 
 const chartConfig = {
