@@ -51,7 +51,7 @@ export function Summary() {
           <p className='text-xs text-muted-foreground'>Ações, fundos e outros ativos.</p>
         </CardContent>
       </Card>
-      <Card className='grid-rows-[1fr 2fr] grid'>
+      <Card>
         <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
           <CardTitle className='text-sm font-medium'>Lucro Semanal</CardTitle>
           <Activity className='h-4 w-4 text-muted-foreground' />
@@ -61,7 +61,7 @@ export function Summary() {
           <p className='text-xs text-muted-foreground'>Lucro acumulado nesta semana</p>
           <div className='h-[80px]'>
             <ResponsiveContainer width='100%' height='100%'>
-              <LineChart data={data} margin={{ top: 25, right: 10, left: 10, bottom: 0 }}>
+              <LineChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 5 }}>
                 <Line
                   type='monotone'
                   strokeWidth={2}
