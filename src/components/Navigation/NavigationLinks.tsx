@@ -38,7 +38,10 @@ export const NavigationLinks = ({ title, links, Icon }: NavMenuProps) => {
         </SheetHeader>
         <ul className='flex flex-col items-start gap-1'>
           {links.map(({ title, href }) => (
-            <li className='w-full cursor-pointer text-nowrap rounded-sm hover:bg-stone-100 hover:dark:bg-slate-900'>
+            <li
+              key={title}
+              className='w-full cursor-pointer text-nowrap rounded-sm hover:bg-stone-100 hover:dark:bg-slate-900'
+            >
               <Link to={href} className='flex w-full'>
                 <SheetClose className='h-full w-full p-2 text-start font-poppins text-sm font-medium'>
                   {title}
