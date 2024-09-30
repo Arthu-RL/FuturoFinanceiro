@@ -9,7 +9,12 @@ export function BalanceProvider({ children }: { children: React.ReactNode }): JS
     setBalance(balance);
   }
 
-  useEffect(() => {}, [balance]);
+  useEffect(() => {
+    const storedBalance = localStorage.getItem('balance');
+    if (storedBalance) {
+      setBalance(Number(storedBalance));
+    }
+  }, []);
 
   return <BalanceContext.Provider value={{ balance, updateBalance }}>{children}</BalanceContext.Provider>;
 }
