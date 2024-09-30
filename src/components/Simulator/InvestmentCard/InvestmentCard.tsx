@@ -1,4 +1,7 @@
+import { useTransactionModal } from '@/hooks/useModalState';
+import { InvestmentCardProps } from '@/@types/InvestmentCard';
 import { CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Button } from "@/components/ui/button"
 import { Container } from '@/components/Simulator/Container/Container';
 import { Chart } from '@/components/Simulator/Chart/Chart';
 import { ChartConfig } from '@/components/ui/chart';
@@ -10,12 +13,9 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-type InvestmentCardProps = {
-  title: string;
-  description: string;
-};
-
 export default function InvestmentCard({ title, description }: InvestmentCardProps) {
+  const { openModal } = useTransactionModal();
+
   return (
     <div className='mt-10'>
       <Container>
@@ -36,6 +36,10 @@ export default function InvestmentCard({ title, description }: InvestmentCardPro
             chartConfig={chartConfig}
           />
         </CardContent>
+
+        <div className='mt-5'>
+          <Button onClick={openModal}>Buy/Sell</Button>
+        </div>
       </Container>
     </div>
   );

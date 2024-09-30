@@ -3,6 +3,7 @@ import { NavigationBar } from '@/components/Navigation/NavigationBar';
 import { Toaster } from './components/ui/sonner';
 import { BalanceProvider } from './providers/balanceProvider';
 import { ThemeProvider } from './providers/themeProvider';
+import { TransactionModalProvider } from './providers/modalTransactionProvider';
 
 import Routes from '@/routes';
 
@@ -12,13 +13,15 @@ export default function App() {
   return (
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
       <BalanceProvider>
-        <Router>
-          <main className='min-h-screen py-12 pl-28 pr-14 max-sm:px-5 max-sm:pt-20'>
-            <Routes />
-            <NavigationBar />
-          </main>
-        </Router>
-        <Toaster />
+        <TransactionModalProvider>
+          <Router>
+            <main className='min-h-screen py-12 pl-28 pr-14 max-sm:px-5 max-sm:pt-20'>
+              <Routes />
+              <NavigationBar />
+            </main>
+          </Router>
+          <Toaster />
+        </TransactionModalProvider>
       </BalanceProvider>
     </ThemeProvider>
   );
