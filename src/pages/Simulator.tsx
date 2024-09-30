@@ -1,14 +1,15 @@
-import InvestmentCard from '@/components/Simulator/InvestmentCard/InvestmentCard';
-import { Balance } from '@/components/Simulator/Balance/Balance';
+import { InvestmentAssets } from '@/components/Simulator/InvestmentAssets';
+import { RecentPurchases } from '@/components/Simulator/RecentPurchases';
+import { Summary } from '@/components/Simulator/Summary';
 
 export default function Simulator() {
   return (
-    <div className='p-10'>
-      <Balance />
-      <InvestmentCard
-        title='Investimento risco baixo'
-        description="Lorem ipsum is placeholder text used in design and publishing to fill a space where content is not yet available. It is derived from a scrambled section of Cicero's De Finibus Bonorum et Malorum written in 45 BC."
-      />
-    </div>
+    <section className='grid h-full grid-rows-3 gap-8'>
+      <Summary />
+      <div className='row-span-2 grid w-full grid-cols-4 gap-8'>
+        <InvestmentAssets />
+        <RecentPurchases />
+      </div>
+    </section>
   );
 }

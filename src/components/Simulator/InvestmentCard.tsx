@@ -1,10 +1,11 @@
 import { useTransactionModal } from '@/hooks/useModalState';
 import { InvestmentCardProps } from '@/@types/InvestmentCard';
 import { CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from "@/components/ui/button"
-import { Container } from '@/components/Simulator/Container/Container';
-import { Chart } from '@/components/Simulator/Chart/Chart';
+import { Button } from '@/components/ui/button';
+
 import { ChartConfig } from '@/components/ui/chart';
+import { Container } from './Container';
+import { Chart } from './Chart';
 
 const chartConfig = {
   desktop: {
