@@ -15,7 +15,7 @@ export default function App() {
       <BalanceProvider>
         <TransactionModalProvider>
           <Router>
-            <main className='h-screen pb-12 pl-28 pr-14 pt-6 max-sm:px-5 max-sm:pt-2'>
+            <main className='pb-12 pl-28 pr-14 pt-6 max-2xl:min-h-screen max-sm:px-5 max-sm:pt-2 2xl:h-screen'>
               <Routes />
               <NavigationBar />
             </main>
