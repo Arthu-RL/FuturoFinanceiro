@@ -15,7 +15,7 @@ export function Summary() {
     <div className='row-span-1 grid grid-cols-4 items-stretch gap-8 max-2xl:gap-4 max-xl:grid-cols-1'>
       <div className='flex h-full flex-col gap-6'>
         <div className='my-auto flex flex-col gap-1 px-0.5'>
-          <h1 className='text-3xl font-medium max-2xl:text-xl'>Simulador de Investimentos</h1>
+          <h1 className='text-3xl font-medium max-2xl:text-2xl'>Simulador de Investimentos</h1>
           <p className='text-sm text-muted-foreground max-2xl:text-xs'>
             Controle seus investimentos e acompanhe o seu progresso.
           </p>
@@ -51,17 +51,17 @@ export function Summary() {
           <p className='text-xs text-muted-foreground'>+5% em relação ao dia anterior</p>
         </CardContent>
       </Card>
-      <Card>
+      <Card className='grid grid-rows-[0.5fr_auto]'>
         <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
           <CardTitle className='text-sm font-medium'>Lucro Semanal</CardTitle>
           <Activity className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
-        <CardContent>
+        <CardContent className='grid grid-rows-[2rem_1rem_auto]'>
           <div className='text-2xl font-bold'>{formatCurrency(balance * 5.5, 'BRL', 'pt-BR')}</div>
           <p className='text-xs text-muted-foreground'>Lucro acumulado nesta semana</p>
-          <div className='h-[80px]'>
+          <div>
             <ResponsiveContainer width='100%' height='100%'>
-              <LineChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 5 }}>
+              <LineChart data={data} margin={{ top: 25, right: 10, left: 10, bottom: 5 }}>
                 <Line
                   type='monotone'
                   strokeWidth={2}

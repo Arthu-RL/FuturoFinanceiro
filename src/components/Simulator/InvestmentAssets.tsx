@@ -147,8 +147,8 @@ export function InvestmentAssets() {
   const pageItemFirst = totalItems > 0 ? (currentPage - 1) * pagination.pageSize + 1 : 0;
 
   return (
-    <Card className='col-span-3 flex h-full flex-col'>
-      <CardHeader className='flex flex-row items-start justify-between'>
+    <Card className='col-span-3 flex h-full flex-col max-2xl:col-span-4'>
+      <CardHeader className='flex flex-row items-start justify-between max-lg:flex-col'>
         <div className='flex flex-col gap-2'>
           <CardTitle>Ativos Disponíveis para Compra</CardTitle>
           <CardDescription>Descubra as oportunidades de investimento ao seu alcance.</CardDescription>
@@ -198,15 +198,15 @@ export function InvestmentAssets() {
           </TableBody>
         </Table>
       </CardContent>
-      <CardFooter className='mt-auto flex flex-row justify-between'>
-        <div className='text-xs text-muted-foreground'>
+      <CardFooter className='mt-auto flex flex-row justify-between max-sm:flex-col max-sm:gap-6'>
+        <div className='text-xs text-muted-foreground max-sm:order-1'>
           Mostrando{' '}
           <strong>
             {pageItemFirst}-{pageItemLast}{' '}
           </strong>
           de <strong>{totalItems}</strong> ativos
         </div>
-        <div className='space-x-2'>
+        <div className='justify-between space-x-2 max-sm:flex max-sm:w-full'>
           <Button
             variant='outline'
             size='sm'

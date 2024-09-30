@@ -8,7 +8,7 @@ import { formatCurrency } from '@/utils/currency';
 
 export const RecentPurchases = () => {
   return (
-    <Card className='col-span-1'>
+    <Card className='col-span-1 max-2xl:col-span-4'>
       <CardHeader className='flex flex-row items-center'>
         <div className='grid gap-2'>
           <CardTitle>Últimas Transações</CardTitle>
