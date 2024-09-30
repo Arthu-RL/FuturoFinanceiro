@@ -15,7 +15,7 @@ export default function App() {
       <BalanceProvider>
         <TransactionModalProvider>
           <Router>
-            <main className='min-h-screen py-12 pl-28 pr-14 max-sm:px-5 max-sm:pt-20'>
+            <main className='h-screen pb-12 pl-28 pr-14 pt-6 max-sm:px-5 max-sm:pt-2'>
               <Routes />
               <NavigationBar />
             </main>
