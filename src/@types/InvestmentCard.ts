@@ -3,4 +3,4 @@ type InvestmentCardProps = {
   description: string;
 };
 
-export type InvestmentCardProps;
+export type { InvestmentCardProps };
