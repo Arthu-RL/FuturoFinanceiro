@@ -15,9 +15,14 @@ function currencyExchangeRate(
   return amountInBaseCurrency * toRate;
 }
 
-function getCurrencyDisplayName(currency: string, locale: Locale) {
-  const displayNames = new Intl.DisplayNames([locale], { type: 'currency' });
-  return displayNames.of(currency.toUpperCase());
+function getCurrencyDisplayName(currencyCode: string, locale: Locale) {
+  try {
+    const displayNames = new Intl.DisplayNames([locale], { type: 'currency' });
+    return displayNames.of(currencyCode.toUpperCase());
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
 function formatCurrency(amount: number, currency: string, locale: Locale) {
