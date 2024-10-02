@@ -17,7 +17,7 @@ function currencyExchangeRate(
 
 function getCurrencyDisplayName(currencyCode: string, locale: Locale) {
   try {
-    const displayNames = new Intl.DisplayNames([locale], { type: 'currency' });
+    const displayNames = new Intl.DisplayNames([locale], { type: 'currency', fallback: 'none' });
     return displayNames.of(currencyCode.toUpperCase());
   } catch (error) {
     console.error(error);
