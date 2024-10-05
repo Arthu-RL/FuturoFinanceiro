@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const useLocalStorage = <T>(schema: z.Schema) => {
   function getStorageItem(storageKey: string): T | null {
-    const storageItem = schema.safeParse(JSON.parse(localStorage.getItem(storageKey) || String([])));
+    const storageItem = schema.safeParse(JSON.parse(localStorage.getItem(storageKey) || String(null)));
 
     if (!storageItem.success) {
       const errors = storageItem.error.flatten();
