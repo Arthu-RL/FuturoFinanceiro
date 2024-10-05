@@ -2,11 +2,10 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { useState } from 'react';
-import { useInvestmentAssets } from '@/hooks/useInvestmentAssets';
-import { investmentAssets } from '@/data/investmentAssets';
 import { Input } from '../ui/input';
 import { DropdownFilter } from './DropdownFilter';
 import { useAssetColumns } from '@/hooks/useAssetColumns';
+import { useAssets } from '@/hooks/useAssets';
 
 import {
   ColumnFiltersState,
@@ -20,17 +19,17 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-export function InvestmentAssets() {
-  const [sorting, setSorting] = useState<SortingState>([{ id: 'price', desc: true }]);
+export function AssetsTable() {
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'value', desc: false }]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 6 });
-  const { processedAssets } = useInvestmentAssets(investmentAssets);
   const columns = useAssetColumns();
+  const { assets } = useAssets();
 
   const table = useReactTable({
-    data: processedAssets,
+    data: assets,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

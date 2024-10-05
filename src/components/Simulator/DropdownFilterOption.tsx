@@ -1,11 +1,12 @@
-import type { AssetType, ProcessedInvestmentAssets, Profile } from '@/@types/investment';
+import type { AssetType, Profile } from '@/@types/investment';
 import { DropdownMenuItem } from '../ui/dropdown-menu';
 import { Table } from '@tanstack/react-table';
 import { Check } from 'lucide-react';
+import type { Assets } from '@/lib/schemas/assets.schema';
 
 type DropdownFilterOptionProps = {
   label: string;
-  table: Table<ProcessedInvestmentAssets>;
+  table: Table<Assets>;
 } & ({ column: 'type'; filter: AssetType } | { column: 'profile'; filter: Profile });
 
 export const DropdownFilterOption = ({ label, table, column, filter }: DropdownFilterOptionProps) => {

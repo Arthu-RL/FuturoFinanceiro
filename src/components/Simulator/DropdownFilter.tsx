@@ -1,8 +1,8 @@
 import { Button } from '../ui/button';
 import { DropdownFilterOption } from './DropdownFilterOption';
 import type { Table } from '@tanstack/react-table';
-import type { ProcessedInvestmentAssets } from '@/@types/investment';
 import { Filter } from 'lucide-react';
+import type { Assets } from '@/lib/schemas/assets.schema';
 
 import {
   DropdownMenu,
@@ -18,7 +18,7 @@ import {
 } from '../ui/dropdown-menu';
 
 type DropdownFilterProps = {
-  table: Table<ProcessedInvestmentAssets>;
+  table: Table<Assets>;
 };
 
 export const DropdownFilter = ({ table }: DropdownFilterProps) => {
