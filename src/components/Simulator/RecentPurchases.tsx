@@ -26,7 +26,7 @@ export const RecentPurchases = () => {
           <TableHeader>
             <TableRow>
               <TableHead className='text-left'>Código</TableHead>
-              <TableHead className='text-left'>Transação</TableHead>
+              <TableHead className='text-left'>Tipo</TableHead>
               <TableHead className='text-left'>Quantidade</TableHead>
               <TableHead className='text-right'>Preço</TableHead>
             </TableRow>
@@ -34,30 +34,36 @@ export const RecentPurchases = () => {
           <TableBody>
             <TableRow>
               <TableCell>
-                <Badge className='font-bold uppercase'>XAU</Badge>
+                <Badge variant='outline' className='font-bold uppercase'>
+                  XAU
+                </Badge>
               </TableCell>
               <TableCell>
-                <Badge>Venda</Badge>
+                <Badge variant='outline'>Venda</Badge>
               </TableCell>
               <TableCell className='text-left'>5 Unidades</TableCell>
               <TableCell className='text-right'>{formatCurrency(72206, 'BRL', 'pt-BR')}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                <Badge className='font-bold uppercase'>USD</Badge>
+                <Badge variant='outline' className='font-bold uppercase'>
+                  USD
+                </Badge>
               </TableCell>
               <TableCell>
-                <Badge>Compra</Badge>
+                <Badge variant='outline'>Compra</Badge>
               </TableCell>
               <TableCell className='whitespace-nowrap text-left'>500 Unidades</TableCell>
               <TableCell className='text-right'>{formatCurrency(2715, 'BRL', 'pt-BR')}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                <Badge className='font-bold uppercase'>NZD</Badge>
+                <Badge variant='outline' className='font-bold uppercase'>
+                  NZD
+                </Badge>
               </TableCell>
               <TableCell>
-                <Badge>Venda</Badge>
+                <Badge variant='outline'>Venda</Badge>
               </TableCell>
               <TableCell className='text-left'>187 Unidades</TableCell>
               <TableCell className='text-right'>{formatCurrency(645.15, 'BRL', 'pt-BR')}</TableCell>
