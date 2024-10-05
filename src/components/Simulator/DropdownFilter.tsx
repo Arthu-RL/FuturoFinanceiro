@@ -2,7 +2,7 @@ import { Button } from '../ui/button';
 import { DropdownFilterOption } from './DropdownFilterOption';
 import type { Table } from '@tanstack/react-table';
 import { Filter } from 'lucide-react';
-import { Assets } from '@/lib/schemas/assets.schema';
+import type { Assets } from '@/lib/schemas/assets.schema';
 
 import {
   DropdownMenu,
