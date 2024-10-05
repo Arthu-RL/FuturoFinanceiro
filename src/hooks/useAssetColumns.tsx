@@ -1,7 +1,6 @@
 import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TableCell } from '@/components/ui/table';
-import type { ProcessedInvestmentAssets } from '@/@types/investment';
 import { formatCurrency } from '@/utils/currency';
 import { translateAssetCategory, translateAssetProfile } from '@/utils/string';
 import { generateAssetVariationColor } from '@/utils/styles';
@@ -9,6 +8,7 @@ import { getInvestmentAssetsVariation } from '@/utils/investmentAssets';
 import { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import type { Assets } from '@/lib/schemas/assets.schema';
 
 import {
   DropdownMenu,
@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 export function useAssetColumns() {
-  const columns: ColumnDef<ProcessedInvestmentAssets>[] = [
+  const columns: ColumnDef<Assets>[] = [
     {
       header: 'Código',
       accessorKey: 'alias',
@@ -88,7 +88,21 @@ export function useAssetColumns() {
     },
 
     {
-      accessorKey: 'price',
+      accessorKey: 'variation',
+      sortingFn: (rowA, rowB) => {
+        const rowAValues = Object(rowA.getValue('value'));
+        const rowBValues = Object(rowB.getValue('value'));
+
+        const currentPriceA = 'current' in rowAValues ? rowAValues.current : 0;
+        // const previousPriceA = 'previous' in rowAValues ? rowAValues.previous : 0;
+
+        const currentPriceB = 'current' in rowBValues ? rowBValues.current : 0;
+        // const previousPriceB = 'previous' in rowBValues ? rowBValues.previous : 0;
+
+        const variationA = getInvestmentAssetsVariation(10000, currentPriceA);
+        const variationB = getInvestmentAssetsVariation(10000, currentPriceB);
+        return variationA < variationB ? 1 : variationA > variationB ? -1 : 0;
+      },
       header: ({ column }) => {
         return (
           <div className='flex h-full w-full py-1'>
@@ -103,10 +117,12 @@ export function useAssetColumns() {
           </div>
         );
       },
-      cell: () => {
-        const price1 = Math.random();
-        const price2 = Math.random();
-        const variation = getInvestmentAssetsVariation(price1, price2);
+      cell: ({ row }) => {
+        const values = Object(row.getValue('value'));
+        const currentPrice = 'current' in values ? values.current : 0;
+        // const previousPrice = 'previous' in values ? values.previous : 0;
+
+        const variation = getInvestmentAssetsVariation(10000, currentPrice);
         const variationText = `${(variation > 0 && '+') || ''}${variation.toFixed(2)}%`;
 
         return (
@@ -114,7 +130,7 @@ export function useAssetColumns() {
             <TableCell className='ml-auto px-4'>
               <Badge
                 variant='outline'
-                className={`font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${generateAssetVariationColor(price1, price2)}`}
+                className={`font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${generateAssetVariationColor(10000, currentPrice)}`}
               >
                 {variationText}
               </Badge>
@@ -125,7 +141,14 @@ export function useAssetColumns() {
     },
 
     {
-      accessorKey: 'price',
+      accessorKey: 'value',
+      sortingFn: (rowA, rowB) => {
+        const rowAValues = Object(rowA.getValue('value'));
+        const rowBValues = Object(rowB.getValue('value'));
+        const valueA = 'current' in rowAValues ? rowAValues.current : 0;
+        const valueB = 'current' in rowBValues ? rowBValues.current : 0;
+        return valueA < valueB ? 1 : valueA > valueB ? -1 : 0;
+      },
       header: ({ column }) => {
         return (
           <div className='flex h-full w-full py-1'>
@@ -141,7 +164,9 @@ export function useAssetColumns() {
         );
       },
       cell: ({ row }) => {
-        const formattedBRLPrice = formatCurrency(row.getValue('price'), 'BRL', 'pt-BR');
+        const values = Object(row.getValue('value'));
+        const currentValue = 'current' in values ? values.current : 0;
+        const formattedBRLPrice = formatCurrency(currentValue, 'BRL', 'pt-BR');
         return (
           <div className='flex w-full'>
             <TableCell className='ml-auto px-4 font-medium'>{formattedBRLPrice}</TableCell>
