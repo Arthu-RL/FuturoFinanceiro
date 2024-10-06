@@ -145,7 +145,7 @@ export function useAssetColumns() {
             <TableCell className='ml-auto px-4'>
               <Badge
                 variant='default'
-                className={`flex items-center gap-1 px-1.5 font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${variationColor}`}
+                className={`pointer-events-none flex items-center gap-1 px-1.5 font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${variationColor}`}
               >
                 {variationText}
                 <VariationIcon className='size-[18px]' />
