@@ -1,10 +1,10 @@
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
+import { ArrowUpDown, CircleArrowDown, CircleArrowUp, CircleDot, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TableCell } from '@/components/ui/table';
 import { formatCurrency } from '@/utils/currency';
 import { translateAssetCategory, translateAssetProfile } from '@/utils/string';
-import { generateAssetVariationColor } from '@/utils/styles';
-import { getInvestmentAssetsVariation } from '@/utils/investmentAssets';
+import { getVariationStatus } from '@/utils/styles';
+import { getAssetVariation } from '@/utils/number';
 import { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -88,7 +88,7 @@ export function useAssetColumns() {
     },
 
     {
-      accessorKey: 'variation',
+      accessorKey: 'value',
       sortingFn: (rowA, rowB) => {
         const rowAValues = Object(rowA.getValue('value'));
         const rowBValues = Object(rowB.getValue('value'));
@@ -99,8 +99,8 @@ export function useAssetColumns() {
         const currentPriceB = 'current' in rowBValues ? rowBValues.current : 0;
         // const previousPriceB = 'previous' in rowBValues ? rowBValues.previous : 0;
 
-        const variationA = getInvestmentAssetsVariation(10000, currentPriceA);
-        const variationB = getInvestmentAssetsVariation(10000, currentPriceB);
+        const variationA = getAssetVariation(10000, currentPriceA);
+        const variationB = getAssetVariation(10000, currentPriceB);
         return variationA < variationB ? 1 : variationA > variationB ? -1 : 0;
       },
       header: ({ column }) => {
@@ -122,17 +122,33 @@ export function useAssetColumns() {
         const currentPrice = 'current' in values ? values.current : 0;
         // const previousPrice = 'previous' in values ? values.previous : 0;
 
-        const variation = getInvestmentAssetsVariation(10000, currentPrice);
+        const variation = getAssetVariation(10000, currentPrice);
+        const variationStatus = getVariationStatus(10000, currentPrice);
         const variationText = `${(variation > 0 && '+') || ''}${variation.toFixed(2)}%`;
+
+        const variationColor =
+          variationStatus === 'increase'
+            ? 'bg-green-700'
+            : variationStatus === 'decrease'
+              ? 'bg-red-700'
+              : 'bg-gray-500';
+
+        const VariationIcon =
+          variationStatus === 'increase'
+            ? CircleArrowUp
+            : variationStatus === 'decrease'
+              ? CircleArrowDown
+              : CircleDot;
 
         return (
           <div className='flex w-full'>
             <TableCell className='ml-auto px-4'>
               <Badge
                 variant='outline'
-                className={`font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${generateAssetVariationColor(10000, currentPrice)}`}
+                className={`flex items-center gap-1 px-1.5 font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${variationColor}`}
               >
                 {variationText}
+                <VariationIcon className='size-[18px]' />
               </Badge>
             </TableCell>
           </div>

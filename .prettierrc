@@ -3,6 +3,5 @@
   "printWidth": 110,
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "experimentalTernaries": true,
   "plugins": ["prettier-plugin-tailwindcss"]
 }
