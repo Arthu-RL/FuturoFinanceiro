@@ -6,6 +6,7 @@ import { Input } from '../ui/input';
 import { DropdownFilter } from './DropdownFilter';
 import { useAssetColumns } from '@/hooks/useAssetColumns';
 import { useAssets } from '@/hooks/useAssets';
+import { X } from 'lucide-react';
 
 import {
   ColumnFiltersState,
@@ -62,13 +63,23 @@ export function AssetsTable() {
           <CardTitle>Ativos Disponíveis para Compra</CardTitle>
           <CardDescription>Descubra as oportunidades de investimento ao seu alcance.</CardDescription>
         </div>
-        <div className='flex w-full justify-end gap-2 max-lg:justify-start'>
-          <Input
-            placeholder='Buscar por nome...'
-            value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-            onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
-            className='max-w-sm'
-          />
+        <div className='item flex w-full justify-end gap-2 max-lg:justify-start'>
+          <div className='relative flex w-full max-w-sm'>
+            <Input
+              className='w-full'
+              placeholder='Buscar por nome...'
+              value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+              onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
+            />
+            {table.getColumn('name')?.getFilterValue() ? (
+              <button
+                onClick={() => table.getColumn('name')?.setFilterValue(null)}
+                className='group absolute right-0 h-full px-2 pb-0.5'
+              >
+                <X className='size-4 transition-all delay-100 ease-in dark:stroke-stone-400 dark:group-hover:stroke-white' />
+              </button>
+            ) : null}
+          </div>
           <DropdownFilter table={table} />
         </div>
       </CardHeader>

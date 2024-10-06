@@ -22,9 +22,12 @@ type DropdownFilterProps = {
 };
 
 export const DropdownFilter = ({ table }: DropdownFilterProps) => {
+  const hasActiveFilters =
+    table.getColumn('type')?.getFilterValue() || table.getColumn('profile')?.getFilterValue();
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild className={`${hasActiveFilters && 'bg-accent'}`}>
         <Button variant='outline' className='px-2'>
           <Filter className='size-4' />
         </Button>

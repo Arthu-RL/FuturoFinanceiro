@@ -144,7 +144,7 @@ export function useAssetColumns() {
           <div className='flex w-full'>
             <TableCell className='ml-auto px-4'>
               <Badge
-                variant='outline'
+                variant='default'
                 className={`flex items-center gap-1 px-1.5 font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${variationColor}`}
               >
                 {variationText}
