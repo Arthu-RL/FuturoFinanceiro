@@ -1,13 +1,19 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
-import { AssetsContext } from './providers';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { Assets, assetsSchemaArray } from '@/lib/schemas/assets.schema';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { useInvestmentAssets } from '@/hooks/useInvestmentAssets';
 import { investmentAssets } from '@/data/investmentAssets';
+import { useProccessInvestmentAssets } from '@/hooks/useProccessInvestmentAssets';
 
-export const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) => {
+type InvestmentAssetsState = {
+  assets: Assets[];
+  updateAssets: (assets: Assets[]) => void;
+};
+
+const InvestmentAssetsContext = createContext<InvestmentAssetsState>({ assets: [], updateAssets: () => {} });
+
+const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) => {
   const { setStorageItem, getStorageItem } = useLocalStorage<Assets[]>(assetsSchemaArray);
-  const { processedAssets } = useInvestmentAssets(investmentAssets);
+  const { processedAssets } = useProccessInvestmentAssets(investmentAssets);
 
   const [assets, setAssets] = useState<Assets[]>(getStorageItem('investmentAssets') || []);
 
@@ -23,5 +29,17 @@ export const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) 
     updateAssets(processedAssets);
   }, [assets, processedAssets, updateAssets]);
 
-  return <AssetsContext.Provider value={{ assets, updateAssets }}>{children}</AssetsContext.Provider>;
+  return (
+    <InvestmentAssetsContext.Provider value={{ assets, updateAssets }}>
+      {children}
+    </InvestmentAssetsContext.Provider>
+  );
 };
+
+const useInvestmentAssets = () => {
+  const context = useContext(InvestmentAssetsContext);
+  if (!context) throw new Error('useAssets must be used within a InvestmentAssetsProvider');
+  return context;
+};
+
+export { InvestmentAssetsProvider, useInvestmentAssets };

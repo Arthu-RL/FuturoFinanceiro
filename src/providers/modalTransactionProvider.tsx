@@ -1,7 +1,18 @@
-import { useState } from "react";
-import { TransactionModalContext } from "./providers";
+import { createContext, useContext, useState } from 'react';
 
-export function TransactionModalProvider({ children }: { children: React.ReactNode }) {
+type ModalProviderState = {
+  isModalOpen: boolean;
+  openModal(): void;
+  closeModal(): void;
+};
+
+const TransactionModalContext = createContext<ModalProviderState>({
+  isModalOpen: false,
+  openModal: () => null,
+  closeModal: () => null,
+});
+
+function TransactionModalProvider({ children }: { children: React.ReactNode }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -9,7 +20,15 @@ export function TransactionModalProvider({ children }: { children: React.ReactNo
 
   return (
     <TransactionModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>
-    {children}
+      {children}
     </TransactionModalContext.Provider>
   );
+}
+
+const useTransactionModal = () => {
+  const context = useContext(TransactionModalContext);
+  if (!context) throw new Error('useTransactionModal must be used within a TransactionModalProvider');
+  return context;
 };
+
+export { TransactionModalProvider, useTransactionModal };

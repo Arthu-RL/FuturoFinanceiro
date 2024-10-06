@@ -1,9 +1,18 @@
 import { useState } from 'react';
-import { useTransactionModal } from '@/hooks/useModalState';
-import { useBalance } from '@/hooks/useBalance';
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { useBalance } from '@/providers/balanceProvider';
+import { useTransactionModal } from '@/providers/modalTransactionProvider';
+import { Button } from '@/components/ui/button';
+
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
 
 function TransactionModal(): JSX.Element {
   const { balance, updateBalance } = useBalance();
@@ -19,8 +28,7 @@ function TransactionModal(): JSX.Element {
     if (type === 'sell') {
       const newBalance = balance + amount;
       updateBalance(newBalance);
-    } 
-    else if (type === 'buy') {
+    } else if (type === 'buy') {
       if (amount > balance) {
         alert('Saldo insuficiente para esta compra!');
       } else {
@@ -44,7 +52,7 @@ function TransactionModal(): JSX.Element {
             <DialogDescription>Enter the amount you want to buy or sell.</DialogDescription>
           </DialogHeader>
           <div className='p-5'>
-            <label htmlFor='amount' className='block mb-2 text-lg'>
+            <label htmlFor='amount' className='mb-2 block text-lg'>
               Enter Amount:
             </label>
             <Input
@@ -53,13 +61,15 @@ function TransactionModal(): JSX.Element {
               value={amount}
               onChange={handleAmountChange}
               placeholder='Enter amount'
-              className='w-full mb-4'
+              className='mb-4 w-full'
             />
           </div>
           <DialogFooter>
             <Button onClick={() => handleBuySell('buy')}>Buy</Button>
             <Button onClick={() => handleBuySell('sell')}>Sell</Button>
-            <Button variant='ghost' onClick={closeModal}>Cancel</Button>
+            <Button variant='ghost' onClick={closeModal}>
+              Cancel
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

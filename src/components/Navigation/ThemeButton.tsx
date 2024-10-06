@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
-import { useTheme } from '@/hooks/useTheme';
 import { Moon, Sun } from 'lucide-react';
 
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { useTheme } from '@/providers/themeProvider';
 
 export const ThemeButton = () => {
   const { theme, updateTheme } = useTheme();

@@ -6,7 +6,7 @@ import { currencyExchangeRate, getCurrencyDisplayName } from '@/utils/currency';
 import { useEffect, useState } from 'react';
 import { Assets } from '@/lib/schemas/assets.schema';
 
-export const useInvestmentAssets = (investmentAssets: InvestmentAssets) => {
+export const useProccessInvestmentAssets = (investmentAssets: InvestmentAssets) => {
   const BRLConversionRates = useFetch<ConversionRates>(() => fetchCurrencyByCode('BRL')).data?.['brl'];
   const [processedAssets, setProcessedAssets] = useState<Assets[]>([]);
 

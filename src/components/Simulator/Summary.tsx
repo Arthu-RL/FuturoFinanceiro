@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useBalance } from '@/hooks/useBalance';
+import { useBalance } from '@/providers/balanceProvider';
 import { formatCurrency } from '@/utils/currency';
 import { Activity, Coins, DollarSign, Wallet } from 'lucide-react';
 import { Line, LineChart, ResponsiveContainer } from 'recharts';

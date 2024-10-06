@@ -1,7 +1,16 @@
-import { useState, useEffect } from 'react';
-import { BalanceContext } from './providers';
+import { useState, useEffect, createContext, useContext } from 'react';
 
-export function BalanceProvider({ children }: { children: React.ReactNode }): JSX.Element {
+type BalanceProviderState = {
+  balance: number;
+  updateBalance(value: number): void;
+};
+
+const BalanceContext = createContext<BalanceProviderState>({
+  balance: 1000,
+  updateBalance: (value: number) => value,
+});
+
+function BalanceProvider({ children }: { children: React.ReactNode }): JSX.Element {
   const [balance, setBalance] = useState<number>(Number(localStorage.getItem('balance') || 1000));
 
   function updateBalance(balance: number) {
@@ -18,3 +27,11 @@ export function BalanceProvider({ children }: { children: React.ReactNode }): JS
 
   return <BalanceContext.Provider value={{ balance, updateBalance }}>{children}</BalanceContext.Provider>;
 }
+
+const useBalance = () => {
+  const context = useContext(BalanceContext);
+  if (!context) throw new Error('useBalance must be used within a BalanceProvider');
+  return context;
+};
+
+export { BalanceProvider, useBalance };

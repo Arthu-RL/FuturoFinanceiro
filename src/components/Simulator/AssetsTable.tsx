@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { Input } from '../ui/input';
 import { DropdownFilter } from './DropdownFilter';
 import { useAssetColumns } from '@/hooks/useAssetColumns';
-import { useAssets } from '@/hooks/useAssets';
 import { X } from 'lucide-react';
+import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 
 import {
   ColumnFiltersState,
@@ -27,7 +27,7 @@ export function AssetsTable() {
   const [rowSelection, setRowSelection] = useState({});
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 6 });
   const columns = useAssetColumns();
-  const { assets } = useAssets();
+  const { assets } = useInvestmentAssets();
 
   const table = useReactTable({
     data: assets,
