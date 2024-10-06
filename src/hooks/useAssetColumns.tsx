@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { TableCell } from '@/components/ui/table';
 import { formatCurrency } from '@/utils/currency';
 import { translateAssetCategory, translateAssetProfile } from '@/utils/string';
-import { getVariationStatus } from '@/utils/styles';
+import { getAssetVariationStatus } from '@/utils/asset';
 import { getAssetVariation } from '@/utils/number';
 import { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
@@ -123,7 +123,7 @@ export function useAssetColumns() {
         // const previousPrice = 'previous' in values ? values.previous : 0;
 
         const variation = getAssetVariation(10000, currentPrice);
-        const variationStatus = getVariationStatus(10000, currentPrice);
+        const variationStatus = getAssetVariationStatus(10000, currentPrice);
         const variationText = `${(variation > 0 && '+') || ''}${variation.toFixed(2)}%`;
 
         const variationColor =
