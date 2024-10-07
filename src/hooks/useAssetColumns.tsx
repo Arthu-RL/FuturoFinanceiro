@@ -88,19 +88,18 @@ export function useAssetColumns() {
     },
 
     {
-      accessorKey: 'value',
+      accessorKey: 'variation',
       sortingFn: (rowA, rowB) => {
         const rowAValues = Object(rowA.getValue('value'));
         const rowBValues = Object(rowB.getValue('value'));
-
         const currentPriceA = 'current' in rowAValues ? rowAValues.current : 0;
-        // const previousPriceA = 'previous' in rowAValues ? rowAValues.previous : 0;
-
+        const previousPriceA = 'previous' in rowAValues ? rowAValues.previous : 0;
         const currentPriceB = 'current' in rowBValues ? rowBValues.current : 0;
-        // const previousPriceB = 'previous' in rowBValues ? rowBValues.previous : 0;
+        const previousPriceB = 'previous' in rowBValues ? rowBValues.previous : 0;
 
-        const variationA = getAssetVariation(10000, currentPriceA);
-        const variationB = getAssetVariation(10000, currentPriceB);
+        const variationA = getAssetVariation(previousPriceA, currentPriceA);
+        const variationB = getAssetVariation(previousPriceB, currentPriceB);
+
         return variationA < variationB ? 1 : variationA > variationB ? -1 : 0;
       },
       header: ({ column }) => {
@@ -120,10 +119,11 @@ export function useAssetColumns() {
       cell: ({ row }) => {
         const values = Object(row.getValue('value'));
         const currentPrice = 'current' in values ? values.current : 0;
-        // const previousPrice = 'previous' in values ? values.previous : 0;
+        const previousPrice = 'previous' in values ? values.previous : 0;
 
-        const variation = getAssetVariation(10000, currentPrice);
-        const variationStatus = getAssetVariationStatus(10000, currentPrice);
+        const variation = getAssetVariation(previousPrice, currentPrice);
+        const variationStatus = getAssetVariationStatus(previousPrice, currentPrice);
+
         const variationText = `${(variation > 0 && '+') || ''}${variation.toFixed(2)}%`;
 
         const variationColor =
@@ -141,17 +141,26 @@ export function useAssetColumns() {
               : CircleDot;
 
         return (
-          <div className='flex w-full'>
-            <TableCell className='ml-auto px-4'>
-              <Badge
-                variant='default'
-                className={`pointer-events-none flex items-center gap-1 px-1.5 font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${variationColor}`}
-              >
-                {variationText}
-                <VariationIcon className='size-[18px]' />
-              </Badge>
-            </TableCell>
-          </div>
+          <TooltipProvider>
+            <Tooltip>
+              <div className='flex w-full'>
+                <TooltipTrigger className='ml-auto'>
+                  <TableCell className='ml-auto px-4'>
+                    <Badge
+                      variant='default'
+                      className={`pointer-events-none flex items-center gap-1 px-1.5 font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${variationColor}`}
+                    >
+                      {variationText}
+                      <VariationIcon className='size-[18px]' />
+                    </Badge>
+                  </TableCell>
+                </TooltipTrigger>
+              </div>
+              <TooltipContent>
+                <span>{variation}</span>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         );
       },
     },
