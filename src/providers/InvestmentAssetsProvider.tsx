@@ -18,9 +18,7 @@ const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) => {
   const [assets, setAssets] = useState<Assets[]>(getStorageItem('investmentAssets') || []);
 
   const updateAssets = useCallback(
-    (assets: Assets[]) => {
-      setAssets(setStorageItem('investmentAssets', assets) || []);
-    },
+    (assets: Assets[]) => setAssets(setStorageItem('investmentAssets', assets) || []),
     [setStorageItem],
   );
 
@@ -38,7 +36,7 @@ const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) => {
 
 const useInvestmentAssets = () => {
   const context = useContext(InvestmentAssetsContext);
-  if (!context) throw new Error('useAssets must be used within a InvestmentAssetsProvider');
+  if (!context) throw new Error('useInvestmentAssets must be used within a InvestmentAssetsProvider');
   return context;
 };
 
