@@ -23,7 +23,7 @@ export const useProccessInvestmentAssets = (investmentAssets: InvestmentAssets) 
           ...assetData,
           history: [],
           id: crypto.randomUUID(),
-          value: { current: assetPriceInBRL, previous: 0 },
+          value: { current: assetPriceInBRL, previous: assetPriceInBRL },
           name: getCurrencyDisplayName(assetCode, 'pt-BR') || assetData.name,
         });
       }

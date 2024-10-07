@@ -1,15 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useBalance } from '@/providers/balanceProvider';
+import { useMarketRefresh } from '@/providers/marketRefreshProvider';
 import { formatCurrency } from '@/utils/currency';
 import { Activity, Coins, DollarSign, Wallet } from 'lucide-react';
+import { useMemo } from 'react';
 import { Line, LineChart, ResponsiveContainer } from 'recharts';
 
 export function Summary() {
+  const { remainingSeconds } = useMarketRefresh();
   const { balance } = useBalance();
 
-  const data = Array.from({ length: 7 })
-    .map((_, index) => index + 1)
-    .map(() => ({ revenue: Math.random() * balance }));
+  const data = useMemo(() => {
+    return Array.from({ length: 7 })
+      .map((_, index) => index + 1)
+      .map(() => ({ revenue: Math.random() * balance }));
+  }, [balance]);
 
   return (
     <div className='row-span-1 grid grid-cols-4 items-stretch gap-8 max-2xl:gap-4 max-xl:grid-cols-1'>
@@ -18,6 +23,9 @@ export function Summary() {
           <h1 className='text-3xl font-medium max-2xl:text-2xl'>Simulador de Investimentos</h1>
           <p className='text-sm text-muted-foreground max-2xl:text-xs'>
             Controle seus investimentos e acompanhe o seu progresso.
+          </p>
+          <p className='text-sm font-medium text-muted-foreground max-2xl:text-xs'>
+            Próxima Atualização em: {remainingSeconds}s
           </p>
         </div>
         <Card>
