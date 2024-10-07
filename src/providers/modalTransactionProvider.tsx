@@ -1,12 +1,12 @@
 import { createContext, useContext, useState } from 'react';
 
-type ModalProviderState = {
+type TransactionModalState = {
   isModalOpen: boolean;
   openModal(): void;
   closeModal(): void;
 };
 
-const TransactionModalContext = createContext<ModalProviderState>({
+const TransactionModalContext = createContext<TransactionModalState>({
   isModalOpen: false,
   openModal: () => null,
   closeModal: () => null,
