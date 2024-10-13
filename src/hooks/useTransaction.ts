@@ -84,7 +84,7 @@ export const useTransaction = () => {
 
     user.currentBalance = currentBalance;
     user.currentWallet = currentWallet;
-    user.currentProfitability = currentProfitability > 0 ? currentProfitability : 0;
+    user.currentProfitability = currentProfitability;
     user.transactionHistory.push(currentTransaction);
 
     const walletHistory = user.walletHistory.at(-1);
