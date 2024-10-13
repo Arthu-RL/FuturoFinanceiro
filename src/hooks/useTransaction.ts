@@ -1,4 +1,3 @@
-import { PurchasedAsset } from '@/lib/schemas/user.schema';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { formatCurrency } from '@/utils/currency';
@@ -9,27 +8,43 @@ export const useTransaction = () => {
   const { user, updateUser } = useUserAccount();
   const { assets } = useInvestmentAssets();
 
-  function buyAsset({ id, quantity, purchaseValue }: PurchasedAsset) {
+  function buyAsset(id: string, quantity: number, price: number) {
     const walletAsset = user.currentWallet.find((asset) => asset.id === id);
     const isAssetAlreadyInWallet = typeof walletAsset !== 'undefined';
-    const asset = assets.find((asset) => asset.id === id);
-    if (!asset) return;
+    const marketAsset = assets.find((asset) => asset.id === id);
 
-    const assetBeingPurchased = isAssetAlreadyInWallet
+    if (!marketAsset) return;
+
+    const purchasedAsset = isAssetAlreadyInWallet
       ? {
           id,
+          purchasePrice: price,
+          type: 'Purchase' as const,
           quantity: (walletAsset.quantity += quantity),
-          purchaseValue: (walletAsset.purchaseValue = purchaseValue),
+          totalInvestment: (walletAsset.totalInvestment += quantity * price),
         }
-      : { id, quantity, purchaseValue };
+      : {
+          id,
+          quantity,
+          purchasePrice: price,
+          type: 'Purchase' as const,
+          totalInvestment: quantity * price,
+        };
 
-    const transactionValue = asset.value.current * quantity;
-    const currentWallet = [...user.currentWallet.filter((asset) => asset.id !== id), assetBeingPurchased];
-    const currentTransaction = { id, quantity, purchaseValue, type: 'Purchase' as const };
+    const currentTransaction = {
+      id,
+      quantity,
+      type: purchasedAsset.type,
+      purchasePrice: purchasedAsset.purchasePrice,
+      totalInvestment: purchasedAsset.totalInvestment,
+    };
+
+    const transactionValue = price * quantity;
     const currentBalance = user.currentBalance - transactionValue;
+    const currentWallet = [...user.currentWallet.filter((asset) => asset.id !== id), purchasedAsset];
 
-    user.currentBalance = currentBalance;
     user.currentWallet = currentWallet;
+    user.currentBalance = currentBalance;
     user.transactionHistory.push(currentTransaction);
 
     const walletHistory = user.walletHistory.at(-1);
@@ -45,44 +60,47 @@ export const useTransaction = () => {
 
     toast.message('Ativo adquirido! 🎉', {
       duration: 10000,
-      description: `Você acaba de comprar ${quantity} unidades de ${asset?.name}. Para acompanhar de perto o seu desempenho, ative a opção 'Filtrar por Meus Ativos' no menu de filtragem!`,
+      description: `Você acaba de comprar ${quantity} unidades de ${marketAsset.name}. Para acompanhar de perto o seu desempenho, ative a opção 'Filtrar por Meus Ativos' no menu de filtragem!`,
     });
 
     updateUser(user);
   }
 
-  function sellAsset({ id, quantity }: PurchasedAsset) {
-    const asset = assets.find((asset) => asset.id === id);
+  function sellAsset(id: string, quantity: number, price: number) {
     const walletAsset = user.currentWallet.find((asset) => asset.id === id);
-    if (!asset || !walletAsset) return;
+    if (!walletAsset) return;
 
-    const transactionValue = asset.value.current * quantity;
+    const transactionValue = price * quantity;
     const isAssetBeingRemoved = quantity === walletAsset.quantity;
-    const currentBalance = user.currentBalance + transactionValue;
-    const assetProfit = asset.value.current * quantity - walletAsset.purchaseValue * quantity;
+    const assetProfit = price * quantity - walletAsset.totalInvestment;
 
+    const currentBalance = user.currentBalance + transactionValue;
     const currentProfitability = user.currentProfitability + assetProfit;
+    const filteredAssets = user.currentWallet.filter((asset) => asset.id !== id);
 
     const currentWallet = isAssetBeingRemoved
-      ? user.currentWallet.filter((asset) => asset.id !== id)
+      ? filteredAssets
       : [
-          ...user.currentWallet.filter((asset) => asset.id !== id),
+          ...filteredAssets,
           {
             id: walletAsset.id,
-            purchaseValue: walletAsset.purchaseValue,
+            sellingPrice: price,
+            type: 'Sale' as const,
             quantity: (walletAsset.quantity -= quantity),
+            totalInvestment: (walletAsset.totalInvestment -= price * quantity),
           },
         ];
 
     const currentTransaction = {
       id,
       quantity,
-      purchaseValue: walletAsset.purchaseValue,
+      sellingPrice: price,
       type: 'Sale' as const,
+      totalInvestment: walletAsset.totalInvestment,
     };
 
-    user.currentBalance = currentBalance;
     user.currentWallet = currentWallet;
+    user.currentBalance = currentBalance;
     user.currentProfitability = currentProfitability;
     user.transactionHistory.push(currentTransaction);
 
@@ -107,16 +125,12 @@ export const useTransaction = () => {
         duration: 8000,
         description: `Você registrou um lucro de ${formatCurrency(assetProfit, 'BRL', 'pt-BR')}. Continue assim!`,
       });
-    }
-
-    if (assetProfit < 0) {
+    } else if (assetProfit < 0) {
       toast.message('Não foi dessa vez... 😕', {
         duration: 8000,
         description: `Você registrou uma perda de ${formatCurrency(assetProfit, 'BRL', 'pt-BR')}. Não desanime, é parte do processo.`,
       });
-    }
-
-    if (assetProfit === 0) {
+    } else {
       toast.message('Tudo em equilíbrio!', {
         duration: 8000,
         description: 'Você não teve lucros nem perdas. Um bom momento para revisar suas estratégias!',

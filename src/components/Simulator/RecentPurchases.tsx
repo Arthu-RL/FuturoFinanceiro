@@ -34,8 +34,10 @@ export const RecentPurchases = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {reversedHistory.map(({ id, type, quantity, purchaseValue }) => {
-                  const asset = assets.find((asset) => asset.id === id);
+                {reversedHistory.map((assetHistory) => {
+                  const asset = assets.find((asset) => asset.id === assetHistory.id);
+                  const price =
+                    assetHistory.type === 'Purchase' ? assetHistory.purchasePrice : assetHistory.sellingPrice;
 
                   return (
                     <TableRow>
@@ -45,11 +47,11 @@ export const RecentPurchases = () => {
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge variant='outline'>{translateTransactionType(type)}</Badge>
+                        <Badge variant='outline'>{translateTransactionType(assetHistory.type)}</Badge>
                       </TableCell>
-                      <TableCell className='text-left'>{quantity} Unidades</TableCell>
+                      <TableCell className='text-left'>{assetHistory.quantity} Unidades</TableCell>
                       <TableCell className='text-right'>
-                        {formatCurrency(purchaseValue * quantity, 'BRL', 'pt-BR')}
+                        {formatCurrency(price * assetHistory.quantity, 'BRL', 'pt-BR')}
                       </TableCell>
                     </TableRow>
                   );
@@ -58,7 +60,7 @@ export const RecentPurchases = () => {
             </Table>
           ) : (
             <div className='absolute inset-0 flex items-center justify-center text-sm'>
-              <span className='text-center text-foreground'> Nenhuma atividade financeira encontrada.</span>
+              <span className='text-center text-foreground'>Nenhuma atividade financeira encontrada.</span>
             </div>
           )}
         </ScrollArea>
