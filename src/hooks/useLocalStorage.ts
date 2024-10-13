@@ -13,7 +13,7 @@ export const useLocalStorage = <T>(schema: z.Schema) => {
     return storageItem.data;
   }
 
-  function setStorageItem(storageKey: string, value: T): T | null {
+  function setStorageItem(storageKey: string, value: T): null {
     const storageValue = schema.safeParse(value);
 
     if (!storageValue.success) {
@@ -23,7 +23,7 @@ export const useLocalStorage = <T>(schema: z.Schema) => {
     }
 
     localStorage.setItem(storageKey, JSON.stringify(storageValue.data));
-    return storageValue.data;
+    return null;
   }
 
   return { getStorageItem, setStorageItem };

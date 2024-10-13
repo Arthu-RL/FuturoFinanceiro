@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { Assets, assetsSchemaArray } from '@/lib/schemas/assets.schema';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { investmentAssets } from '@/data/investmentAssets';
@@ -13,19 +13,14 @@ const InvestmentAssetsContext = createContext<InvestmentAssetsState>({ assets: [
 
 const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) => {
   const { setStorageItem, getStorageItem } = useLocalStorage<Assets[]>(assetsSchemaArray);
+  const [assets] = useState<Assets[]>(getStorageItem('investmentAssets') || []);
   const { processedAssets } = useProccessInvestmentAssets(investmentAssets);
 
-  const [assets, setAssets] = useState<Assets[]>(getStorageItem('investmentAssets') || []);
-
-  const updateAssets = useCallback(
-    (assets: Assets[]) => setAssets(setStorageItem('investmentAssets', assets) || []),
-    [setStorageItem],
-  );
+  const updateAssets = (assets: Assets[]) => setStorageItem('investmentAssets', assets);
 
   useEffect(() => {
-    if (assets.length) return;
-    updateAssets(processedAssets);
-  }, [assets, processedAssets, updateAssets]);
+    if (!getStorageItem('investmentAssets')?.length) setStorageItem('investmentAssets', processedAssets);
+  }, [processedAssets, setStorageItem, getStorageItem]);
 
   return (
     <InvestmentAssetsContext.Provider value={{ assets, updateAssets }}>
