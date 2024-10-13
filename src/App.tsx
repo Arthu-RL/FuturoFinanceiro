@@ -22,7 +22,7 @@ export default function App() {
                 <Routes />
               </main>
             </Router>
-            <Toaster />
+            <Toaster visibleToasts={1} />
           </UserAccountProvider>
         </MarketRefreshProvider>
       </InvestmentAssetsProvider>
