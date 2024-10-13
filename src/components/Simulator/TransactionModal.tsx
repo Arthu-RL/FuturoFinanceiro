@@ -34,9 +34,14 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
   const { user } = useUserAccount();
   const { buyAsset, sellAsset } = useTransaction();
 
-  const assetQuantityInWallet = user.currentWallet.find(({ id }) => id === row.original.id)?.quantity ?? 0;
+  const assetInWallet = user.currentWallet.find(({ id }) => id === row.original.id);
+  const assetQuantityInWallet = assetInWallet?.quantity ?? 0;
   const isTotalPriceMoreThanUserBalance = quantity * row.original.value.current > user.currentBalance;
   const asset = user.currentWallet.find(({ id }) => id === row.original.id);
+  const currentTotalPrice = row.original.value.current * Number(assetInWallet?.quantity);
+  const isAssetBeingSold = transaction === 'sell';
+  const currentPurchasePrice = Number(assetInWallet?.quantity) * Number(assetInWallet?.purchaseValue);
+  const totalPricePurchasePriceDifference = currentTotalPrice - currentPurchasePrice;
 
   function handleUpdateQuantity(action: number) {
     setQuantity((current) => {
@@ -55,8 +60,6 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
       sellAsset({ id: row.original.id, quantity, purchaseValue: asset.purchaseValue });
     }
   }
-
-  const isAssetBeingSold = transaction === 'sell';
 
   return (
     <AlertDialog>
@@ -118,6 +121,23 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
                           'BRL',
                           'pt-BR',
                         )}
+                      </span>
+                    </div>
+                    <div className='flex w-full justify-between'>
+                      <span
+                        className={`font-medium text-foreground ${totalPricePurchasePriceDifference > 0 ? 'text-green-500' : totalPricePurchasePriceDifference < 0 ? 'text-red-600' : 'text-foreground'}`}
+                      >
+                        Situação:{' '}
+                        {totalPricePurchasePriceDifference > 0
+                          ? 'Lucro'
+                          : totalPricePurchasePriceDifference < 0
+                            ? 'Prejuízo'
+                            : 'Estável'}
+                      </span>
+                      <span
+                        className={`font-medium text-foreground transition-all ${totalPricePurchasePriceDifference > 0 ? 'text-green-500' : totalPricePurchasePriceDifference < 0 ? 'text-red-600' : 'text-foreground'}`}
+                      >
+                        {formatCurrency(totalPricePurchasePriceDifference, 'BRL', 'pt-BR')}
                       </span>
                     </div>
                   </Fragment>
