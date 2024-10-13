@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useMarketRefresh } from '@/providers/marketRefreshProvider';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { formatCurrency } from '@/utils/currency';
@@ -8,10 +9,13 @@ import { Line, LineChart, ResponsiveContainer } from 'recharts';
 
 export function Summary() {
   const { remainingSeconds } = useMarketRefresh();
+  const { assets } = useInvestmentAssets();
   const { user } = useUserAccount();
 
-  const totalAssets = user.currentWallet.reduce((total, { quantity, purchaseValue }) => {
-    return (total += quantity * purchaseValue);
+  const totalAssets = user.currentWallet.reduce((total, { id, quantity }) => {
+    const asset = assets.find((asset) => asset.id === id);
+    if (asset) total += quantity * asset?.value.current;
+    return total;
   }, 0);
 
   const data = useMemo(() => {
