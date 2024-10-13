@@ -21,9 +21,15 @@ const UserAccountProviderContext = createContext<UserData>(userInitialState);
 
 const UserAccountProvider = ({ children }: { children: ReactNode }) => {
   const { setStorageItem, getStorageItem } = useLocalStorage<UserData['user']>(userSchema);
-  const [userData] = useState<UserData['user']>(getStorageItem('userData') ?? userInitialState.user);
+  const [userData, setUserData] = useState<UserData['user']>(
+    getStorageItem('userData') ?? userInitialState.user,
+  );
 
-  const updateUser = (user: User) => setStorageItem('userData', user);
+  const updateUser = (user: User) => {
+    setStorageItem('userData', user);
+    const userData = getStorageItem('userData');
+    if (userData) setUserData(userData);
+  };
 
   useEffect(() => {
     if (!getStorageItem('userData')) setStorageItem('userData', userInitialState.user);

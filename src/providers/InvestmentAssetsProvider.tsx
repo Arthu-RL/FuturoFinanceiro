@@ -13,10 +13,14 @@ const InvestmentAssetsContext = createContext<InvestmentAssetsState>({ assets: [
 
 const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) => {
   const { setStorageItem, getStorageItem } = useLocalStorage<Assets[]>(assetsSchemaArray);
-  const [assets] = useState<Assets[]>(getStorageItem('investmentAssets') || []);
+  const [assets, setAssets] = useState<Assets[]>(getStorageItem('investmentAssets') || []);
   const { processedAssets } = useProccessInvestmentAssets(investmentAssets);
 
-  const updateAssets = (assets: Assets[]) => setStorageItem('investmentAssets', assets);
+  const updateAssets = (assets: Assets[]) => {
+    setStorageItem('investmentAssets', assets);
+    const investmentAssets = getStorageItem('investmentAssets');
+    if (investmentAssets) setAssets(investmentAssets);
+  };
 
   useEffect(() => {
     if (!getStorageItem('investmentAssets')?.length) setStorageItem('investmentAssets', processedAssets);
