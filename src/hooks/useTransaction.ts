@@ -72,12 +72,14 @@ export const useTransaction = () => {
 
     const transactionValue = price * quantity;
     const isAssetBeingRemoved = quantity === walletAsset.quantity;
-    const assetProfit = price * quantity - walletAsset.totalInvestment;
+
+    const proportionateInvestment = (walletAsset.totalInvestment / walletAsset.quantity) * quantity;
+    const assetProfit = transactionValue - proportionateInvestment;
 
     const currentBalance = user.currentBalance + transactionValue;
     const currentProfitability = user.currentProfitability + assetProfit;
-    const filteredAssets = user.currentWallet.filter((asset) => asset.id !== id);
 
+    const filteredAssets = user.currentWallet.filter((asset) => asset.id !== id);
     const currentWallet = isAssetBeingRemoved
       ? filteredAssets
       : [
@@ -87,7 +89,7 @@ export const useTransaction = () => {
             sellingPrice: price,
             type: 'Sale' as const,
             quantity: (walletAsset.quantity -= quantity),
-            totalInvestment: (walletAsset.totalInvestment -= price * quantity),
+            totalInvestment: (walletAsset.totalInvestment -= proportionateInvestment),
           },
         ];
 
