@@ -58,9 +58,7 @@ export const useTransaction = () => {
     const transactionValue = asset.value.current * quantity;
     const isAssetBeingRemoved = quantity === walletAsset.quantity;
     const currentBalance = user.currentBalance + transactionValue;
-
-    const assetProfit =
-      asset.value.current * walletAsset.quantity - walletAsset.purchaseValue * walletAsset.quantity;
+    const assetProfit = asset.value.current * quantity - walletAsset.purchaseValue * quantity;
 
     const currentProfitability = user.currentProfitability + assetProfit;
 
