@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { User, userSchema } from '@/lib/schemas/user.schema';
 
 type UserData = { user: User; updateUser: (user: User) => void };
@@ -25,15 +25,18 @@ const UserAccountProvider = ({ children }: { children: ReactNode }) => {
     getStorageItem('userData') ?? userInitialState.user,
   );
 
-  const updateUser = (user: User) => {
-    setStorageItem('userData', user);
-    const userData = getStorageItem('userData');
-    if (userData) setUserData(userData);
-  };
+  const updateUser = useCallback(
+    (user: User) => {
+      setStorageItem('userData', user);
+      const userData = getStorageItem('userData');
+      if (userData) setUserData(userData);
+    },
+    [getStorageItem, setStorageItem],
+  );
 
   useEffect(() => {
-    if (!getStorageItem('userData')) setStorageItem('userData', userInitialState.user);
-  }, [getStorageItem, setStorageItem]);
+    if (!getStorageItem('userData')) updateUser(userInitialState.user);
+  }, [updateUser, getStorageItem, setStorageItem]);
 
   return (
     <UserAccountProviderContext.Provider value={{ updateUser, user: userData }}>
