@@ -11,18 +11,20 @@ export const useTransaction = () => {
 
   function buyAsset({ id, quantity, purchaseValue }: PurchasedAsset) {
     const walletAsset = user.currentWallet.find((asset) => asset.id === id);
+    const isAssetAlreadyInWallet = typeof walletAsset !== 'undefined';
     const asset = assets.find((asset) => asset.id === id);
+    if (!asset) return;
 
-    const assetBeingPurchased = walletAsset
+    const assetBeingPurchased = isAssetAlreadyInWallet
       ? {
-          id: walletAsset.id,
+          id,
           quantity: (walletAsset.quantity += quantity),
           purchaseValue: (walletAsset.purchaseValue = purchaseValue),
         }
       : { id, quantity, purchaseValue };
 
-    const transactionValue = assetBeingPurchased.purchaseValue * assetBeingPurchased.quantity;
-    const currentWallet = [...user.currentWallet, assetBeingPurchased];
+    const transactionValue = asset.value.current * quantity;
+    const currentWallet = [...user.currentWallet.filter((asset) => asset.id !== id), assetBeingPurchased];
     const currentTransaction = { id, quantity, purchaseValue, type: 'Purchase' as const };
     const currentBalance = user.currentBalance - transactionValue;
 
