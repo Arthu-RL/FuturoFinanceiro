@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { useInvestmentAssets } from './InvestmentAssetsProvider';
+import { toast } from 'sonner';
 
 type MarketRefreshState = { remainingSeconds: number };
 
@@ -37,6 +38,12 @@ const MarketRefreshProvider = ({ children }: { children: ReactNode }) => {
         setRemainingSeconds((currentSeconds) => {
           if (currentSeconds <= 1) {
             refreshMarket();
+
+            toast.message('Novas Cotações Disponíveis!', {
+              description:
+                'Os preços foram atualizados com sucesso. Confira as novas mudanças no mercado e ajuste seus investimentos!',
+            });
+
             return SIXTY_SECONDS;
           }
 
