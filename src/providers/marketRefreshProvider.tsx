@@ -35,8 +35,6 @@ const MarketRefreshProvider = ({ children }: { children: ReactNode }) => {
     function decrementRemainingSeconds() {
       const innerTimeout = setTimeout(() => {
         setRemainingSeconds((currentSeconds) => {
-          console.log(currentSeconds);
-
           if (currentSeconds <= 1) {
             refreshMarket();
             return SIXTY_SECONDS;
