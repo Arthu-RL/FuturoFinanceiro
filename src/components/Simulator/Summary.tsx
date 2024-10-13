@@ -3,6 +3,7 @@ import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useMarketRefresh } from '@/providers/marketRefreshProvider';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { formatCurrency } from '@/utils/currency';
+import { calculateTotalHoldingsValue, formatNumberWithSign } from '@/utils/number';
 import { Activity, Coins, DollarSign, Wallet } from 'lucide-react';
 import { useMemo } from 'react';
 import { Line, LineChart, ResponsiveContainer } from 'recharts';
@@ -12,17 +13,33 @@ export function Summary() {
   const { assets } = useInvestmentAssets();
   const { user } = useUserAccount();
 
-  const totalAssets = user.currentWallet.reduce((total, { id, quantity }) => {
-    const asset = assets.find((asset) => asset.id === id);
-    if (asset) total += quantity * asset?.value.current;
-    return total;
-  }, 0);
-
   const data = useMemo(() => {
     return Array.from({ length: 7 })
       .map((_, index) => index + 1)
       .map(() => ({ revenue: Math.random() * user.currentBalance }));
   }, [user.currentBalance]);
+
+  const totalAssets = user.currentWallet.reduce((total, asset) => {
+    return calculateTotalHoldingsValue(total, assets, asset);
+  }, 0);
+
+  const profitabilityDifference = formatNumberWithSign(
+    (user.profitabilityHistory.at(-2)?.profitability ?? 0,
+    user.profitabilityHistory.at(-1)?.profitability ?? 0),
+  );
+
+  const holdingsDifference = formatNumberWithSign(
+    (user.walletHistory.at(-2)?.wallet.reduce((total, asset) => {
+      return calculateTotalHoldingsValue(total, assets, asset);
+    }, 0) ?? 0,
+    user.walletHistory.at(-1)?.wallet.reduce((total, asset) => {
+      return calculateTotalHoldingsValue(total, assets, asset);
+    }, 0) ?? 0),
+  );
+
+  const balanceDifference = formatNumberWithSign(
+    (user.balanceHistory.at(-2)?.balance ?? 0, user.balanceHistory.at(-1)?.balance ?? 0),
+  );
 
   return (
     <div className='row-span-1 grid grid-cols-4 items-stretch gap-8 max-2xl:gap-4 max-xl:grid-cols-1'>
@@ -43,7 +60,7 @@ export function Summary() {
           </CardHeader>
           <CardContent>
             <div className='text-2xl font-bold'>{formatCurrency(user.currentBalance, 'BRL', 'pt-BR')}</div>
-            <p className='text-xs text-muted-foreground'>+13% em relação ao dia anterior</p>
+            <p className='text-xs text-muted-foreground'>{balanceDifference}% em relação ao dia anterior</p>
           </CardContent>
         </Card>
       </div>
@@ -54,7 +71,7 @@ export function Summary() {
         </CardHeader>
         <CardContent>
           <div className='text-2xl font-bold'>{formatCurrency(totalAssets, 'BRL', 'pt-BR')}</div>
-          <p className='text-xs text-muted-foreground'>-5% em relação ao dia anterior</p>
+          <p className='text-xs text-muted-foreground'>{holdingsDifference}% em relação ao dia anterior</p>
         </CardContent>
       </Card>
       <Card className='self-end'>
@@ -66,7 +83,9 @@ export function Summary() {
           <div className='text-2xl font-bold'>
             {formatCurrency(user.currentProfitability, 'BRL', 'pt-BR')}
           </div>
-          <p className='text-xs text-muted-foreground'>+5% em relação ao dia anterior</p>
+          <p className='text-xs text-muted-foreground'>
+            {profitabilityDifference}% em relação ao dia anterior
+          </p>
         </CardContent>
       </Card>
       <Card className='grid grid-rows-[0.5fr_auto]'>
