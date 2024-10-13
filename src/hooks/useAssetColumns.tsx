@@ -8,7 +8,9 @@ import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import type { Assets } from '@/lib/schemas/assets.schema';
 import { useUserAccount } from '@/providers/userAccountProvider';
-import { generateRowDisplayData, sortRowsByValue, sortRowsByVariation } from '@/utils/rows';
+import { filterRowsByUserWalletAssets, sortRowsByValue, sortRowsByVariation } from '@/utils/rows';
+import { TransactionModal } from '@/components/Simulator/TransactionModal';
+import { AssetVariation } from '@/components/Simulator/AssetVariation';
 
 import {
   DropdownMenu,
@@ -23,6 +25,11 @@ export function useAssetColumns() {
   const { user } = useUserAccount();
 
   const columns: ColumnDef<Assets>[] = [
+    {
+      accessorKey: 'id',
+      filterFn: (row) => filterRowsByUserWalletAssets(row, user.currentWallet),
+    },
+
     {
       header: 'Código',
       accessorKey: 'alias',
@@ -107,33 +114,10 @@ export function useAssetColumns() {
         );
       },
       cell: ({ row }) => {
-        const { priceVariation, variationText, variationSign, variationBackgroundColor, VariationIcon } =
-          generateRowDisplayData(row);
-
         return (
-          <TooltipProvider>
-            <Tooltip>
-              <div className='flex w-full'>
-                <TooltipTrigger className='ml-auto'>
-                  <TableCell className='ml-auto px-4'>
-                    <Badge
-                      variant='default'
-                      className={`pointer-events-none flex items-center gap-1 px-1.5 font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${variationBackgroundColor}`}
-                    >
-                      {variationText}
-                      <VariationIcon className='size-[18px]' />
-                    </Badge>
-                  </TableCell>
-                </TooltipTrigger>
-              </div>
-              <TooltipContent>
-                <span>
-                  {variationSign}
-                  {priceVariation}%
-                </span>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <TableCell className='flex'>
+            <AssetVariation row={row} />
+          </TableCell>
         );
       },
     },
@@ -170,7 +154,10 @@ export function useAssetColumns() {
     {
       id: 'actions',
       enableHiding: false,
-      cell: () => {
+      cell: ({ row }) => {
+        const asset = user.currentWallet.find(({ id }) => id === row.original.id);
+        const userHasAsset = asset && asset.quantity > 0;
+
         return (
           <div className='flex w-full'>
             <DropdownMenu>
@@ -182,8 +169,22 @@ export function useAssetColumns() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align='end'>
                 <DropdownMenuLabel>Ações</DropdownMenuLabel>
-                <DropdownMenuItem className='cursor-pointer'>Vender</DropdownMenuItem>
-                <DropdownMenuItem className='cursor-pointer'>Comprar</DropdownMenuItem>
+                {userHasAsset && (
+                  <DropdownMenuItem asChild className='cursor-pointer p-0'>
+                    <TransactionModal
+                      row={row}
+                      transaction='sell'
+                      textContent={{ trigger: 'Vender', confirm: 'Confirmar Venda' }}
+                    />
+                  </DropdownMenuItem>
+                )}
+                <DropdownMenuItem asChild className='cursor-pointer p-0'>
+                  <TransactionModal
+                    row={row}
+                    transaction='buy'
+                    textContent={{ trigger: 'Comprar', confirm: 'Confirmar Compra' }}
+                  />
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className='cursor-pointer' onClick={() => {}}>
                   Ver detalhes

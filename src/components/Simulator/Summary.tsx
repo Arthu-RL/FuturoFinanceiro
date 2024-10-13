@@ -10,6 +10,10 @@ export function Summary() {
   const { remainingSeconds } = useMarketRefresh();
   const { user } = useUserAccount();
 
+  const totalAssets = user.currentWallet.reduce((total, { quantity, purchaseValue }) => {
+    return (total += quantity * purchaseValue);
+  }, 0);
+
   const data = useMemo(() => {
     return Array.from({ length: 7 })
       .map((_, index) => index + 1)
@@ -45,9 +49,7 @@ export function Summary() {
           <Coins className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
         <CardContent>
-          <div className='text-2xl font-bold'>
-            {formatCurrency(user.currentBalance * 9.78, 'BRL', 'pt-BR')}
-          </div>
+          <div className='text-2xl font-bold'>{formatCurrency(totalAssets, 'BRL', 'pt-BR')}</div>
           <p className='text-xs text-muted-foreground'>-5% em relação ao dia anterior</p>
         </CardContent>
       </Card>
@@ -58,7 +60,7 @@ export function Summary() {
         </CardHeader>
         <CardContent>
           <div className='text-2xl font-bold'>
-            {formatCurrency(user.currentBalance * 15.754, 'BRL', 'pt-BR')}
+            {formatCurrency(user.currentProfitability, 'BRL', 'pt-BR')}
           </div>
           <p className='text-xs text-muted-foreground'>+5% em relação ao dia anterior</p>
         </CardContent>
@@ -69,9 +71,7 @@ export function Summary() {
           <Activity className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
         <CardContent className='grid grid-rows-[2rem_1rem_auto]'>
-          <div className='text-2xl font-bold'>
-            {formatCurrency(user.currentBalance * 5.5, 'BRL', 'pt-BR')}
-          </div>
+          <div className='text-2xl font-bold'>{formatCurrency(0, 'BRL', 'pt-BR')}</div>
           <p className='text-xs text-muted-foreground'>Lucro acumulado nesta semana</p>
           <div>
             <ResponsiveContainer width='100%' height='100%'>
