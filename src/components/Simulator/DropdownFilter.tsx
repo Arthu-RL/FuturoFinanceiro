@@ -1,7 +1,7 @@
 import { Button } from '../ui/button';
 import { DropdownFilterOption } from './DropdownFilterOption';
 import type { Table } from '@tanstack/react-table';
-import { Filter } from 'lucide-react';
+import { Check, Filter } from 'lucide-react';
 import type { Assets } from '@/lib/schemas/assets.schema';
 
 import {
@@ -22,8 +22,17 @@ type DropdownFilterProps = {
 };
 
 export const DropdownFilter = ({ table }: DropdownFilterProps) => {
+  const isUserWalletFilterActive = table.getColumn('id')?.getFilterValue() === true;
+
   const hasActiveFilters =
-    table.getColumn('type')?.getFilterValue() || table.getColumn('profile')?.getFilterValue();
+    table.getColumn('id')?.getFilterValue() ||
+    table.getColumn('type')?.getFilterValue() ||
+    table.getColumn('profile')?.getFilterValue();
+
+  function toggleUserAssetsFilter() {
+    if (isUserWalletFilterActive) table.getColumn('id')?.setFilterValue('');
+    else table.getColumn('id')?.setFilterValue(true);
+  }
 
   return (
     <DropdownMenu>
@@ -32,9 +41,16 @@ export const DropdownFilter = ({ table }: DropdownFilterProps) => {
           <Filter className='size-4' />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-44'>
-        <DropdownMenuItem>
-          <span>Filtrar por Meus Ativos</span>
+      <DropdownMenuContent className='w-[200px]'>
+        <DropdownMenuItem asChild>
+          <Button
+            variant='ghost'
+            onClick={toggleUserAssetsFilter}
+            className={`flex h-fit w-full cursor-pointer items-center justify-start px-2 py-1.5 ${isUserWalletFilterActive && 'justify-between bg-accent'}`}
+          >
+            <span>Filtrar por Meus Ativos</span>
+            {isUserWalletFilterActive && <Check className='size-4' />}
+          </Button>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>

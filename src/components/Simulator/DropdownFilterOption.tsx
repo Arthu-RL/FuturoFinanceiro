@@ -3,6 +3,7 @@ import { DropdownMenuItem } from '../ui/dropdown-menu';
 import { Table } from '@tanstack/react-table';
 import { Check } from 'lucide-react';
 import type { Assets } from '@/lib/schemas/assets.schema';
+import { Button } from '../ui/button';
 
 type DropdownFilterOptionProps = {
   label: string;
@@ -14,17 +15,18 @@ export const DropdownFilterOption = ({ label, table, column, filter }: DropdownF
 
   return (
     <DropdownMenuItem asChild>
-      <button
+      <Button
+        variant='ghost'
         onClick={() =>
           isFilterActive
             ? table.getColumn(column)?.setFilterValue(null)
             : table.getColumn(column)?.setFilterValue(filter)
         }
-        className={`flex w-full cursor-pointer items-center justify-around ${isFilterActive && 'bg-accent'}`}
+        className={`flex h-fit w-full cursor-pointer items-center justify-start px-2 py-1.5 ${isFilterActive && 'justify-between bg-accent'}`}
       >
         <span className='mr-auto text-left'>{label}</span>
         {isFilterActive && <Check className='size-4' />}
-      </button>
+      </Button>
     </DropdownMenuItem>
   );
 };
