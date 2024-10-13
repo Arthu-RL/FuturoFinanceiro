@@ -44,7 +44,8 @@ export const useTransaction = () => {
     } else walletHistory.wallet = currentWallet;
 
     toast.message('Ativo adquirido! 🎉', {
-      description: `Você acaba de comprar ${quantity} unidades de ${asset?.name}. Acompanhe de perto o seu desempenho!`,
+      duration: 10000,
+      description: `Você acaba de comprar ${quantity} unidades de ${asset?.name}. Para acompanhar de perto o seu desempenho, ative a opção 'Filtrar por Meus Ativos' no menu de filtragem!`,
     });
 
     updateUser(user);
@@ -103,18 +104,21 @@ export const useTransaction = () => {
 
     if (assetProfit > 0) {
       toast.message('Parabéns! 🎉', {
+        duration: 8000,
         description: `Você registrou um lucro de ${formatCurrency(assetProfit, 'BRL', 'pt-BR')}. Continue assim!`,
       });
     }
 
     if (assetProfit < 0) {
       toast.message('Não foi dessa vez... 😕', {
+        duration: 8000,
         description: `Você registrou uma perda de ${formatCurrency(assetProfit, 'BRL', 'pt-BR')}. Não desanime, é parte do processo.`,
       });
     }
 
     if (assetProfit === 0) {
       toast.message('Tudo em equilíbrio!', {
+        duration: 8000,
         description: 'Você não teve lucros nem perdas. Um bom momento para revisar suas estratégias!',
       });
     }

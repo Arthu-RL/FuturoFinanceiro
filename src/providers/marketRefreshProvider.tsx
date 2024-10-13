@@ -40,6 +40,7 @@ const MarketRefreshProvider = ({ children }: { children: ReactNode }) => {
             refreshMarket();
 
             toast.message('Novas Cotações Disponíveis!', {
+              duration: 8000,
               description:
                 'Os preços foram atualizados com sucesso. Confira as novas mudanças no mercado e ajuste seus investimentos!',
             });
