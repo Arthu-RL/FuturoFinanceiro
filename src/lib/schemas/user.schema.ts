@@ -12,7 +12,7 @@ const userSchema = z.object({
   currentBalance: z.number(),
   currentProfitability: z.number(),
   currentWallet: z.array(purchasedAssetSchema),
-  transactionHistory: z.array(purchasedAssetSchema).and(z.object({ type: z.enum(transactionType) })),
+  transactionHistory: z.array(purchasedAssetSchema.and(z.object({ type: z.enum(transactionType) }))),
   balanceHistory: z.array(z.object({ date: z.date(), balance: z.number() })),
   profitabilityHistory: z.array(z.object({ date: z.date(), profitability: z.number() })),
   walletHistory: z.array(z.object({ date: z.date(), wallet: z.array(purchasedAssetSchema) })),
