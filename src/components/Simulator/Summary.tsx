@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useBalance } from '@/providers/balanceProvider';
 import { useMarketRefresh } from '@/providers/marketRefreshProvider';
+import { useUserAccount } from '@/providers/userAccountProvider';
 import { formatCurrency } from '@/utils/currency';
 import { Activity, Coins, DollarSign, Wallet } from 'lucide-react';
 import { useMemo } from 'react';
@@ -8,13 +8,17 @@ import { Line, LineChart, ResponsiveContainer } from 'recharts';
 
 export function Summary() {
   const { remainingSeconds } = useMarketRefresh();
-  const { balance } = useBalance();
+  const { user } = useUserAccount();
+
+  const totalAssets = user.currentWallet.reduce((total, { quantity, purchaseValue }) => {
+    return (total += quantity * purchaseValue);
+  }, 0);
 
   const data = useMemo(() => {
     return Array.from({ length: 7 })
       .map((_, index) => index + 1)
-      .map(() => ({ revenue: Math.random() * balance }));
-  }, [balance]);
+      .map(() => ({ revenue: Math.random() * user.currentBalance }));
+  }, [user.currentBalance]);
 
   return (
     <div className='row-span-1 grid grid-cols-4 items-stretch gap-8 max-2xl:gap-4 max-xl:grid-cols-1'>
@@ -34,7 +38,7 @@ export function Summary() {
             <Wallet className='h-4 w-4 text-muted-foreground' />
           </CardHeader>
           <CardContent>
-            <div className='text-2xl font-bold'>{formatCurrency(balance, 'BRL', 'pt-BR')}</div>
+            <div className='text-2xl font-bold'>{formatCurrency(user.currentBalance, 'BRL', 'pt-BR')}</div>
             <p className='text-xs text-muted-foreground'>+13% em relação ao dia anterior</p>
           </CardContent>
         </Card>
@@ -45,7 +49,7 @@ export function Summary() {
           <Coins className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
         <CardContent>
-          <div className='text-2xl font-bold'>{formatCurrency(balance * 9.78, 'BRL', 'pt-BR')}</div>
+          <div className='text-2xl font-bold'>{formatCurrency(totalAssets, 'BRL', 'pt-BR')}</div>
           <p className='text-xs text-muted-foreground'>-5% em relação ao dia anterior</p>
         </CardContent>
       </Card>
@@ -55,7 +59,9 @@ export function Summary() {
           <DollarSign className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
         <CardContent>
-          <div className='text-2xl font-bold'>{formatCurrency(balance * 15.754, 'BRL', 'pt-BR')}</div>
+          <div className='text-2xl font-bold'>
+            {formatCurrency(user.currentProfitability, 'BRL', 'pt-BR')}
+          </div>
           <p className='text-xs text-muted-foreground'>+5% em relação ao dia anterior</p>
         </CardContent>
       </Card>
@@ -65,7 +71,7 @@ export function Summary() {
           <Activity className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
         <CardContent className='grid grid-rows-[2rem_1rem_auto]'>
-          <div className='text-2xl font-bold'>{formatCurrency(balance * 5.5, 'BRL', 'pt-BR')}</div>
+          <div className='text-2xl font-bold'>{formatCurrency(0, 'BRL', 'pt-BR')}</div>
           <p className='text-xs text-muted-foreground'>Lucro acumulado nesta semana</p>
           <div>
             <ResponsiveContainer width='100%' height='100%'>

@@ -23,7 +23,7 @@ import {
 export function AssetsTable() {
   const [sorting, setSorting] = useState<SortingState>([{ id: 'value', desc: false }]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({ id: false });
   const [rowSelection, setRowSelection] = useState({});
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 6 });
   const columns = useAssetColumns();

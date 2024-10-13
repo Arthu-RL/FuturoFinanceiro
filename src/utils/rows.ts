@@ -3,6 +3,7 @@ import { Row } from '@tanstack/react-table';
 import { getAssetVariation } from './number';
 import { getAssetVariationStatus } from './asset';
 import { CircleArrowDown, CircleArrowUp, CircleDot } from 'lucide-react';
+import { User } from '@/lib/schemas/user.schema';
 
 function sortRowsByVariation(rowA: Row<Assets>, rowB: Row<Assets>) {
   const rowAValues = Object(rowA.getValue('value'));
@@ -53,4 +54,9 @@ function generateRowDisplayData(row: Row<Assets>) {
   return { priceVariation, variationSign, variationText, variationBackgroundColor, VariationIcon };
 }
 
-export { sortRowsByVariation, sortRowsByValue, generateRowDisplayData };
+function filterRowsByUserWalletAssets(row: Row<Assets>, wallet: User['currentWallet']) {
+  const userWalletAssetsIds = wallet.map(({ id }) => id);
+  return userWalletAssetsIds.includes(row.original.id);
+}
+
+export { sortRowsByVariation, sortRowsByValue, generateRowDisplayData, filterRowsByUserWalletAssets };

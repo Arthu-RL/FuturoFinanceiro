@@ -18,4 +18,13 @@ function translateAssetProfile(profile: string) {
   return translations[profile] ?? profile;
 }
 
-export { translateAssetCategory, translateAssetProfile };
+function translateTransactionType(transaction: string) {
+  const translations: Record<string, string> = {
+    Purchase: 'Compra',
+    Sale: 'Venda',
+  };
+
+  return translations[transaction] ?? transaction;
+}
+
+export { translateAssetCategory, translateAssetProfile, translateTransactionType };

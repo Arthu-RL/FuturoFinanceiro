@@ -42,6 +42,11 @@ body:has(div[role='dialog']) {
   pointer-events: initial !important;
 }
 
+/* Ensure that pointer events are reset if a refresh occurs while the modal is active */
+body:not(:has(div[role='dialog'])) {
+  pointer-events: initial !important;
+}
+
 /* Set react root element to full height */
 #root {
   min-height: 100vh;
