@@ -155,15 +155,18 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
                     </div>
                   </Fragment>
                 )}
-
-                {assetQuantityInWallet > 0 && asset?.type === 'Purchase' && (
+                {assetQuantityInWallet > 0 && (
                   <Fragment>
                     <DropdownMenuSeparator />
                     {isAssetBeingSold && (
                       <div className='flex w-full justify-between'>
                         <span className='font-medium text-foreground'>Valor Pago por Ativo</span>
                         <span className='font-medium text-foreground'>
-                          {formatCurrency(Number(asset.purchasePrice), 'BRL', 'pt-BR')}
+                          {formatCurrency(
+                            Number(asset?.type === 'Purchase' ? asset.purchasePrice : asset?.sellingPrice),
+                            'BRL',
+                            'pt-BR',
+                          )}
                         </span>
                       </div>
                     )}
