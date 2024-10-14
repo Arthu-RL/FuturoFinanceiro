@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { User, userSchema } from '@/lib/schemas/user.schema';
 import { UserData } from '@/providers/userAccountProvider';
 
-export const userCreateUserAccount = (userInitialState: User) => {
+export const useCreateUserAccount = (userInitialState: User) => {
   const { setStorageItem, getStorageItem } = useLocalStorage<UserData['user']>(userSchema);
   const [userData, setUserData] = useState<UserData['user']>(getStorageItem('userData') ?? userInitialState);
 
