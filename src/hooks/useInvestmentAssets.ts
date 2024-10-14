@@ -22,5 +22,5 @@ export const useInvestmentAssets = () => {
     if (!getStorageItem('investmentAssets')?.length) updateAssets(processedAssets);
   }, [processedAssets, updateAssets, setStorageItem, getStorageItem]);
 
-  return { assets, setAssets };
+  return { assets, updateAssets };
 };
