@@ -7,7 +7,7 @@ function getAssetVariation(previousValue: number, currentValue: number) {
 }
 
 function formatNumberWithSign(number: number) {
-  return `${number > 0 ? '+' : number < 0 ? '-' : ''}${number.toFixed(2)}`;
+  return `${(number > 0 && '+') || ''}${number.toFixed(2)}`;
 }
 
 function calculateTotalHoldingsValue(
