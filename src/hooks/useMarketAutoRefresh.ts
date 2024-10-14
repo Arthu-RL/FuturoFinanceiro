@@ -9,12 +9,11 @@ import {
   assetCalculateChanceOfLoss,
 } from '@/utils/asset';
 
-const SIXTY_SECONDS = 60;
 const ONE_SECOND_IN_MS = 1000;
 const MINIMUM_PRICE = 0.01;
 
-export const useMarketRefresh = () => {
-  const [remainingSeconds, setRemainingSeconds] = useState(SIXTY_SECONDS);
+export const useMarketAutoRefresh = (initialRemainingSeconds: number) => {
+  const [remainingSeconds, setRemainingSeconds] = useState(initialRemainingSeconds);
   const { assets, updateAssets } = useGenerateInvestmentAssets();
 
   const refreshMarket = useCallback(() => {
@@ -68,7 +67,7 @@ export const useMarketRefresh = () => {
                 'Os preços foram atualizados com sucesso. Confira as novas mudanças no mercado e ajuste seus investimentos!',
             });
 
-            return SIXTY_SECONDS;
+            return initialRemainingSeconds;
           }
 
           return --currentSeconds;
@@ -82,7 +81,7 @@ export const useMarketRefresh = () => {
 
     decrementRemainingSeconds();
     return () => clearTimeout(timeout);
-  }, [refreshMarket]);
+  }, [initialRemainingSeconds, refreshMarket]);
 
   return { remainingSeconds };
 };

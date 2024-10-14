@@ -1,11 +1,13 @@
+import { useMarketAutoRefresh } from '@/hooks/useMarketAutoRefresh';
 import { createContext, ReactNode, useContext } from 'react';
 
 type MarketRefreshState = { remainingSeconds: number };
 
+const SIXTY_SECONDS = 60;
 const MarketRefreshProviderContext = createContext<MarketRefreshState>({ remainingSeconds: 0 });
 
 const MarketRefreshProvider = ({ children }: { children: ReactNode }) => {
-  const { remainingSeconds } = useMarketRefresh();
+  const { remainingSeconds } = useMarketAutoRefresh(SIXTY_SECONDS);
 
   return (
     <MarketRefreshProviderContext.Provider value={{ remainingSeconds }}>
