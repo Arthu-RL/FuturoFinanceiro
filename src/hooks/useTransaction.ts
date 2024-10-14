@@ -58,7 +58,7 @@ export const useTransaction = () => {
 
     toast.message('Ativo adquirido! 🎉', {
       duration: 10000,
-      description: `Você acaba de comprar ${quantity} unidades de ${marketAsset.name}. Para acompanhar de perto o seu desempenho, ative a opção 'Filtrar por Meus Ativos' no menu de filtragem!`,
+      description: `Você acaba de comprar ${quantity} unidades de ${marketAsset.name}. Acompanhe de perto o seu desempenho!`,
     });
 
     updateUser(user);
