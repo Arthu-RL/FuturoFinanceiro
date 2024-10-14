@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useGenerateInvestmentAssets } from './useGenerateInvestmentAssets';
 import { toast } from 'sonner';
-import { useInvestmentAssets } from './useInvestmentAssets';
 
 import {
   assetCalculateDrift,
@@ -15,7 +15,7 @@ const MINIMUM_PRICE = 0.01;
 
 export const useMarketRefresh = () => {
   const [remainingSeconds, setRemainingSeconds] = useState(SIXTY_SECONDS);
-  const { assets, updateAssets } = useInvestmentAssets();
+  const { assets, updateAssets } = useGenerateInvestmentAssets();
 
   const refreshMarket = useCallback(() => {
     const updatedAssets = assets.map((asset) => {

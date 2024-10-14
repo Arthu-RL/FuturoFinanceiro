@@ -4,7 +4,7 @@ import { useLocalStorage } from './useLocalStorage';
 import { Assets, assetsSchemaArray } from '@/lib/schemas/assets.schema';
 import { investmentAssets } from '@/data/investmentAssets';
 
-export const useInvestmentAssets = () => {
+export const useGenerateInvestmentAssets = () => {
   const { setStorageItem, getStorageItem } = useLocalStorage<Assets[]>(assetsSchemaArray);
   const [assets, setAssets] = useState<Assets[]>(getStorageItem('investmentAssets') || []);
   const { processedAssets } = useProccessInvestmentAssets(investmentAssets);

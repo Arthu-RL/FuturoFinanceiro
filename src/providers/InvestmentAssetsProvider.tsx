@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { Assets } from '@/lib/schemas/assets.schema';
+import { useGenerateInvestmentAssets } from '@/hooks/useGenerateInvestmentAssets';
 
 type InvestmentAssetsState = {
   assets: Assets[];
@@ -9,7 +10,7 @@ type InvestmentAssetsState = {
 const InvestmentAssetsContext = createContext<InvestmentAssetsState>({ assets: [], updateAssets: () => {} });
 
 const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) => {
-  const { assets, updateAssets } = useInvestmentAssets();
+  const { assets, updateAssets } = useGenerateInvestmentAssets();
 
   return (
     <InvestmentAssetsContext.Provider value={{ assets, updateAssets }}>
