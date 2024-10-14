@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { User } from '@/lib/schemas/user.schema';
-import { useCreateUserAccount } from '@/hooks/useCreateUserAccount';
+import { useManageUserAccount } from '@/hooks/useManageUserAccount';
 
 export type UserData = { user: User; updateUser: (user: User) => void };
 
@@ -20,7 +20,7 @@ const userInitialState = {
 const UserAccountProviderContext = createContext<UserData>(userInitialState);
 
 const UserAccountProvider = ({ children }: { children: ReactNode }) => {
-  const { user, updateUser } = useCreateUserAccount(userInitialState.user);
+  const { user, updateUser } = useManageUserAccount(userInitialState.user);
 
   return (
     <UserAccountProviderContext.Provider value={{ user, updateUser }}>
