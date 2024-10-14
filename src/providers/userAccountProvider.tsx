@@ -1,8 +1,8 @@
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
-import { User, userSchema } from '@/lib/schemas/user.schema';
+import { createContext, ReactNode, useContext } from 'react';
+import { User } from '@/lib/schemas/user.schema';
+import { useCreateUserAccount } from '@/hooks/useCreateUserAccount';
 
-type UserData = { user: User; updateUser: (user: User) => void };
+export type UserData = { user: User; updateUser: (user: User) => void };
 
 const userInitialState = {
   updateUser: () => {},
@@ -20,26 +20,10 @@ const userInitialState = {
 const UserAccountProviderContext = createContext<UserData>(userInitialState);
 
 const UserAccountProvider = ({ children }: { children: ReactNode }) => {
-  const { setStorageItem, getStorageItem } = useLocalStorage<UserData['user']>(userSchema);
-  const [userData, setUserData] = useState<UserData['user']>(
-    getStorageItem('userData') ?? userInitialState.user,
-  );
-
-  const updateUser = useCallback(
-    (user: User) => {
-      setStorageItem('userData', user);
-      const userData = getStorageItem('userData');
-      if (userData) setUserData(userData);
-    },
-    [getStorageItem, setStorageItem],
-  );
-
-  useEffect(() => {
-    if (!getStorageItem('userData')) updateUser(userInitialState.user);
-  }, [updateUser, getStorageItem, setStorageItem]);
+  const { user, updateUser } = useCreateUserAccount(userInitialState.user);
 
   return (
-    <UserAccountProviderContext.Provider value={{ updateUser, user: userData }}>
+    <UserAccountProviderContext.Provider value={{ user, updateUser }}>
       {children}
     </UserAccountProviderContext.Provider>
   );
