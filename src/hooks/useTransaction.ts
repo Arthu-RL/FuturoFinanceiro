@@ -1,7 +1,7 @@
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { formatCurrency } from '@/utils/currency';
-import { isToday } from 'date-fns';
+import { isToday, startOfToday } from 'date-fns';
 import { toast } from 'sonner';
 
 export const useTransaction = () => {
@@ -49,11 +49,11 @@ export const useTransaction = () => {
     const balanceHistory = user.balanceHistory.at(-1);
 
     if (!balanceHistory || !isToday(balanceHistory.date)) {
-      user.balanceHistory.push({ date: new Date(), balance: currentBalance });
+      user.balanceHistory.push({ date: startOfToday(), balance: currentBalance });
     } else balanceHistory.balance = currentBalance;
 
     if (!walletHistory || !isToday(walletHistory.date)) {
-      user.walletHistory.push({ date: new Date(), wallet: currentWallet });
+      user.walletHistory.push({ date: startOfToday(), wallet: currentWallet });
     } else walletHistory.wallet = currentWallet;
 
     toast.message('Ativo adquirido! 🎉', {
@@ -109,15 +109,15 @@ export const useTransaction = () => {
     const profitabilityHistory = user.profitabilityHistory.at(-1);
 
     if (!balanceHistory || !isToday(balanceHistory.date)) {
-      user.balanceHistory.push({ date: new Date(), balance: currentBalance });
+      user.balanceHistory.push({ date: startOfToday(), balance: currentBalance });
     } else balanceHistory.balance = currentBalance;
 
     if (!walletHistory || !isToday(walletHistory.date)) {
-      user.walletHistory.push({ date: new Date(), wallet: currentWallet });
+      user.walletHistory.push({ date: startOfToday(), wallet: currentWallet });
     } else walletHistory.wallet = currentWallet;
 
     if (!profitabilityHistory || !isToday(profitabilityHistory.date)) {
-      user.profitabilityHistory.push({ date: new Date(), profitability: currentProfitability });
+      user.profitabilityHistory.push({ date: startOfToday(), profitability: currentProfitability });
     } else profitabilityHistory.profitability = currentProfitability;
 
     if (assetProfit > 0) {
