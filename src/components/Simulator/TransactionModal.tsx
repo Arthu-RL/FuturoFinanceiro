@@ -40,7 +40,7 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
   const asset = user.currentWallet.find(({ id }) => id === row.original.id);
   const currentTotalPrice = row.original.value.current * Number(assetInWallet?.quantity);
   const isAssetBeingSold = transaction === 'sell';
-  const currentPurchasePrice = Number(assetInWallet?.quantity) * Number(assetInWallet?.purchaseValue);
+  const currentPurchasePrice = Number(asset?.totalInvestment);
   const totalPricePurchasePriceDifference = currentTotalPrice - currentPurchasePrice;
 
   function handleUpdateQuantity(action: number) {
@@ -53,11 +53,11 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
 
   function handleConfirmAction() {
     if (transaction === 'buy') {
-      buyAsset({ id: row.original.id, quantity, purchaseValue: row.original.value.current });
+      buyAsset(row.original.id, quantity, row.original.value.current);
     }
 
     if (transaction === 'sell' && asset) {
-      sellAsset({ id: row.original.id, quantity, purchaseValue: asset.purchaseValue });
+      sellAsset(row.original.id, quantity, row.original.value.current);
     }
   }
 
@@ -116,11 +116,7 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
                     <div className='flex w-full justify-between'>
                       <span className='font-medium text-foreground'>Custo Total de Aquisição</span>
                       <span className={`font-medium text-foreground transition-all`}>
-                        {formatCurrency(
-                          Number(asset?.purchaseValue) * Number(asset?.quantity),
-                          'BRL',
-                          'pt-BR',
-                        )}
+                        {formatCurrency(Number(asset?.totalInvestment), 'BRL', 'pt-BR')}
                       </span>
                     </div>
                     <div className='flex w-full justify-between'>
@@ -160,14 +156,14 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
                   </Fragment>
                 )}
 
-                {assetQuantityInWallet > 0 && (
+                {assetQuantityInWallet > 0 && asset?.type === 'Purchase' && (
                   <Fragment>
                     <DropdownMenuSeparator />
                     {isAssetBeingSold && (
                       <div className='flex w-full justify-between'>
                         <span className='font-medium text-foreground'>Valor Pago por Ativo</span>
                         <span className='font-medium text-foreground'>
-                          {formatCurrency(Number(asset?.purchaseValue), 'BRL', 'pt-BR')}
+                          {formatCurrency(Number(asset.purchasePrice), 'BRL', 'pt-BR')}
                         </span>
                       </div>
                     )}
