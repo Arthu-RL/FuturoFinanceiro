@@ -10,7 +10,7 @@ import type { Assets } from '@/lib/schemas/assets.schema';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { filterRowsByUserWalletAssets, sortRowsByValue, sortRowsByVariation } from '@/utils/rows';
 import { TransactionModal } from '@/components/Simulator/TransactionModal';
-import { AssetVariation } from '@/components/Simulator/AssetVariation';
+import { AssetVariation } from '@/components/Simulator/AssetsTable/AssetVariation';
 
 import {
   DropdownMenu,

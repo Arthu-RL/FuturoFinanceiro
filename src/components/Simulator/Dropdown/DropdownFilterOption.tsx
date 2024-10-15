@@ -1,9 +1,9 @@
 import type { AssetType, Profile } from '@/@types/investment';
-import { DropdownMenuItem } from '../ui/dropdown-menu';
+import { DropdownMenuItem } from '../../ui/dropdown-menu';
 import { Table } from '@tanstack/react-table';
 import { Check } from 'lucide-react';
 import type { Assets } from '@/lib/schemas/assets.schema';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 
 type DropdownFilterOptionProps = {
   label: string;

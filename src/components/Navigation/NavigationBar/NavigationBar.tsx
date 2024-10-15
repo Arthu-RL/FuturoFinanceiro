@@ -1,7 +1,7 @@
-import { NavigationLinks } from './NavigationLinks';
+import { NavigationLinks } from '../NavigationLinks';
 import { Gamepad, Link, TrendingUp } from 'lucide-react';
-import { NavigationLogo } from './NavigationLogo';
-import { ThemeButton } from './ThemeButton';
+import { NavigationLogo } from '../NavigationLogo';
+import { ThemeButton } from '../ThemeButton';
 
 const investmentLinks = [
   { title: 'Ações e Títulos', href: '/investimentos/acoes-titulos' },

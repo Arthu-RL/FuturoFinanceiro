@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import { NavigationBar } from '@/components/Navigation/NavigationBar';
+import { NavigationBar } from '@/components/Navigation/NavigationBar/NavigationBar';
 import { Toaster } from './components/ui/sonner';
 import { ThemeProvider } from './providers/themeProvider';
 import { InvestmentAssetsProvider } from './providers/InvestmentAssetsProvider';

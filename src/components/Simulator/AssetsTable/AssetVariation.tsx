@@ -1,6 +1,6 @@
 import { generateRowDisplayData } from '@/utils/rows';
-import { Badge } from '../ui/badge';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
+import { Badge } from '../../ui/badge';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../ui/tooltip';
 import { Row } from '@tanstack/react-table';
 import { Assets } from '@/lib/schemas/assets.schema';
 

@@ -7,7 +7,7 @@ import { Row } from '@tanstack/react-table';
 import { Minus, Plus } from 'lucide-react';
 import { formatCurrency } from '@/utils/currency';
 import { useUserAccount } from '@/providers/userAccountProvider';
-import { AssetVariation } from './AssetVariation';
+import { AssetVariation } from './AssetsTable/AssetVariation';
 import { DropdownMenuSeparator } from '../ui/dropdown-menu';
 import { useTransaction } from '@/hooks/useTransaction';
 import { calculateTransactionProfitDetails } from '@/utils/number';

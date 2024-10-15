@@ -1,5 +1,5 @@
-import { Button } from '../ui/button';
-import { DropdownFilterOption } from './DropdownFilterOption';
+import { Button } from '../../ui/button';
+import { DropdownFilterOption } from '../DropdownFilterOption';
 import type { Table } from '@tanstack/react-table';
 import { Check, Filter } from 'lucide-react';
 import type { Assets } from '@/lib/schemas/assets.schema';
@@ -15,7 +15,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
+} from '../../ui/dropdown-menu';
 
 type DropdownFilterProps = {
   table: Table<Assets>;

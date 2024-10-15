@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../ui/card';
 import { useState } from 'react';
-import { Input } from '../ui/input';
-import { DropdownFilter } from './DropdownFilter';
+import { Input } from '../../ui/input';
+import { DropdownFilter } from '../Dropdown/DropdownFilter';
 import { useAssetColumns } from '@/hooks/useAssetColumns';
 import { X } from 'lucide-react';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';

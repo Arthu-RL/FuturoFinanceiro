@@ -1,4 +1,4 @@
-import { AssetsTable } from '@/components/Simulator/AssetsTable';
+import { AssetsTable } from '@/components/Simulator/AssetsTable/AssetsTable';
 import { RecentPurchases } from '@/components/Simulator/RecentPurchases';
 import { Summary } from '@/components/Simulator/Summary/Summary';
 
