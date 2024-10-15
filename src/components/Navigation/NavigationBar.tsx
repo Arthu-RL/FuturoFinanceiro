@@ -1,5 +1,5 @@
 import { NavigationLinks } from './NavigationLinks';
-import { Gamepad, Link, Shield, TrendingUp } from 'lucide-react';
+import { Gamepad, Link, TrendingUp } from 'lucide-react';
 import { NavigationLogo } from './NavigationLogo';
 import { ThemeButton } from './ThemeButton';
 
@@ -12,12 +12,6 @@ const investmentLinks = [
   { title: 'Commodities', href: '/investimentos/commodities' },
   { title: 'Moedas Estrangeiras', href: '/investimentos/moedas-estrangeiras' },
   { title: 'Criptomoedas', href: '/investimentos/criptomoedas' },
-];
-
-const riskProfileLinks = [
-  { title: 'Baixo Risco', href: '/perfil/baixo-risco' },
-  { title: 'Médio Risco', href: '/perfil/medio-risco' },
-  { title: 'Alto Risco', href: '/perfil/alto-risco' },
 ];
 
 const simulatorLinks = [
@@ -35,7 +29,6 @@ const additionalLinks = [
 
 const links = [
   { title: 'Investimentos', Icon: TrendingUp, links: investmentLinks },
-  { title: 'Perfis de Risco', Icon: Shield, links: riskProfileLinks },
   { title: 'Simulador', Icon: Gamepad, links: simulatorLinks },
   { title: 'Recursos Externos', Icon: Link, links: additionalLinks },
 ];
