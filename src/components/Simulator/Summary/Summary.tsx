@@ -7,14 +7,17 @@ import { Activity, Coins, DollarSign, Wallet } from 'lucide-react';
 import { Line, LineChart, ResponsiveContainer } from 'recharts';
 import { Countdown } from './Countdown';
 import { NumberDisplay } from './NumberDisplay';
+import { useMemo } from 'react';
 
 export function Summary() {
   const { assets } = useInvestmentAssets();
   const { user } = useUserAccount();
 
-  const data = Array.from({ length: 7 })
-    .map((_, index) => index + 1)
-    .map(() => ({ revenue: Math.random() * user.currentBalance }));
+  const data = useMemo(() => {
+    return Array.from({ length: 7 })
+      .map((_, index) => index + 1)
+      .map(() => ({ revenue: Math.random() * user.currentBalance }));
+  }, [user.currentBalance]);
 
   const totalAssets = user.currentWallet.reduce((total, asset) => {
     return calculateTotalHoldingsValue(total, assets, asset);
