@@ -30,7 +30,7 @@ export const RecentPurchases = () => {
                   <TableHead className='text-left'>Código</TableHead>
                   <TableHead className='text-left'>Tipo</TableHead>
                   <TableHead className='text-left'>Quantidade</TableHead>
-                  <TableHead className='text-right'>Preço</TableHead>
+                  <TableHead className='text-right'>Valor</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
