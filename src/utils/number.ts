@@ -2,7 +2,7 @@ import { Assets } from '@/lib/schemas/assets.schema';
 import { User } from '@/lib/schemas/user.schema';
 
 function getAssetVariation(previousValue: number, currentValue: number) {
-  if (previousValue === 0) return ((currentValue - 1) / 1) * 100;
+  if (previousValue === 0) return currentValue;
   return ((currentValue - previousValue) / previousValue) * 100;
 }
 
