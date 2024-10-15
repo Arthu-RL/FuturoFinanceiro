@@ -1,6 +1,6 @@
 import { AssetsTable } from '@/components/Simulator/AssetsTable';
 import { RecentPurchases } from '@/components/Simulator/RecentPurchases';
-import { Summary } from '@/components/Simulator/Summary';
+import { Summary } from '@/components/Simulator/Summary/Summary';
 
 export default function Simulator() {
   return (
