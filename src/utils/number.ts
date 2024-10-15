@@ -20,6 +20,10 @@ function calculateTotalHoldingsValue(
   return total;
 }
 
+function roundIfTooSmall(value: number, threshold: number = 1e-10) {
+  return Math.abs(value) < threshold ? 0 : value;
+}
+
 function calculateTransactionProfitDetails(
   currentPrice: number,
   transactionQuantity: number,
@@ -28,7 +32,7 @@ function calculateTransactionProfitDetails(
 ) {
   const transactionValue = currentPrice * transactionQuantity;
   const proportionateInvestment = (totalInvestment / totalWalletQuantity) * transactionQuantity;
-  const assetProfit = transactionValue - proportionateInvestment;
+  const assetProfit = roundIfTooSmall(transactionValue - proportionateInvestment);
   return { assetProfit, proportionateInvestment, transactionValue };
 }
 
@@ -37,4 +41,5 @@ export {
   formatNumberWithSign,
   calculateTotalHoldingsValue,
   calculateTransactionProfitDetails,
+  roundIfTooSmall,
 };
