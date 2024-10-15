@@ -28,9 +28,9 @@ export const RecentPurchases = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead className='text-left'>Código</TableHead>
-                  <TableHead className='text-left'>Tipo</TableHead>
-                  <TableHead className='text-left'>Quantidade</TableHead>
-                  <TableHead className='text-right'>Valor</TableHead>
+                  <TableHead className='px-3 text-left'>Tipo</TableHead>
+                  <TableHead className='px-3 text-left'>Valor</TableHead>
+                  <TableHead className='text-right'>Quantidade</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -49,10 +49,10 @@ export const RecentPurchases = () => {
                       <TableCell>
                         <Badge variant='outline'>{translateTransactionType(assetHistory.type)}</Badge>
                       </TableCell>
-                      <TableCell className='text-left'>{assetHistory.quantity} Unidades</TableCell>
-                      <TableCell className='text-right'>
+                      <TableCell className='text-left'>
                         {formatCurrency(price * assetHistory.quantity, 'BRL', 'pt-BR')}
                       </TableCell>
+                      <TableCell className='text-right'>{assetHistory.quantity} Unidades</TableCell>
                     </TableRow>
                   );
                 })}
