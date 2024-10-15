@@ -14,7 +14,7 @@ export const useAnimatedCounter = (start: number, end: number, duration: number)
 
       const progress = Math.min(elapsed / duration, 1);
       const easing = progress < 0.5 ? 2 * progress ** 2 : -1 + (4 - 2 * progress) * progress;
-      const newCount = Math.floor(start + (end - start) * easing);
+      const newCount = start + (end - start) * easing;
 
       setCount(newCount);
       if (progress < 1) requestAnimationFrame(step);
