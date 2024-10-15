@@ -20,4 +20,21 @@ function calculateTotalHoldingsValue(
   return total;
 }
 
-export { getAssetVariation, formatNumberWithSign, calculateTotalHoldingsValue };
+function calculateTransactionProfitDetails(
+  currentPrice: number,
+  transactionQuantity: number,
+  totalInvestment: number,
+  totalWalletQuantity: number,
+) {
+  const transactionValue = currentPrice * transactionQuantity;
+  const proportionateInvestment = (totalInvestment / totalWalletQuantity) * transactionQuantity;
+  const assetProfit = transactionValue - proportionateInvestment;
+  return { assetProfit, proportionateInvestment, transactionValue };
+}
+
+export {
+  getAssetVariation,
+  formatNumberWithSign,
+  calculateTotalHoldingsValue,
+  calculateTransactionProfitDetails,
+};

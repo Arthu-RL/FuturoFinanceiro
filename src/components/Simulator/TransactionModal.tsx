@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Assets } from '@/lib/schemas/assets.schema';
 import { Badge } from '@/components/ui/badge';
-import { translateAssetCategory } from '@/utils/string';
+import { getProfitStatus, getProfitTextColor, translateAssetCategory } from '@/utils/string';
 import { Fragment, useState } from 'react';
 import { Row } from '@tanstack/react-table';
 import { Minus, Plus } from 'lucide-react';
@@ -10,6 +10,7 @@ import { useUserAccount } from '@/providers/userAccountProvider';
 import { AssetVariation } from './AssetVariation';
 import { DropdownMenuSeparator } from '../ui/dropdown-menu';
 import { useTransaction } from '@/hooks/useTransaction';
+import { calculateTransactionProfitDetails } from '@/utils/number';
 
 import {
   AlertDialog,
@@ -38,10 +39,17 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
   const assetQuantityInWallet = assetInWallet?.quantity ?? 0;
   const isTotalPriceMoreThanUserBalance = quantity * row.original.value.current > user.currentBalance;
   const asset = user.currentWallet.find(({ id }) => id === row.original.id);
-  const currentTotalPrice = row.original.value.current * Number(assetInWallet?.quantity);
+  const currentPrice = row.original.value.current;
+  const totalInvestment = assetInWallet?.totalInvestment ?? 0;
+  const totalWalletQuantity = assetInWallet?.quantity ?? 0;
   const isAssetBeingSold = transaction === 'sell';
-  const currentPurchasePrice = Number(asset?.totalInvestment);
-  const totalPricePurchasePriceDifference = currentTotalPrice - currentPurchasePrice;
+
+  const { assetProfit } = calculateTransactionProfitDetails(
+    currentPrice,
+    quantity,
+    totalInvestment,
+    totalWalletQuantity,
+  );
 
   function handleUpdateQuantity(action: number) {
     setQuantity((current) => {
@@ -108,32 +116,25 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
                 {isAssetBeingSold ? (
                   <Fragment>
                     <div className='flex w-full justify-between'>
-                      <span className='font-medium text-foreground'>Valor Total a Receber</span>
-                      <span className={`font-medium text-foreground transition-all`}>
-                        {formatCurrency(row.original.value.current * quantity, 'BRL', 'pt-BR')}
-                      </span>
-                    </div>
-                    <div className='flex w-full justify-between'>
                       <span className='font-medium text-foreground'>Custo Total de Aquisição</span>
                       <span className={`font-medium text-foreground transition-all`}>
                         {formatCurrency(Number(asset?.totalInvestment), 'BRL', 'pt-BR')}
                       </span>
                     </div>
                     <div className='flex w-full justify-between'>
-                      <span
-                        className={`font-medium text-foreground ${totalPricePurchasePriceDifference > 0 ? 'text-green-500' : totalPricePurchasePriceDifference < 0 ? 'text-red-600' : 'text-foreground'}`}
-                      >
-                        Situação:{' '}
-                        {totalPricePurchasePriceDifference > 0
-                          ? 'Lucro'
-                          : totalPricePurchasePriceDifference < 0
-                            ? 'Prejuízo'
-                            : 'Estável'}
+                      <span className='font-medium text-foreground'>Valor Total a Receber</span>
+                      <span className={`font-medium text-foreground transition-all`}>
+                        {formatCurrency(row.original.value.current * quantity, 'BRL', 'pt-BR')}
+                      </span>
+                    </div>
+                    <div className='flex w-full justify-between'>
+                      <span className={`font-medium text-foreground ${getProfitTextColor(assetProfit)}`}>
+                        Situação: {getProfitStatus(assetProfit)}
                       </span>
                       <span
-                        className={`font-medium text-foreground transition-all ${totalPricePurchasePriceDifference > 0 ? 'text-green-500' : totalPricePurchasePriceDifference < 0 ? 'text-red-600' : 'text-foreground'}`}
+                        className={`font-medium text-foreground transition-all ${getProfitTextColor(assetProfit)}`}
                       >
-                        {formatCurrency(totalPricePurchasePriceDifference, 'BRL', 'pt-BR')}
+                        {formatCurrency(assetProfit, 'BRL', 'pt-BR')}
                       </span>
                     </div>
                   </Fragment>

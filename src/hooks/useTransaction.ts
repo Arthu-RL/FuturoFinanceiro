@@ -1,6 +1,7 @@
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { formatCurrency } from '@/utils/currency';
+import { calculateTransactionProfitDetails } from '@/utils/number';
 import { isToday, startOfToday } from 'date-fns';
 import { toast } from 'sonner';
 
@@ -68,12 +69,14 @@ export const useTransaction = () => {
     const walletAsset = user.currentWallet.find((asset) => asset.id === id);
     if (!walletAsset) return;
 
-    const transactionValue = price * quantity;
+    const { assetProfit, proportionateInvestment, transactionValue } = calculateTransactionProfitDetails(
+      price,
+      quantity,
+      walletAsset.totalInvestment,
+      walletAsset.quantity,
+    );
+
     const isAssetBeingRemoved = quantity === walletAsset.quantity;
-
-    const proportionateInvestment = (walletAsset.totalInvestment / walletAsset.quantity) * quantity;
-    const assetProfit = transactionValue - proportionateInvestment;
-
     const currentBalance = user.currentBalance + transactionValue;
     const currentProfitability = user.currentProfitability + assetProfit;
     const filteredAssets = user.currentWallet.filter((asset) => asset.id !== id);

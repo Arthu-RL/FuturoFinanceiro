@@ -27,4 +27,22 @@ function translateTransactionType(transaction: string) {
   return translations[transaction] ?? transaction;
 }
 
-export { translateAssetCategory, translateAssetProfile, translateTransactionType };
+function getProfitStatus(profit: number) {
+  if (profit < 0) return 'Prejuízo';
+  if (profit > 0) return 'Lucro';
+  return 'Estável';
+}
+
+function getProfitTextColor(profit: number) {
+  if (profit < 0) return 'text-red-600';
+  if (profit > 0) return 'text-green-500';
+  return 'text-foreground';
+}
+
+export {
+  getProfitStatus,
+  getProfitTextColor,
+  translateAssetCategory,
+  translateAssetProfile,
+  translateTransactionType,
+};
