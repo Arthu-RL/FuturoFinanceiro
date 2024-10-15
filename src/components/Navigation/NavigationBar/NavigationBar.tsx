@@ -1,6 +1,6 @@
-import { NavigationLinks } from '../NavigationLinks';
+import { NavigationLinks } from './NavigationLinks';
 import { Gamepad, Link, TrendingUp } from 'lucide-react';
-import { NavigationLogo } from '../NavigationLogo';
+import { NavigationLogo } from './NavigationLogo';
 import { ThemeButton } from '../ThemeButton';
 
 const investmentLinks = [
