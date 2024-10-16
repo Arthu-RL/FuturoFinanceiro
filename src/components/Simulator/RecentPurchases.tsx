@@ -59,8 +59,10 @@ export const RecentPurchases = () => {
               </TableBody>
             </Table>
           ) : (
-            <div className='absolute inset-0 flex items-center justify-center text-sm'>
-              <span className='text-center text-foreground'>Nenhuma atividade financeira encontrada.</span>
+            <div className='absolute inset-0 flex items-center justify-center text-sm transition-colors hover:bg-muted/50'>
+              <span className='max-w-48 text-center text-foreground'>
+                Nenhuma atividade financeira encontrada.
+              </span>
             </div>
           )}
         </ScrollArea>

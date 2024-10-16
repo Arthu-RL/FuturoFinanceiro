@@ -1,8 +1,10 @@
 import { getProfitTextColor } from '@/utils/string';
 import { useEffect, useState } from 'react';
 
+const initialTextColor = getProfitTextColor(0);
+
 export const useAnimatedCounter = (start: number, end: number, duration: number) => {
-  const [countTextColor, setCountTextColor] = useState('text-foregound');
+  const [countTextColor, setCountTextColor] = useState(initialTextColor);
   const [count, setCount] = useState(start);
 
   useEffect(() => {
@@ -18,7 +20,7 @@ export const useAnimatedCounter = (start: number, end: number, duration: number)
 
       setCount(newCount);
       if (progress < 1) requestAnimationFrame(step);
-      else setCountTextColor(getProfitTextColor(0));
+      else setCountTextColor(initialTextColor);
     };
 
     requestAnimationFrame(step);

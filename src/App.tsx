@@ -14,8 +14,8 @@ export default function App() {
   return (
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
       <InvestmentAssetsProvider>
-        <MarketRefreshProvider>
-          <UserAccountProvider>
+        <UserAccountProvider>
+          <MarketRefreshProvider>
             <Router>
               <NavigationBar />
               <main className='pb-12 pl-28 pr-14 pt-6 max-2xl:min-h-screen max-2xl:pl-24 max-2xl:pr-9 max-2xl:pt-8 max-sm:px-4 max-sm:pt-20 2xl:h-screen'>
@@ -23,8 +23,8 @@ export default function App() {
               </main>
             </Router>
             <Toaster visibleToasts={1} />
-          </UserAccountProvider>
-        </MarketRefreshProvider>
+          </MarketRefreshProvider>
+        </UserAccountProvider>
       </InvestmentAssetsProvider>
     </ThemeProvider>
   );
