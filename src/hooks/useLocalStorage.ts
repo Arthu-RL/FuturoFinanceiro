@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
-export const useLocalStorage = <T>(schema: z.Schema) => {
-  function getStorageItem(storageKey: string): T | null {
+export const useLocalStorage = <T>(schema: z.Schema<T>) => {
+  type TData = z.infer<typeof schema>;
+
+  function getStorageItem(storageKey: string): TData | null {
     const storageItem = schema.safeParse(JSON.parse(localStorage.getItem(storageKey) || String(null)));
 
     if (!storageItem.success) {
@@ -13,7 +15,7 @@ export const useLocalStorage = <T>(schema: z.Schema) => {
     return storageItem.data;
   }
 
-  function setStorageItem(storageKey: string, value: T): null {
+  function setStorageItem(storageKey: string, value: TData): null {
     const storageValue = schema.safeParse(value);
 
     if (!storageValue.success) {
