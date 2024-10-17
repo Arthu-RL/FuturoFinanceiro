@@ -49,10 +49,12 @@ export const RecentPurchases = () => {
                       <TableCell>
                         <Badge variant='outline'>{translateTransactionType(assetHistory.type)}</Badge>
                       </TableCell>
-                      <TableCell className='text-left'>
+                      <TableCell className='whitespace-nowrap text-left'>
                         {formatCurrency(price * assetHistory.quantity, 'BRL', 'pt-BR')}
                       </TableCell>
-                      <TableCell className='text-right'>{assetHistory.quantity} Unidades</TableCell>
+                      <TableCell className='whitespace-nowrap text-right'>
+                        {assetHistory.quantity} Unidades
+                      </TableCell>
                     </TableRow>
                   );
                 })}
