@@ -8,7 +8,6 @@ import { useUserAccount } from '@/providers/userAccountProvider';
 import { calculateWeekTotalProfit } from '@/utils/number';
 import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
 import { usePreviousValue } from '@/hooks/usePreviousValue';
-import { getWeekdayLabelFromDate } from '@/utils/date';
 
 export const Chart = () => {
   const { user } = useUserAccount();
@@ -43,16 +42,9 @@ export const Chart = () => {
         <ChartContainer config={chartConfig} className='max-h-[160px] w-full'>
           <LineChart data={chartData} accessibilityLayer margin={{ top: 25, left: 15, right: 15 }}>
             <CartesianGrid vertical={false} opacity={1} />
-            <XAxis
-              dataKey='date'
-              tickMargin={10}
-              tickLine={false}
-              axisLine={false}
-              tickFormatter={(value) => getWeekdayLabelFromDate(value)}
-            />
+            <XAxis dataKey='date' tickMargin={10} tickLine={false} axisLine={false} />
             <ChartTooltip
               cursor={false}
-              labelFormatter={(value) => getWeekdayLabelFromDate(value)}
               content={
                 <ChartTooltipContent
                   indicator='line'
