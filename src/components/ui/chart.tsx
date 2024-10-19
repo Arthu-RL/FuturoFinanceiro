@@ -103,6 +103,8 @@ const ChartTooltipContent = React.forwardRef<
       indicator?: 'line' | 'dot' | 'dashed';
       nameKey?: string;
       labelKey?: string;
+      customLabel?: string;
+      numberFormatter?: ((value: number) => string) | null;
     }
 >(
   (
@@ -120,6 +122,8 @@ const ChartTooltipContent = React.forwardRef<
       color,
       nameKey,
       labelKey,
+      customLabel,
+      numberFormatter = null,
     },
     ref,
   ) => {
@@ -210,11 +214,15 @@ const ChartTooltipContent = React.forwardRef<
                     >
                       <div className='grid gap-1.5'>
                         {nestLabel ? tooltipLabel : null}
-                        <span className='text-muted-foreground'>{itemConfig?.label || item.name}</span>
+                        <span className='text-muted-foreground'>
+                          {customLabel || itemConfig?.label || item.name}
+                        </span>
                       </div>
-                      {item.value && (
-                        <span className='font-mono font-medium tabular-nums text-foreground'>
-                          {item.value.toLocaleString()}
+                      {typeof item.value != 'undefined' && (
+                        <span className='ml-1.5 font-mono font-medium tabular-nums text-foreground'>
+                          {typeof numberFormatter === 'function'
+                            ? numberFormatter(Number(item.value))
+                            : item.value.toLocaleString()}
                         </span>
                       )}
                     </div>
