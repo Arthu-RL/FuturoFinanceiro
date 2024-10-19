@@ -1,5 +1,6 @@
 import { Assets } from '@/lib/schemas/assets.schema';
 import { User } from '@/lib/schemas/user.schema';
+import { getCurrentWeekChartData } from './chart';
 
 function getAssetVariation(previousValue: number, currentValue: number) {
   if (previousValue === 0) return currentValue;
@@ -36,10 +37,18 @@ function calculateTransactionProfitDetails(
   return { assetProfit, proportionateInvestment, transactionValue };
 }
 
+function calculateWeekTotalProfit(currentWeekProfitability: ReturnType<typeof getCurrentWeekChartData>) {
+  return currentWeekProfitability.reduce((totalProfitability, { profitability }) => {
+    if (profitability > 0) totalProfitability += profitability;
+    return totalProfitability;
+  }, 0);
+}
+
 export {
   getAssetVariation,
   formatNumberWithSign,
   calculateTotalHoldingsValue,
   calculateTransactionProfitDetails,
   roundIfTooSmall,
+  calculateWeekTotalProfit,
 };
