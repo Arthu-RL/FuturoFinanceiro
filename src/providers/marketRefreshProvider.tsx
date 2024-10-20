@@ -3,11 +3,11 @@ import { createContext, ReactNode, useContext } from 'react';
 
 type MarketRefreshState = { remainingSeconds: number };
 
-const SIXTY_SECONDS = 60;
+const THREE_MINUTES = 180;
 const MarketRefreshProviderContext = createContext<MarketRefreshState>({ remainingSeconds: 0 });
 
 const MarketRefreshProvider = ({ children }: { children: ReactNode }) => {
-  const { remainingSeconds } = useMarketAutoRefresh(SIXTY_SECONDS);
+  const { remainingSeconds } = useMarketAutoRefresh(THREE_MINUTES);
 
   return (
     <MarketRefreshProviderContext.Provider value={{ remainingSeconds }}>

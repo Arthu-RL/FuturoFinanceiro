@@ -3,4 +3,13 @@ function getWeekdayLabelFromDate(date: Date) {
   return formatter.format(date);
 }
 
-export { getWeekdayLabelFromDate };
+function formatRemainingTime(seconds: number) {
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const hours = Math.floor(seconds / 3600);
+
+  if (hours > 0) return `${hours}h`;
+  if (minutes > 0) return `${minutes}m`;
+  return `${seconds}s`;
+}
+
+export { getWeekdayLabelFromDate, formatRemainingTime };

@@ -1,4 +1,5 @@
 import { useMarketRefresh } from '@/providers/marketRefreshProvider';
+import { formatRemainingTime } from '@/utils/date';
 
 export const Countdown = () => {
   const { remainingSeconds } = useMarketRefresh();
@@ -10,7 +11,7 @@ export const Countdown = () => {
         Controle seus investimentos e acompanhe o seu progresso.
       </p>
       <p className='text-sm font-medium text-muted-foreground max-2xl:text-xs'>
-        Próxima Atualização em: {remainingSeconds}s
+        Próxima Atualização em: {formatRemainingTime(remainingSeconds)}
       </p>
     </div>
   );
