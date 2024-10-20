@@ -1,5 +1,5 @@
 import { User } from '@/lib/schemas/user.schema';
-import { eachDayOfInterval, endOfWeek, isBefore, startOfToday, startOfWeek } from 'date-fns';
+import { eachDayOfInterval, endOfToday, endOfWeek, isBefore, startOfWeek } from 'date-fns';
 import { getWeekdayLabelFromDate } from './date';
 
 function generateCurrentWeekData(profitabilityHistory: User['profitabilityHistory']) {
@@ -20,7 +20,7 @@ function generateCurrentWeekChartData(profitabilityHistory: User['profitabilityH
       return { date: dateLabel, profitability: currentDayProfitability };
     }
 
-    if (!isBefore(history.date, startOfToday())) {
+    if (!isBefore(history.date, endOfToday())) {
       return { date: dateLabel, profitability: history.profitability };
     }
 
