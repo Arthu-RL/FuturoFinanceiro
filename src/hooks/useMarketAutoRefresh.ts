@@ -4,9 +4,10 @@ import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useAssetFluctuation } from './useAssetFluctuation';
 
 const ONE_SECOND_IN_MS = 1000;
+const THREE_MINUTES = 180;
 
-export const useMarketAutoRefresh = (initialRemainingSeconds: number) => {
-  const [remainingSeconds, setRemainingSeconds] = useState(initialRemainingSeconds);
+export const useMarketAutoRefresh = () => {
+  const [remainingSeconds, setRemainingSeconds] = useState(THREE_MINUTES);
   const { assets, updateAssets } = useInvestmentAssets();
   const { computedAssets } = useAssetFluctuation(assets);
 
@@ -29,7 +30,7 @@ export const useMarketAutoRefresh = (initialRemainingSeconds: number) => {
                 'Os preços foram atualizados com sucesso. Confira as novas mudanças no mercado e ajuste seus investimentos!',
             });
 
-            return initialRemainingSeconds;
+            return THREE_MINUTES;
           }
 
           return --currentSeconds;
@@ -43,7 +44,7 @@ export const useMarketAutoRefresh = (initialRemainingSeconds: number) => {
 
     decrementRemainingSeconds();
     return () => clearTimeout(timeout);
-  }, [initialRemainingSeconds, refreshMarket]);
+  }, [refreshMarket]);
 
   return { remainingSeconds };
 };
