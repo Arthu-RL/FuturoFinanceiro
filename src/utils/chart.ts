@@ -21,7 +21,7 @@ function generateCurrentWeekChartData(profitabilityHistory: User['profitabilityH
     }
 
     if (!isBefore(history.date, endOfToday())) {
-      return { date: dateLabel, profitability: history.profitability };
+      return { date: dateLabel, profitability: 0 };
     }
 
     const previousDayProfitability = profitabilityHistory[index - 1].profitability;
