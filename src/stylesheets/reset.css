@@ -44,7 +44,7 @@ body:has(div[role='dialog']) {
 
 /* Ensure that pointer events are reset if a refresh occurs while the modal is active */
 body:has(div[role='alertdialog']) header {
-  z-index: 50;
+  z-index: 50 !important;
 }
 
 /* Ensure that the navigation bar alert dialog stays underneath the asset dialog */
