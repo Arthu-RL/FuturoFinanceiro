@@ -34,13 +34,13 @@ export const RecentPurchases = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {reversedHistory.map((assetHistory) => {
+                {reversedHistory.map((assetHistory, index) => {
                   const asset = assets.find((asset) => asset.id === assetHistory.id);
                   const price =
                     assetHistory.type === 'Purchase' ? assetHistory.purchasePrice : assetHistory.sellingPrice;
 
                   return (
-                    <TableRow>
+                    <TableRow key={`${asset?.id}-${index}`}>
                       <TableCell>
                         <Badge variant='outline' className='font-bold uppercase'>
                           {asset?.alias}
