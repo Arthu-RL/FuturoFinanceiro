@@ -2,13 +2,13 @@ import { Button } from '@/components/ui/button';
 import { Assets } from '@/lib/schemas/assets.schema';
 import { Badge } from '@/components/ui/badge';
 import { getProfitStatus, getProfitTextColor, translateAssetCategory } from '@/utils/string';
-import { Fragment, useState } from 'react';
-import { Row } from '@tanstack/react-table';
+import { Fragment, useEffect, useState } from 'react';
+import { Table } from '@tanstack/react-table';
 import { Minus, Plus } from 'lucide-react';
 import { formatCurrency } from '@/utils/currency';
 import { useUserAccount } from '@/providers/userAccountProvider';
+import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import { AssetVariation } from './AssetsTable/AssetVariation';
-import { DropdownMenuSeparator } from '../ui/dropdown-menu';
 import { useTransaction } from '@/hooks/useTransaction';
 import { calculateTransactionProfitDetails } from '@/utils/number';
 
@@ -21,20 +21,28 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 
 type TransactionModalProps = {
-  row: Row<Assets>;
-  transaction: 'buy' | 'sell';
+  table: Table<Assets>;
+  columnId: string;
+  transaction: 'purchase' | 'sale';
   textContent: { trigger: string; confirm: string };
+  modalState: { currentState: boolean; setState: (value: boolean) => void };
 };
 
-export function TransactionModal({ row, transaction, textContent }: TransactionModalProps) {
-  const [quantity, setQuantity] = useState(1);
-  const { user } = useUserAccount();
+export function TransactionModal({
+  columnId,
+  table,
+  modalState,
+  transaction,
+  textContent,
+}: TransactionModalProps) {
   const { buyAsset, sellAsset } = useTransaction();
+  const { user } = useUserAccount();
 
+  const [quantity, setQuantity] = useState(1);
+  const row = table.getRow(columnId);
   const assetInWallet = user.currentWallet.find(({ id }) => id === row.original.id);
   const assetQuantityInWallet = assetInWallet?.quantity ?? 0;
   const isTotalPriceMoreThanUserBalance = quantity * row.original.value.current > user.currentBalance;
@@ -42,7 +50,7 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
   const currentPrice = row.original.value.current;
   const totalInvestment = assetInWallet?.totalInvestment ?? 0;
   const totalWalletQuantity = assetInWallet?.quantity ?? 0;
-  const isAssetBeingSold = transaction === 'sell';
+  const isAssetBeingSold = transaction === 'sale';
 
   const { assetProfit } = calculateTransactionProfitDetails(
     currentPrice,
@@ -54,28 +62,27 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
   function handleUpdateQuantity(action: number) {
     setQuantity((current) => {
       const sum = current + action;
-      if (transaction === 'sell') return sum <= Number(asset?.quantity) && sum > 0 ? sum : current;
+      if (transaction === 'sale') return sum <= Number(asset?.quantity) && sum > 0 ? sum : current;
       return sum > 0 ? (current += action) : 1;
     });
   }
 
   function handleConfirmAction() {
-    if (transaction === 'buy') {
+    if (transaction === 'purchase') {
       buyAsset(row.original.id, quantity, row.original.value.current);
     }
 
-    if (transaction === 'sell' && asset) {
+    if (transaction === 'sale' && asset) {
       sellAsset(row.original.id, quantity, row.original.value.current);
     }
+
+    modalState.setState(false);
   }
 
+  useEffect(() => setQuantity(1), [modalState.currentState]);
+
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant='ghost' className='h-8 w-full justify-start rounded-sm px-2'>
-          {textContent.trigger}
-        </Button>
-      </AlertDialogTrigger>
+    <AlertDialog open={modalState.currentState}>
       <AlertDialogContent className='gap-2 max-sm:w-[90%]'>
         <AlertDialogHeader>
           <AlertDialogTitle>
@@ -182,10 +189,10 @@ export function TransactionModal({ row, transaction, textContent }: TransactionM
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancelar</AlertDialogCancel>
+          <AlertDialogCancel onClick={() => modalState.setState(false)}>Cancelar</AlertDialogCancel>
           <AlertDialogAction
             onClick={handleConfirmAction}
-            disabled={isTotalPriceMoreThanUserBalance && transaction === 'buy'}
+            disabled={isTotalPriceMoreThanUserBalance && transaction === 'purchase'}
           >
             {textContent.confirm}
           </AlertDialogAction>

@@ -9,8 +9,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import type { Assets } from '@/lib/schemas/assets.schema';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { filterRowsByUserWalletAssets, sortRowsByValue, sortRowsByVariation } from '@/utils/rows';
-import { TransactionModal } from '@/components/Simulator/TransactionModal';
 import { AssetVariation } from '@/components/Simulator/AssetsTable/AssetVariation';
+import { useState } from 'react';
 
 import {
   DropdownMenu,
@@ -22,7 +22,16 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 export function useAssetColumns() {
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+  const [isSaleModalOpen, setIsSaleModalOpen] = useState(false);
+  const [rowId, setRowId] = useState<null | string>(null);
   const { user } = useUserAccount();
+
+  function handleUpdateColumns(rowId: string, modalState: 'purchase' | 'sale') {
+    setRowId(rowId);
+    if (modalState === 'purchase') setIsPurchaseModalOpen(true);
+    else setIsSaleModalOpen(true);
+  }
 
   const columns: ColumnDef<Assets>[] = [
     {
@@ -170,23 +179,24 @@ export function useAssetColumns() {
               <DropdownMenuContent align='end'>
                 <DropdownMenuLabel>Ações</DropdownMenuLabel>
                 {userHasAsset && (
-                  <DropdownMenuItem asChild className='cursor-pointer p-0'>
-                    <TransactionModal
-                      row={row}
-                      transaction='sell'
-                      textContent={{ trigger: 'Vender', confirm: 'Confirmar Venda' }}
-                    />
+                  <DropdownMenuItem
+                    onClick={() => handleUpdateColumns(row.id, 'sale')}
+                    className='h-8 w-full cursor-pointer justify-start rounded-sm px-2'
+                  >
+                    Vender
                   </DropdownMenuItem>
                 )}
-                <DropdownMenuItem asChild className='cursor-pointer p-0'>
-                  <TransactionModal
-                    row={row}
-                    transaction='buy'
-                    textContent={{ trigger: 'Comprar', confirm: 'Confirmar Compra' }}
-                  />
+                <DropdownMenuItem
+                  onClick={() => handleUpdateColumns(row.id, 'purchase')}
+                  className='h-8 w-full cursor-pointer justify-start rounded-sm px-2'
+                >
+                  Comprar
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className='cursor-pointer' onClick={() => {}}>
+                <DropdownMenuItem
+                  className='h-8 w-full cursor-pointer justify-start rounded-sm px-2'
+                  onClick={() => {}}
+                >
                   Ver detalhes
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -197,5 +207,10 @@ export function useAssetColumns() {
     },
   ];
 
-  return columns;
+  return {
+    rowId,
+    columns,
+    saleState: { currentState: isSaleModalOpen, setState: setIsSaleModalOpen },
+    purchaseState: { currentState: isPurchaseModalOpen, setState: setIsPurchaseModalOpen },
+  };
 }

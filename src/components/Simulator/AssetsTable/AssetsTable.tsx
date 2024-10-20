@@ -1,12 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../ui/card';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Input } from '../../ui/input';
 import { DropdownFilter } from '../Dropdown/DropdownFilter';
 import { useAssetColumns } from '@/hooks/useAssetColumns';
 import { X } from 'lucide-react';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
+import { TransactionModal } from '../TransactionModal';
 
 import {
   ColumnFiltersState,
@@ -26,7 +27,7 @@ export function AssetsTable() {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({ id: false });
   const [rowSelection, setRowSelection] = useState({});
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 6 });
-  const columns = useAssetColumns();
+  const { columns, rowId, saleState, purchaseState } = useAssetColumns();
   const { assets } = useInvestmentAssets();
 
   const table = useReactTable({
@@ -58,6 +59,25 @@ export function AssetsTable() {
 
   return (
     <Card className='col-span-3 flex h-full flex-col max-2xl:col-span-4'>
+      {rowId && (
+        <Fragment>
+          <TransactionModal
+            table={table}
+            columnId={rowId}
+            transaction='sale'
+            modalState={saleState}
+            textContent={{ trigger: 'Vender', confirm: 'Confirmar Venda' }}
+          />
+          <TransactionModal
+            table={table}
+            columnId={rowId}
+            transaction='purchase'
+            modalState={purchaseState}
+            textContent={{ trigger: 'Comprar', confirm: 'Confirmar Compra' }}
+          />
+        </Fragment>
+      )}
+
       <CardHeader className='grid grid-cols-2 max-lg:grid-cols-1'>
         <div className='flex flex-col gap-2'>
           <CardTitle>Ativos Disponíveis para Compra</CardTitle>
