@@ -37,9 +37,12 @@ function calculateTransactionProfitDetails(
 }
 
 function calculateWeekTotalProfit(currentWeekProfitability: User['profitabilityHistory']) {
-  return currentWeekProfitability.slice(1).reduce((totalProfit, day, index) => {
-    const dailyProfit = day.profitability - currentWeekProfitability[index].profitability;
-    return totalProfit + dailyProfit;
+  let previousValue = 0;
+
+  return currentWeekProfitability.reduce((totalProfit, day, index) => {
+    const dailyProfit = day.profitability - previousValue;
+    previousValue = day.profitability;
+    return totalProfit + index === 0 ? day.profitability : dailyProfit;
   }, 0);
 }
 
