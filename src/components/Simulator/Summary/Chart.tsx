@@ -3,7 +3,7 @@ import { formatCurrency } from '@/utils/currency';
 import { Activity } from 'lucide-react';
 import { CartesianGrid, Line, LineChart, XAxis } from 'recharts';
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { getCurrentWeekChartData } from '@/utils/chart';
+import { generateCurrentWeekData, generateCurrentWeekChartData } from '@/utils/chart';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { calculateWeekTotalProfit } from '@/utils/number';
 import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
@@ -11,13 +11,12 @@ import { usePreviousValue } from '@/hooks/usePreviousValue';
 
 export const Chart = () => {
   const { user } = useUserAccount();
-  const chartData = getCurrentWeekChartData(user.profitabilityHistory);
-  const weekTotalProfitability = calculateWeekTotalProfit(chartData);
-  const { value, previousValue } = usePreviousValue(weekTotalProfitability);
+  const weekTotalProfitability = calculateWeekTotalProfit(user.profitabilityHistory);
+  const currentWeekData = generateCurrentWeekData(user.profitabilityHistory);
+  const chartData = generateCurrentWeekChartData(currentWeekData);
 
-  const startValue = previousValue > 0 ? previousValue : 0;
-  const endValue = value > 0 ? value : 0;
-  const { count, countTextColor } = useAnimatedCounter(startValue, endValue, 3000);
+  const { value, previousValue } = usePreviousValue(weekTotalProfitability);
+  const { count, countTextColor } = useAnimatedCounter(previousValue, value, 3000);
 
   const chartConfig = {
     desktop: {
