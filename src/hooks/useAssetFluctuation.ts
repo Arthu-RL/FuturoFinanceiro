@@ -37,7 +37,6 @@ export const useAssetFluctuation = (assets: Assets[]) => {
 
     const updatedHistory = !asset.history.length
       ? [
-          ...asset.history,
           { value: asset.value.current, timestamp: subMinutes(new Date(), 1) },
           { value: adjustedValue, timestamp: new Date() },
         ]

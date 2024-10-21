@@ -39,7 +39,11 @@ export const Chart = ({ assetHistory }: Chart) => {
       <CardContent className={`${assetHistory.length ? 'px-4' : 'px-2'} py-2`}>
         {assetHistory.length ? (
           <ChartContainer config={chartConfig} className='aspect-auto h-[250px] w-full'>
-            <AreaChart accessibilityLayer data={lastTenEntries} margin={{ left: 15, right: 15, top: 10 }}>
+            <AreaChart
+              accessibilityLayer
+              data={lastTenEntries}
+              margin={{ left: 15, right: 15, top: 5, bottom: 5 }}
+            >
               <CartesianGrid strokeDasharray='4 4' />
               <XAxis
                 tickLine={false}

@@ -13,10 +13,10 @@ export const ModalHeading = ({ row }: ModalHeadingProps) => {
   return (
     <div className='flex flex-col gap-2'>
       <div className='flex flex-wrap justify-between gap-4 px-0.5 max-[380px]:justify-center max-[380px]:gap-0'>
-        <span className='whitespace-nowrap'>
+        <span className='whitespace-nowrap max-[380px]:w-full'>
           {row.original.name} ({row.original.alias})
         </span>
-        <span className='whitespace-nowrap'>
+        <span className='whitespace-nowrap max-[380px]:w-full'>
           {formatCurrency(row.original.value.current, 'BRL', 'pt-BR')}
         </span>
       </div>

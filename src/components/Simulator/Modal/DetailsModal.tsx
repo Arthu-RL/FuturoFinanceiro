@@ -31,7 +31,7 @@ export function DetailsModal({ columnId, table, modalState }: TransactionModalPr
 
   return (
     <AlertDialog open={modalState.currentState} onOpenChange={modalState.setState}>
-      <AlertDialogContent className='gap-4 px-5 pt-8 outline-none max-sm:w-[90%]'>
+      <AlertDialogContent className='gap-4 px-5 pt-8 outline-none max-sm:w-[90%] max-[380px]:pt-4'>
         <AlertDialogAction className='absolute right-2 top-2 h-fit w-fit bg-transparent p-0 hover:bg-transparent'>
           <X size={18} className='stroke-foreground' />
         </AlertDialogAction>
