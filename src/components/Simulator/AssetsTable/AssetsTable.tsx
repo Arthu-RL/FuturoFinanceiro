@@ -8,6 +8,7 @@ import { useAssetColumns } from '@/hooks/useAssetColumns';
 import { X } from 'lucide-react';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { TransactionModal } from '../Modal/TransactionModal';
+import { DetailsModal } from '../Modal/DetailsModal';
 
 import {
   ColumnFiltersState,
@@ -27,7 +28,7 @@ export function AssetsTable() {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({ id: false });
   const [rowSelection, setRowSelection] = useState({});
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 6 });
-  const { columns, rowId, saleState, purchaseState } = useAssetColumns();
+  const { columns, rowId, saleState, purchaseState, detailsState } = useAssetColumns();
   const { assets } = useInvestmentAssets();
 
   const table = useReactTable({
@@ -75,6 +76,7 @@ export function AssetsTable() {
             modalState={purchaseState}
             textContent={{ trigger: 'Comprar', confirm: 'Confirmar Compra' }}
           />
+          <DetailsModal table={table} columnId={rowId} modalState={detailsState} />
         </Fragment>
       )}
 

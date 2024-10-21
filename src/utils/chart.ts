@@ -1,3 +1,4 @@
+import { Assets } from '@/lib/schemas/assets.schema';
 import { User } from '@/lib/schemas/user.schema';
 import { eachDayOfInterval, endOfToday, endOfWeek, isBefore, startOfWeek } from 'date-fns';
 
@@ -29,4 +30,8 @@ function generateCurrentWeekChartData(profitabilityHistory: User['profitabilityH
   });
 }
 
-export { generateCurrentWeekChartData, generateCurrentWeekData };
+function generateAssetHistoryChartData(assetHistory: Assets['history']) {
+  return assetHistory.map(({ value, timestamp }) => ({ value, timestamp: timestamp.toString() }));
+}
+
+export { generateCurrentWeekChartData, generateCurrentWeekData, generateAssetHistoryChartData };
