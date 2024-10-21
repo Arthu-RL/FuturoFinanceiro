@@ -79,13 +79,12 @@ export function AssetsTable() {
           <DetailsModal table={table} columnId={rowId} modalState={detailsState} />
         </Fragment>
       )}
-
       <CardHeader className='grid grid-cols-2 max-lg:grid-cols-1'>
         <div className='flex flex-col gap-2'>
           <CardTitle>Ativos Disponíveis para Compra</CardTitle>
           <CardDescription>Descubra as oportunidades de investimento ao seu alcance.</CardDescription>
         </div>
-        <div className='item flex w-full justify-end gap-2 max-lg:justify-start'>
+        <div className='item flex w-full justify-end gap-2 max-lg:justify-between'>
           <div className='relative flex w-full max-w-sm'>
             <Input
               className='w-full'
