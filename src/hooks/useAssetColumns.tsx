@@ -10,7 +10,7 @@ import type { Assets } from '@/lib/schemas/assets.schema';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { filterRowsByUserWalletAssets, sortRowsByValue, sortRowsByVariation } from '@/utils/rows';
 import { AssetVariation } from '@/components/Simulator/AssetsTable/AssetVariation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   DropdownMenu,
@@ -45,6 +45,11 @@ export function useAssetColumns() {
 
     setRowId(rowId);
   }
+
+  useEffect(() => {
+    const states = [isPurchaseModalOpen, isSaleModalOpen, isDetailsMenuOpen];
+    if (states.every((state) => !state)) setTimeout(() => setRowId(null), 200);
+  }, [isPurchaseModalOpen, isDetailsMenuOpen, isSaleModalOpen]);
 
   const columns: ColumnDef<Assets>[] = [
     {
