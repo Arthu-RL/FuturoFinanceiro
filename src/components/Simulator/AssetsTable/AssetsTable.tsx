@@ -7,7 +7,7 @@ import { DropdownFilter } from '../Dropdown/DropdownFilter';
 import { useAssetColumns } from '@/hooks/useAssetColumns';
 import { X } from 'lucide-react';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
-import { TransactionModal } from '../TransactionModal';
+import { TransactionModal } from '../Modal/TransactionModal';
 
 import {
   ColumnFiltersState,
