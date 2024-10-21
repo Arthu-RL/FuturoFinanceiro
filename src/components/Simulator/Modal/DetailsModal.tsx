@@ -57,15 +57,13 @@ export function DetailsModal({ columnId, table, modalState }: TransactionModalPr
               <DropdownMenuSeparator />
               <li className='flex w-full justify-between'>
                 <span className='font-medium text-foreground'>Tendência do Ativo</span>
-                <span
-                  className={`font-medium text-foreground brightness-150 transition-all ${assetTrend.color}`}
-                >
+                <span className={`font-medium brightness-150 transition-all ${assetTrend.color}`}>
                   {assetTrend.text}
                 </span>
               </li>
               <li className='flex w-full justify-between'>
                 <span className='font-medium text-foreground'>Volatilidade do Ativo</span>
-                <span className={`font-medium text-foreground transition-all ${assetVolatility.color}`}>
+                <span className={`font-medium transition-all ${assetVolatility.color}`}>
                   {assetVolatility.text}
                 </span>
               </li>
