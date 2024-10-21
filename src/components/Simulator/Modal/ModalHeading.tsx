@@ -12,11 +12,13 @@ type ModalHeadingProps = {
 export const ModalHeading = ({ row }: ModalHeadingProps) => {
   return (
     <div className='flex flex-col gap-2'>
-      <div className='flex justify-between px-0.5'>
-        <span>
+      <div className='flex flex-wrap justify-between gap-4 px-0.5 max-[380px]:justify-center max-[380px]:gap-0'>
+        <span className='whitespace-nowrap'>
           {row.original.name} ({row.original.alias})
         </span>
-        <span>{formatCurrency(row.original.value.current, 'BRL', 'pt-BR')}</span>
+        <span className='whitespace-nowrap'>
+          {formatCurrency(row.original.value.current, 'BRL', 'pt-BR')}
+        </span>
       </div>
       <div className='flex'>
         <Badge className='w-fit'>{translateAssetCategory(row.original.type)}</Badge>
