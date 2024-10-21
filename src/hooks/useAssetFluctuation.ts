@@ -1,4 +1,5 @@
 import { Assets } from '@/lib/schemas/assets.schema';
+import { subMinutes } from 'date-fns';
 
 import {
   assetCalculateDrift,
@@ -33,7 +34,14 @@ export const useAssetFluctuation = (assets: Assets[]) => {
     const newValue = asset.value.current * (1 + randomVariation);
     const adjustedValue =
       newValue < MINIMUM_PRICE ? MINIMUM_PRICE * (1 + Math.abs(randomVariation)) : newValue;
-    const updatedHistory = [...asset.history, { value: asset.value.current, timestamp: new Date() }];
+
+    const updatedHistory = !asset.history.length
+      ? [
+          ...asset.history,
+          { value: asset.value.current, timestamp: subMinutes(new Date(), 1) },
+          { value: adjustedValue, timestamp: new Date() },
+        ]
+      : [...asset.history, { value: adjustedValue, timestamp: new Date() }];
 
     return {
       ...asset,
