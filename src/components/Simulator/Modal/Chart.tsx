@@ -67,7 +67,7 @@ export const Chart = ({ assetHistory }: Chart) => {
             </LineChart>
           </ChartContainer>
         ) : (
-          <div className='inset-0 flex h-72 items-center justify-center rounded-b-md text-sm transition-colors hover:bg-muted/50'>
+          <div className='inset-0 flex h-72 items-center justify-center rounded-b-md text-sm transition-colors hover:bg-muted/50 max-md:h-60'>
             <span className='max-w-48 text-center text-foreground'>
               Os dados necessários para gerar o gráfico ainda não estão disponíveis.
             </span>
