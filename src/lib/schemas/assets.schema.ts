@@ -9,8 +9,8 @@ const assetsSchema = z.object({
   alias: z.string(),
   type: z.enum(assetTypes),
   profile: z.enum(investmentProfiles),
-  history: z.array(z.object({ value: z.number() })),
   value: z.object({ current: z.number(), previous: z.number() }),
+  history: z.array(z.object({ value: z.number(), timestamp: z.coerce.date() })),
 });
 
 const assetsSchemaArray = z.array(assetsSchema);

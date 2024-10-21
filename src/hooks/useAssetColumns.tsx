@@ -23,14 +23,27 @@ import {
 
 export function useAssetColumns() {
   const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+  const [isDetailsMenuOpen, setIsDetailsMenuOpen] = useState(false);
   const [isSaleModalOpen, setIsSaleModalOpen] = useState(false);
   const [rowId, setRowId] = useState<null | string>(null);
   const { user } = useUserAccount();
 
-  function handleUpdateColumns(rowId: string, modalState: 'purchase' | 'sale') {
+  function handleUpdateColumns(rowId: string, modalState: 'purchase' | 'sale' | 'details') {
+    switch (modalState) {
+      case 'purchase':
+        setIsPurchaseModalOpen(true);
+        break;
+      case 'sale':
+        setIsSaleModalOpen(true);
+        break;
+      case 'details':
+        setIsDetailsMenuOpen(true);
+        break;
+      default:
+        return;
+    }
+
     setRowId(rowId);
-    if (modalState === 'purchase') setIsPurchaseModalOpen(true);
-    else setIsSaleModalOpen(true);
   }
 
   const columns: ColumnDef<Assets>[] = [
@@ -195,7 +208,7 @@ export function useAssetColumns() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className='h-8 w-full cursor-pointer justify-start rounded-sm px-2'
-                  onClick={() => {}}
+                  onClick={() => handleUpdateColumns(row.id, 'details')}
                 >
                   Ver detalhes
                 </DropdownMenuItem>
@@ -211,6 +224,7 @@ export function useAssetColumns() {
     rowId,
     columns,
     saleState: { currentState: isSaleModalOpen, setState: setIsSaleModalOpen },
+    detailsState: { currentState: isDetailsMenuOpen, setState: setIsDetailsMenuOpen },
     purchaseState: { currentState: isPurchaseModalOpen, setState: setIsPurchaseModalOpen },
   };
 }

@@ -19,9 +19,11 @@ export const useAssetModal = ({ table, columnId, modalState }: UseAssetModal) =>
   const row = table.getRow(columnId);
   const assetInWallet = user.currentWallet.find(({ id }) => id === row.original.id);
 
-  const userCurrentBalance = user.currentBalance;
   const assetId = row.original.id;
+  const assetHistory = row.original.history;
   const assetCurrentPrice = row.original.value.current;
+
+  const userCurrentBalance = user.currentBalance;
   const assetInWalletQuantity = assetInWallet?.quantity ?? 0;
   const assetInWalletTotalInvestment = assetInWallet?.totalInvestment ?? 0;
   const assetInWalletTransactionPrice =
@@ -45,6 +47,7 @@ export const useAssetModal = ({ table, columnId, modalState }: UseAssetModal) =>
 
   return {
     row,
+    assetHistory,
     assetCurrentPrice,
     userCurrentBalance,
     assetInWalletQuantity,
