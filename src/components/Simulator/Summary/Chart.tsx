@@ -8,6 +8,7 @@ import { useUserAccount } from '@/providers/userAccountProvider';
 import { calculateWeekTotalProfit } from '@/utils/number';
 import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
 import { usePreviousValue } from '@/hooks/usePreviousValue';
+import { getWeekdayLabelFromDate } from '@/utils/date';
 
 export const Chart = () => {
   const { user } = useUserAccount();
@@ -32,23 +33,30 @@ export const Chart = () => {
   return (
     <Card className='grid grid-rows-[0.5fr_auto]'>
       <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-        <CardTitle className='text-sm font-medium'>Lucro Semanal</CardTitle>
+        <CardTitle className='text-sm font-medium'>Rentabilidade Semanal</CardTitle>
         <Activity className='h-4 w-4 text-muted-foreground' />
       </CardHeader>
       <CardContent className='grid grid-rows-[2rem_1rem_auto]'>
         <div className={`text-2xl font-bold ${countTextColor}`}>{formatCurrency(count, 'BRL', 'pt-BR')}</div>
-        <p className='text-xs text-muted-foreground'>Lucro acumulado nesta semana</p>
+        <p className='text-xs text-muted-foreground'>Rentabilidade acumulada nesta semana</p>
         <ChartContainer config={chartConfig} className='max-h-[160px] w-full'>
           <LineChart data={chartData} accessibilityLayer margin={{ top: 25, left: 15, right: 15 }}>
             <CartesianGrid vertical={false} opacity={1} />
-            <XAxis dataKey='date' tickMargin={10} tickLine={false} axisLine={false} />
+            <XAxis
+              dataKey='date'
+              tickMargin={10}
+              tickLine={false}
+              axisLine={false}
+              tickFormatter={(value) => getWeekdayLabelFromDate(new Date(value))}
+            />
             <ChartTooltip
               cursor={false}
               content={
                 <ChartTooltipContent
                   indicator='line'
-                  customLabel='Lucro Diário:'
+                  customLabel='Rentabilidade Diária:'
                   numberFormatter={(value) => formatCurrency(value, 'BRL', 'pt-BR')}
+                  labelFormatter={(value) => getWeekdayLabelFromDate(new Date(value))}
                 />
               }
             />

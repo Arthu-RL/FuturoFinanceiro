@@ -1,6 +1,5 @@
 import { User } from '@/lib/schemas/user.schema';
 import { eachDayOfInterval, endOfToday, endOfWeek, isBefore, startOfWeek } from 'date-fns';
-import { getWeekdayLabelFromDate } from './date';
 
 function generateCurrentWeekData(profitabilityHistory: User['profitabilityHistory']) {
   const daysOfWeek = eachDayOfInterval({ start: startOfWeek(new Date()), end: endOfWeek(new Date()) });
@@ -14,19 +13,19 @@ function generateCurrentWeekData(profitabilityHistory: User['profitabilityHistor
 function generateCurrentWeekChartData(profitabilityHistory: User['profitabilityHistory']) {
   return profitabilityHistory.map((history, index) => {
     const currentDayProfitability = history.profitability;
-    const dateLabel = getWeekdayLabelFromDate(history.date);
+    const historyDate = history.date.toString();
 
     if (index === 0) {
-      return { date: dateLabel, profitability: currentDayProfitability };
+      return { date: historyDate, profitability: currentDayProfitability };
     }
 
     if (!isBefore(history.date, endOfToday())) {
-      return { date: dateLabel, profitability: 0 };
+      return { date: historyDate, profitability: 0 };
     }
 
     const previousDayProfitability = profitabilityHistory[index - 1].profitability;
     const dailyProfit = currentDayProfitability - previousDayProfitability;
-    return { date: dateLabel, profitability: dailyProfit };
+    return { date: historyDate, profitability: dailyProfit };
   });
 }
 
