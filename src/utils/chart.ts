@@ -20,7 +20,7 @@ function generateCurrentWeekChartData(profitabilityHistory: User['profitabilityH
       return { date: historyDate, profitability: currentDayProfitability };
     }
 
-    if (!isBefore(history.date, endOfToday())) {
+    if (!isBefore(history.date, endOfToday()) || currentDayProfitability === 0) {
       return { date: historyDate, profitability: 0 };
     }
 
