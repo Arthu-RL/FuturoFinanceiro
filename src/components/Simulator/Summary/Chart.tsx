@@ -3,7 +3,7 @@ import { formatCurrency } from '@/utils/currency';
 import { Activity } from 'lucide-react';
 import { CartesianGrid, Line, LineChart, XAxis } from 'recharts';
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { generateCurrentWeekData, generateCurrentWeekChartData } from '@/utils/chart';
+import { generateCurrentWeekData } from '@/utils/chart';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { calculateWeekTotalProfit } from '@/utils/number';
 import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
@@ -13,8 +13,7 @@ import { getWeekdayLabelFromDate } from '@/utils/date';
 export const Chart = () => {
   const { user } = useUserAccount();
   const weekTotalProfitability = calculateWeekTotalProfit(user.profitabilityHistory);
-  const currentWeekData = generateCurrentWeekData(user.profitabilityHistory);
-  const chartData = generateCurrentWeekChartData(currentWeekData);
+  const chartData = generateCurrentWeekData(user.profitabilityHistory);
 
   const { value, previousValue } = usePreviousValue(weekTotalProfitability);
   const { count, countTextColor } = useAnimatedCounter(previousValue, value, 3000);
