@@ -124,8 +124,8 @@ export const useTransaction = () => {
     } else walletHistory.wallet = currentWallet;
 
     if (!profitabilityHistory || !isToday(profitabilityHistory.date)) {
-      user.profitabilityHistory.push({ date: startOfToday(), profitability: currentProfitability });
-    } else profitabilityHistory.profitability = currentProfitability;
+      user.profitabilityHistory.push({ date: startOfToday(), profitability: assetProfit });
+    } else profitabilityHistory.profitability = profitabilityHistory.profitability + assetProfit;
 
     if (assetProfit > 0) {
       toast.message('Parabéns! 🎉', {
