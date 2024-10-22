@@ -13,8 +13,8 @@ export const useTransaction = () => {
     const walletAsset = user.currentWallet.find((asset) => asset.id === id);
     const isAssetAlreadyInWallet = typeof walletAsset !== 'undefined';
     const marketAsset = assets.find((asset) => asset.id === id);
-
     const transactionValue = price * quantity;
+
     if (!marketAsset) return;
 
     const purchasedAsset = isAssetAlreadyInWallet
@@ -26,6 +26,7 @@ export const useTransaction = () => {
       : {
           id,
           quantity,
+          sellingPrice: 0,
           purchasePrice: price,
           type: 'Purchase' as const,
           totalInvestment: transactionValue,
@@ -36,6 +37,7 @@ export const useTransaction = () => {
       quantity,
       purchasePrice: price,
       type: 'Purchase' as const,
+      sellingPrice: walletAsset?.sellingPrice ?? 0,
       totalInvestment: purchasedAsset.totalInvestment,
     };
 
@@ -89,6 +91,7 @@ export const useTransaction = () => {
             id: walletAsset.id,
             sellingPrice: price,
             type: 'Sale' as const,
+            purchasePrice: walletAsset.purchasePrice,
             quantity: walletAsset.quantity - quantity,
             totalInvestment: walletAsset.totalInvestment - proportionateInvestment,
           },
@@ -99,6 +102,7 @@ export const useTransaction = () => {
       quantity,
       sellingPrice: price,
       type: 'Sale' as const,
+      purchasePrice: walletAsset.purchasePrice,
       totalInvestment: walletAsset.totalInvestment,
     };
 

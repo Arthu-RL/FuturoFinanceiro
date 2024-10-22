@@ -2,19 +2,14 @@ import { z } from 'zod';
 
 const transactionType = ['Purchase', 'Sale'] as const;
 
-const purchaseAssetDiscriminatedUnion = z.discriminatedUnion('type', [
-  z.object({ sellingPrice: z.number(), type: z.literal('Sale') }),
-  z.object({ purchasePrice: z.number(), type: z.literal('Purchase') }),
-]);
-
-const purchasedAssetSchema = z
-  .object({
-    id: z.string().uuid(),
-    quantity: z.number(),
-    totalInvestment: z.number(),
-    type: z.enum(transactionType),
-  })
-  .and(purchaseAssetDiscriminatedUnion);
+const purchasedAssetSchema = z.object({
+  id: z.string().uuid(),
+  quantity: z.number(),
+  totalInvestment: z.number(),
+  type: z.enum(transactionType),
+  purchasePrice: z.number(),
+  sellingPrice: z.number(),
+});
 
 const userSchema = z.object({
   currentBalance: z.number(),
@@ -27,7 +22,8 @@ const userSchema = z.object({
 });
 
 type User = z.infer<typeof userSchema>;
+type TransactionType = (typeof transactionType)[number];
 type PurchasedAsset = z.infer<typeof purchasedAssetSchema>;
 
-export type { User, PurchasedAsset };
+export type { User, PurchasedAsset, TransactionType };
 export { userSchema, purchasedAssetSchema };
