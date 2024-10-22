@@ -65,16 +65,26 @@ export function AssetsTable() {
           <TransactionModal
             table={table}
             columnId={rowId}
-            transaction='sale'
+            transaction='Sale'
             modalState={saleState}
-            textContent={{ trigger: 'Vender', confirm: 'Confirmar Venda' }}
+            textContent={{
+              trigger: 'Vender',
+              confirm: 'Confirmar Venda',
+              title: 'Venda de Ativo',
+              description: `Esta seção exibe o custo de aquisição e o valor a receber, destacando a situação financeira e permitindo ajustar a quantidade para venda.`,
+            }}
           />
           <TransactionModal
             table={table}
             columnId={rowId}
-            transaction='purchase'
+            transaction='Purchase'
             modalState={purchaseState}
-            textContent={{ trigger: 'Comprar', confirm: 'Confirmar Compra' }}
+            textContent={{
+              trigger: 'Comprar',
+              confirm: 'Confirmar Compra',
+              title: 'Compra de Ativo',
+              description: `Esta seção apresenta o preço total da transação e o saldo disponível, permitindo ajustar a quantidade para a compra do ativo.`,
+            }}
           />
           <DetailsModal table={table} columnId={rowId} modalState={detailsState} />
         </Fragment>

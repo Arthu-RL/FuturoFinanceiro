@@ -42,13 +42,13 @@ export const Chart = ({ assetHistory }: Chart) => {
             <AreaChart
               accessibilityLayer
               data={lastTenEntries}
-              margin={{ left: 15, right: 15, top: 5, bottom: 5 }}
+              margin={{ left: 15, right: 15, top: 10, bottom: 10 }}
             >
               <CartesianGrid strokeDasharray='4 4' />
               <XAxis
                 tickLine={false}
                 axisLine={false}
-                tickMargin={10}
+                tickMargin={15}
                 dataKey='timestamp'
                 tickFormatter={(value) => formatTickTimestamp(new Date(value))}
               />

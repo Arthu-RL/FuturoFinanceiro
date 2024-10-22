@@ -15,8 +15,8 @@ export const AssetVariation = ({ row }: AssetVariationProps) => {
   return (
     <TooltipProvider>
       <Tooltip>
-        <div className='flex w-full'>
-          <TooltipTrigger className='ml-auto'>
+        <div className='flex justify-end'>
+          <TooltipTrigger>
             <Badge
               variant='default'
               className={`pointer-events-none flex items-center gap-1 px-1.5 font-normal text-white brightness-125 dark:font-bold dark:brightness-100 ${variationBackgroundColor}`}
