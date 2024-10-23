@@ -31,9 +31,10 @@ function calculateTransactionProfitDetails(
   totalWalletQuantity: number,
 ) {
   const transactionValue = currentPrice * transactionQuantity;
-  const proportionateInvestment = (totalInvestment / totalWalletQuantity) * transactionQuantity;
+  const costPerAsset = totalInvestment / totalWalletQuantity;
+  const proportionateInvestment = costPerAsset * transactionQuantity;
   const assetProfit = roundIfTooSmall(transactionValue - proportionateInvestment);
-  return { assetProfit, proportionateInvestment, transactionValue };
+  return { assetProfit, costPerAsset, proportionateInvestment, transactionValue };
 }
 
 function calculateWeekTotalProfit(currentWeekProfitability: User['profitabilityHistory']) {

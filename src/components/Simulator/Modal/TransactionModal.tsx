@@ -40,7 +40,6 @@ export function TransactionModal({
 }: TransactionModalProps) {
   const {
     row,
-    purchasePrice,
     assetCurrentPrice,
     userCurrentBalance,
     assetInWalletTotalInvestment,
@@ -53,7 +52,7 @@ export function TransactionModal({
   const isAssetBeingSold = transaction === 'Sale';
   const isTotalPriceMoreThanUserBalance = assetToPurchaseQuantity * assetCurrentPrice > userCurrentBalance;
 
-  const { assetProfit } = calculateTransactionProfitDetails(
+  const { assetProfit, costPerAsset } = calculateTransactionProfitDetails(
     assetCurrentPrice,
     assetToPurchaseQuantity,
     assetInWalletTotalInvestment,
@@ -157,7 +156,7 @@ export function TransactionModal({
                         <li className='flex w-full justify-between'>
                           <span className='font-medium text-foreground'>Valor Pago por Ativo</span>
                           <span className='font-medium text-foreground'>
-                            {formatCurrency(purchasePrice, 'BRL', 'pt-BR')}
+                            {formatCurrency(costPerAsset, 'BRL', 'pt-BR')}
                           </span>
                         </li>
                       )}
