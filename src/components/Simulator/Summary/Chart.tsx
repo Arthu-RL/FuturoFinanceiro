@@ -30,12 +30,12 @@ export const Chart = () => {
   } satisfies ChartConfig;
 
   return (
-    <Card className='grid grid-rows-[0.5fr_auto]'>
+    <Card className='grid grid-rows-[auto_auto]'>
       <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
         <CardTitle className='text-sm font-medium'>Rentabilidade Semanal</CardTitle>
         <Activity className='h-4 w-4 text-muted-foreground' />
       </CardHeader>
-      <CardContent className='grid grid-rows-[2rem_1rem_auto]'>
+      <CardContent className='grid grid-rows-[auto_auto_auto]'>
         <div className={`text-2xl font-bold ${countTextColor}`}>{formatCurrency(count, 'BRL', 'pt-BR')}</div>
         <p className='text-xs text-muted-foreground'>Rentabilidade acumulada nesta semana</p>
         <ChartContainer config={chartConfig} className='max-h-[160px] w-full'>

@@ -18,7 +18,7 @@ export default function App() {
           <MarketRefreshProvider>
             <Router>
               <NavigationBar />
-              <main className='pb-12 pl-28 pr-14 pt-6 max-2xl:min-h-screen max-2xl:pl-24 max-2xl:pr-9 max-2xl:pt-8 max-sm:px-4 max-sm:pt-20 2xl:h-screen'>
+              <main className='min-h-screen pb-12 pl-28 pr-14 pt-6 max-2xl:pl-24 max-2xl:pr-9 max-2xl:pt-8 max-sm:px-4 max-sm:pt-20 2xl:h-screen 2xl:pb-6'>
                 <Routes />
               </main>
             </Router>
