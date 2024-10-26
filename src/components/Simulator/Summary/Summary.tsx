@@ -30,8 +30,8 @@ export function Summary() {
   );
 
   const balanceDifference = getAssetVariation(
-    user.balanceHistory.at(-2)?.balance ?? 1000,
-    user.balanceHistory.at(-1)?.balance ?? 1000,
+    user.balanceHistory.at(-2)?.balance ?? 10000,
+    user.balanceHistory.at(-1)?.balance ?? 10000,
   );
 
   return (

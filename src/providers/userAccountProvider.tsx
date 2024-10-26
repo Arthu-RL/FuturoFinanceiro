@@ -7,7 +7,7 @@ export type UserData = { user: User; updateUser: (user: User) => void };
 const userInitialState = {
   updateUser: () => {},
   user: {
-    currentBalance: 1000,
+    currentBalance: 10000,
     currentProfitability: 0,
     currentWallet: [],
     transactionHistory: [],
