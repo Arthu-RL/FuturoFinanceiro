@@ -1,23 +1,13 @@
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import type { ElementType } from 'react';
-
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetClose,
-} from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import type { ElementType, ReactNode } from 'react';
 
 type NavMenuProps = {
-  title: string;
-  links: { title: string; href: string }[];
   Icon: ElementType;
+  children: ReactNode;
 };
 
-export const NavigationLinks = ({ title, links, Icon }: NavMenuProps) => {
+export const NavigationLinks = ({ Icon, children }: NavMenuProps) => {
   return (
     <Sheet>
       <div className='cursor-pointer'>
@@ -30,26 +20,11 @@ export const NavigationLinks = ({ title, links, Icon }: NavMenuProps) => {
           </Button>
         </SheetTrigger>
       </div>
-      <SheetContent side='left' className='pl-20 max-sm:w-3/4 max-sm:pl-4'>
-        <SheetHeader className='mb-2 max-sm:mb-0'>
-          <SheetTitle className='p-2 font-roboto text-xl font-semibold uppercase max-sm:mt-14 max-sm:text-left max-sm:text-lg'>
-            {title}
-          </SheetTitle>
-        </SheetHeader>
-        <ul className='flex flex-col items-start gap-1'>
-          {links.map(({ title, href }) => (
-            <li
-              key={title}
-              className='w-full cursor-pointer text-nowrap rounded-sm hover:bg-stone-100 hover:dark:bg-slate-900'
-            >
-              <Link to={href} className='flex w-full'>
-                <SheetClose className='h-full w-full p-2 text-start font-poppins text-sm font-medium'>
-                  {title}
-                </SheetClose>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <SheetContent
+        side='left'
+        className='flex w-full flex-col gap-4 overflow-y-auto pl-20 max-sm:w-3/4 max-sm:pl-4'
+      >
+        {children}
       </SheetContent>
     </Sheet>
   );
