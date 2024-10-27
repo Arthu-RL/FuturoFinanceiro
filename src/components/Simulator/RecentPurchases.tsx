@@ -14,7 +14,7 @@ export const RecentPurchases = () => {
   const reversedHistory = [...user.transactionHistory].reverse();
 
   return (
-    <Card className='col-span-1 h-full max-2xl:col-span-4'>
+    <Card id='history' className='col-span-1 h-full max-2xl:col-span-4'>
       <CardHeader className='flex flex-row items-center px-4'>
         <div className='grid gap-2'>
           <CardTitle>Suas Atividades Financeiras</CardTitle>

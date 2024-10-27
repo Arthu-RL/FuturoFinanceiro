@@ -188,7 +188,7 @@ export function useAssetColumns() {
         return (
           <div className='flex w-full'>
             <DropdownMenu>
-              <DropdownMenuTrigger asChild className='ml-auto'>
+              <DropdownMenuTrigger id='actions' asChild className='ml-auto'>
                 <Button variant='ghost' className='h-8 w-8 p-0'>
                   <span className='sr-only'>Open menu</span>
                   <MoreHorizontal className='h-4 w-4' />

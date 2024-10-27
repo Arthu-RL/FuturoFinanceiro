@@ -92,3 +92,52 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+/* Shepherd Styles */
+.shepherd-element {
+  margin-top: 0.75rem !important;
+  background-color: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.shepherd-header {
+  padding: 0.25rem 0.75rem !important;
+  background: hsl(var(--card)) !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
+}
+
+.shepherd-title {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  font-family: var(--font-roboto) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.shepherd-text {
+  font-family: var(--font-poppins) !important;
+  color: hsl(var(--foreground)) !important;
+  padding: 1rem 1rem 0.75rem !important;
+  font-size: 0.85rem !important;
+}
+
+.shepherd-button {
+  font-weight: 500 !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 0.85rem !important;
+  font-family: var(--font-roboto) !important;
+  border-radius: 0.35rem !important;
+  color: hsl(var(--primary-foreground)) !important;
+  background-color: hsl(var(--primary)) !important;
+}
+
+.shepherd-footer:has(:nth-child(2)) .shepherd-button:first-of-type {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--primary)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+@media (width <= 625px) {
+  body > .shepherd-element {
+    max-width: 90% !important;
+  }
+}
