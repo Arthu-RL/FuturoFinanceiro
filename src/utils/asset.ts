@@ -67,7 +67,8 @@ function calculateAssetTrend(assetHistory: Assets['history']) {
   if (assetHistory.length < 2) return stableAsset;
 
   const totalChange = assetHistory.slice(1).reduce((total, _, index) => {
-    total += (assetHistory[index + 1].value - assetHistory[index].value) / assetHistory[index].value;
+    const change = (assetHistory[index + 1].value - assetHistory[index].value) / assetHistory[index].value;
+    total += change;
     return total;
   }, 0);
 
@@ -83,11 +84,11 @@ function calculateAssetTrend(assetHistory: Assets['history']) {
 }
 
 function calculateVolatility(assetHistory: Assets['history']) {
-  const HIGH_VOLATILITY_THRESHOLD = 5;
-  const LOW_VOLATILITY_THRESHOLD = 2;
+  const HIGH_VOLATILITY_THRESHOLD = 0.05;
+  const LOW_VOLATILITY_THRESHOLD = 0.02;
 
   const mean = assetHistory.reduce((sum, { value }) => sum + value, 0) / assetHistory.length;
-  const squaredDiffs = assetHistory.map(({ value }) => (value - mean) ** 2);
+  const squaredDiffs = assetHistory.map(({ value }) => ((value - mean) / mean) ** 2);
   const averageSquaredDiff = squaredDiffs.reduce((sum, diff) => sum + diff, 0) / squaredDiffs.length;
   const standardDeviation = Math.sqrt(averageSquaredDiff);
 
