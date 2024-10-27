@@ -10,7 +10,7 @@ export const Countdown = () => {
       <p className='text-sm text-muted-foreground max-2xl:text-xs'>
         Controle seus investimentos e acompanhe o seu progresso.
       </p>
-      <p className='text-sm font-medium text-muted-foreground max-2xl:text-xs'>
+      <p id='refresh' className='w-fit text-sm font-medium text-muted-foreground max-2xl:text-xs'>
         Próxima Atualização em: {formatRemainingTime(remainingSeconds)}
       </p>
     </div>

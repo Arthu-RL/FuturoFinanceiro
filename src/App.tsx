@@ -5,6 +5,7 @@ import { ThemeProvider } from './providers/themeProvider';
 import { InvestmentAssetsProvider } from './providers/InvestmentAssetsProvider';
 import { MarketRefreshProvider } from './providers/marketRefreshProvider';
 import { UserAccountProvider } from './providers/userAccountProvider';
+import { TutorialProvider } from './providers/tutorialProvider';
 
 import Routes from '@/routes';
 
@@ -12,20 +13,22 @@ import '@/stylesheets/globals.css';
 
 export default function App() {
   return (
-    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <InvestmentAssetsProvider>
-        <UserAccountProvider>
-          <MarketRefreshProvider>
-            <Router>
-              <NavigationBar />
-              <main className='min-h-screen pb-12 pl-28 pr-14 pt-6 max-2xl:pl-24 max-2xl:pr-9 max-2xl:pt-8 max-sm:px-4 max-sm:pt-20 2xl:h-screen 2xl:pb-6'>
-                <Routes />
-              </main>
-            </Router>
-            <Toaster position='top-right' richColors visibleToasts={3} />
-          </MarketRefreshProvider>
-        </UserAccountProvider>
-      </InvestmentAssetsProvider>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+        <TutorialProvider>
+          <InvestmentAssetsProvider>
+            <UserAccountProvider>
+              <MarketRefreshProvider>
+                <NavigationBar />
+                <main className='min-h-screen pb-12 pl-28 pr-14 pt-6 max-2xl:pl-24 max-2xl:pr-9 max-2xl:pt-8 max-sm:px-4 max-sm:pt-20 2xl:h-screen 2xl:pb-6'>
+                  <Routes />
+                </main>
+                <Toaster position='top-right' richColors visibleToasts={3} />
+              </MarketRefreshProvider>
+            </UserAccountProvider>
+          </InvestmentAssetsProvider>
+        </TutorialProvider>
+      </ThemeProvider>
+    </Router>
   );
 }

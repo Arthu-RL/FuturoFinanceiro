@@ -97,6 +97,7 @@ export function AssetsTable() {
         <div className='item flex w-full justify-end gap-2 max-lg:justify-between'>
           <div className='relative flex w-full max-w-sm'>
             <Input
+              id='search'
               className='w-full'
               placeholder='Buscar por nome...'
               value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
@@ -115,7 +116,7 @@ export function AssetsTable() {
         </div>
       </CardHeader>
       <CardContent className='h-full'>
-        <Table expand={hasNoVisibleItems}>
+        <Table id='assets' expand={hasNoVisibleItems}>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

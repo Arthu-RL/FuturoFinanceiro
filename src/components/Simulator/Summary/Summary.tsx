@@ -38,7 +38,7 @@ export function Summary() {
     <div className='row-span-1 grid grid-cols-4 items-stretch gap-8 max-2xl:gap-4 max-xl:grid-cols-1'>
       <div className='flex h-full flex-col gap-6'>
         <Countdown />
-        <Card>
+        <Card id='balance'>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
             <CardTitle className='text-sm font-medium'>Saldo</CardTitle>
             <Wallet className='h-4 w-4 text-muted-foreground' />
@@ -48,7 +48,7 @@ export function Summary() {
           </CardContent>
         </Card>
       </div>
-      <Card className='self-end'>
+      <Card id='holdings' className='self-end'>
         <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
           <CardTitle className='text-sm font-medium'>Patrimônio em Ativos</CardTitle>
           <Coins className='h-4 w-4 text-muted-foreground' />
@@ -57,7 +57,7 @@ export function Summary() {
           <NumberDisplay value={totalAssets} valueDifference={holdingsDifference} animated />
         </CardContent>
       </Card>
-      <Card className='self-end'>
+      <Card id='profitability' className='self-end'>
         <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
           <CardTitle className='text-sm font-medium'>Rentabilidade Total</CardTitle>
           <DollarSign className='h-4 w-4 text-muted-foreground' />

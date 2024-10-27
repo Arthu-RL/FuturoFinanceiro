@@ -3,7 +3,7 @@ import { SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet';
 
 type NavigationContentProps = {
   heading: string;
-  links: { title: string; href: string }[];
+  links: { title: string; href: string | (() => void) }[];
 };
 
 export const NavigationContent = ({ heading, links }: NavigationContentProps) => {
@@ -15,18 +15,28 @@ export const NavigationContent = ({ heading, links }: NavigationContentProps) =>
         </SheetTitle>
       </SheetHeader>
       <ul className='flex flex-col items-start gap-1'>
-        {links.map(({ title, href }) => (
-          <li
-            key={title}
-            className='w-full cursor-pointer text-nowrap rounded-sm hover:bg-stone-100 hover:dark:bg-slate-900'
-          >
-            <Link to={href} className='flex w-full'>
-              <SheetClose className='h-full w-full p-2 text-start font-poppins text-sm font-medium'>
-                {title}
-              </SheetClose>
-            </Link>
-          </li>
-        ))}
+        {links.map(({ title, href }) => {
+          return (
+            <li
+              key={title}
+              className='w-full cursor-pointer text-nowrap rounded-sm hover:bg-stone-100 hover:dark:bg-slate-900'
+            >
+              {typeof href === 'function' ? (
+                <button onClick={() => href()} className='flex w-full'>
+                  <SheetClose className='h-full w-full p-2 text-start font-poppins text-sm font-medium'>
+                    {title}
+                  </SheetClose>
+                </button>
+              ) : (
+                <Link to={href} className='flex w-full'>
+                  <SheetClose className='h-full w-full p-2 text-start font-poppins text-sm font-medium'>
+                    {title}
+                  </SheetClose>
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

@@ -37,7 +37,7 @@ export const DropdownFilter = ({ table }: DropdownFilterProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className={`${hasActiveFilters && 'bg-accent'}`}>
-        <Button variant='outline' className='px-2'>
+        <Button id='filter' variant='outline' className='px-2'>
           <Filter className='size-4' />
         </Button>
       </DropdownMenuTrigger>
