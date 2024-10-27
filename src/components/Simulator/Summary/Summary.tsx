@@ -35,7 +35,7 @@ export function Summary() {
   );
 
   return (
-    <div className='row-span-1 grid grid-cols-4 items-stretch gap-8 max-2xl:gap-4 max-xl:grid-cols-1'>
+    <div className='row-span-1 grid grid-cols-4 items-stretch gap-4 max-xl:grid-cols-1'>
       <div className='flex h-full flex-col gap-6'>
         <Countdown />
         <Card id='balance'>

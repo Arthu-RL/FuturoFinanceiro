@@ -31,6 +31,7 @@ export const useTutorialModal = () => {
       tour.complete();
       updateTutorialModalState(false);
       setIsTutorialActive(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     tour.addStep({
@@ -43,79 +44,86 @@ export const useTutorialModal = () => {
     });
 
     tour.addStep({
-      title: 'Próxima atualização',
+      title: 'Visão Geral da Página',
+      attachTo: { element: '#simulator' },
+      buttons: [{ text: 'Próximo', action: tour.next }],
+      text: 'Esta é a página principal do simulador, onde você pode ver informações como saldo, patrimônio em ativos, e rentabilidade. Aqui você pode acompanhar suas finanças e tomar decisões de investimento.',
+    });
+
+    tour.addStep({
+      title: 'Próxima Atualização',
       attachTo: { element: '#refresh', on: 'bottom-end' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'Este é o temporizador que indica quanto falta para a próxima atualização do mercado. Os preços são atualizados a cada minuto.',
+      text: 'Este é o temporizador que indica quanto tempo falta para a próxima atualização do mercado. Os preços são atualizados a cada minuto, permitindo que você acompanhe as flutuações em tempo real e tome decisões estratégicas.',
     });
 
     tour.addStep({
       title: 'Saldo',
       attachTo: { element: '#balance', on: 'bottom' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'Aqui está o saldo atual da sua conta.',
+      text: 'Aqui está o saldo atual da sua conta. O saldo é atualizado automaticamente após cada compra ou venda de ativos.',
     });
 
     tour.addStep({
       title: 'Patrimônio em ativos',
       attachTo: { element: '#holdings', on: 'bottom' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'O valor total que você tem investido em ativos no momento.',
+      text: 'Este é o valor total que você tem investido em ativos no momento. Reflete o total investido e o desempenho acumulado desses ativos.',
     });
 
     tour.addStep({
       title: 'Rentabilidade total',
       attachTo: { element: '#profitability', on: 'bottom' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'O lucro ou prejuízo acumulado com a venda de ativos. Pode ser um valor positivo ou negativo.',
+      text: 'Resultado acumulado das vendas de ativos, refletindo o saldo final como lucro ou prejuízo. Essa métrica oferece uma visão clara da performance financeira geral dos seus investimentos ao longo do tempo.',
     });
 
     tour.addStep({
-      title: 'Rentabilidade semanal',
-      attachTo: { element: '#weekly-profitability', on: 'bottom-end' },
+      title: 'Rentabilidade Semanal',
+      attachTo: { element: '#weekly-profitability', on: 'bottom' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'O lucro ou prejuízo das vendas realizadas na semana atual, com um resumo por dia.',
+      text: 'A rentabilidade semanal mostra o lucro ou prejuízo acumulado com as vendas realizadas na semana atual, detalhado por dia. Isso ajuda a entender o desempenho recente dos seus investimentos.',
     });
 
     tour.addStep({
       title: 'Busca',
       attachTo: { element: '#search', on: 'bottom' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'Use este campo para buscar um ativo pelo nome.',
+      text: 'Use este campo para buscar um ativo pelo nome. Isso facilita encontrar rapidamente um ativo específico em sua lista.',
     });
 
     tour.addStep({
       title: 'Filtros',
       attachTo: { element: '#filter', on: 'bottom' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'Aqui você pode filtrar ativos por risco, categoria e visualizar apenas aqueles que estão na sua carteira. Para acompanhar seus investimentos, ative “Filtrar por meus ativos”.',
+      text: 'Aqui você pode filtrar ativos por risco, categoria, e visualizar apenas aqueles que estão na sua carteira. Para acompanhar seus investimentos de forma mais eficiente, ative “Filtrar por meus ativos”. Use os filtros para explorar opções de investimento que se adequem ao seu perfil.',
     });
 
     tour.addStep({
-      title: 'Ativos',
+      title: 'Ativos Disponíveis',
       attachTo: { element: '#assets', on: 'bottom' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'Informações detalhadas sobre cada ativo, como nome, categoria, perfil de risco, variação, preço, código, e mais. É possível ordenar por diferentes colunas.',
+      text: 'Dados completos sobre cada ativo, incluindo nome, categoria, perfil de risco, variação de preço, valor atual, código, entre outras informações relevantes. As colunas podem ser ordenadas para facilitar a análise e comparação dos ativos.',
     });
 
     tour.addStep({
       title: 'Ações',
       attachTo: { element: '#actions', on: 'bottom' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'Clique em “...” para acessar opções como comprar, vender se você já possui o ativo, e visualizar detalhes. Nos detalhes, veja histórico de preços, volatilidade, tendências e mais.',
+      text: 'Clique em “...” para acessar opções como comprar, vender se você já possui o ativo, e visualizar detalhes. Nos detalhes, veja histórico de preços, volatilidade, tendências e mais. Essas opções são fundamentais para gerenciar seu portfólio de forma eficaz.',
     });
 
     tour.addStep({
-      title: 'Histórico',
+      title: 'Atividades Financeiras',
       attachTo: { element: '#history', on: 'bottom' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'Registro das suas atividades financeiras, incluindo todas as compras e vendas de ativos.',
+      text: 'Veja o histórico das suas transações, incluindo compras e vendas de ativos. Acompanhe cada atividade financeira e analise seu desempenho ao longo do tempo.',
     });
 
     tour.addStep({
       title: 'Tutorial Concluído!',
       buttons: [{ text: 'Fechar', action: handleEndTutorial }],
-      text: 'Parabéns! Você finalizou o tutorial do simulador de investimentos. Agora você está pronto para explorar todas as funcionalidades disponíveis. Caso queira ver o tutorial novamente, clique em “Guia do Simulador” na barra de navegação.',
+      text: 'Parabéns! Você finalizou o tutorial do simulador de investimentos. Agora você está pronto para explorar todas as funcionalidades disponíveis. Caso queira ver o tutorial novamente, clique em “Guia do Simulador” na barra de navegação. Explore as outras seções para maximizar seu aprendizado e aproveitar todas as ferramentas disponíveis.',
     });
 
     tour.start();
