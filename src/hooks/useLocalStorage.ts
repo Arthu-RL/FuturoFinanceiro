@@ -4,7 +4,7 @@ export const useLocalStorage = <T>(schema: z.Schema<T>) => {
   type TData = z.infer<typeof schema>;
 
   function getStorageItem(storageKey: string): TData | null {
-    const storageItem = schema.safeParse(JSON.parse(localStorage.getItem(storageKey) || String(null)));
+    const storageItem = schema.safeParse(JSON.parse(String(localStorage.getItem(storageKey))));
 
     if (!storageItem.success) {
       const errors = storageItem.error.flatten();
