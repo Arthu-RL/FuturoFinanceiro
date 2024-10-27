@@ -93,7 +93,7 @@ export const useTutorialModal = () => {
 
     tour.addStep({
       title: 'Ativos',
-      attachTo: { element: '#assets', on: 'bottom' },
+      attachTo: { element: '#assets', on: 'top' },
       buttons: [{ text: 'Próximo', action: tour.next }],
       text: 'Informações detalhadas sobre cada ativo, como nome, categoria, perfil de risco, variação, preço, código, e mais. É possível ordenar por diferentes colunas.',
     });

@@ -109,6 +109,7 @@ select {
 .shepherd-title {
   font-size: 1rem !important;
   font-weight: 600 !important;
+  padding-inline: 0.25rem !important;
   font-family: var(--font-roboto) !important;
   color: hsl(var(--foreground)) !important;
 }
