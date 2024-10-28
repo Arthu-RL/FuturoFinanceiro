@@ -23,11 +23,10 @@ type DropdownFilterProps = {
 
 export const DropdownFilter = ({ table }: DropdownFilterProps) => {
   const isUserWalletFilterActive = table.getColumn('id')?.getFilterValue() === true;
+  const hasProfileFilter = table.getColumn('profile')?.getFilterValue();
+  const hasTypeFilter = table.getColumn('type')?.getFilterValue();
 
-  const hasActiveFilters =
-    table.getColumn('id')?.getFilterValue() ||
-    table.getColumn('type')?.getFilterValue() ||
-    table.getColumn('profile')?.getFilterValue();
+  const hasActiveFilters = table.getColumn('id')?.getFilterValue() || hasTypeFilter || hasProfileFilter;
 
   function toggleUserAssetsFilter() {
     if (isUserWalletFilterActive) table.getColumn('id')?.setFilterValue('');
@@ -56,7 +55,7 @@ export const DropdownFilter = ({ table }: DropdownFilterProps) => {
         <DropdownMenuGroup>
           <DropdownMenuGroup>
             <DropdownMenuSub>
-              <DropdownMenuSubTrigger>
+              <DropdownMenuSubTrigger className={`${hasProfileFilter && 'bg-accent'}`}>
                 <span>Filtrar por Risco</span>
               </DropdownMenuSubTrigger>
               <DropdownMenuPortal>
@@ -78,7 +77,7 @@ export const DropdownFilter = ({ table }: DropdownFilterProps) => {
               </DropdownMenuPortal>
             </DropdownMenuSub>
             <DropdownMenuSub>
-              <DropdownMenuSubTrigger>
+              <DropdownMenuSubTrigger className={`${hasTypeFilter && 'bg-accent'}`}>
                 <span>Filtrar por Categoria</span>
               </DropdownMenuSubTrigger>
               <DropdownMenuPortal>
