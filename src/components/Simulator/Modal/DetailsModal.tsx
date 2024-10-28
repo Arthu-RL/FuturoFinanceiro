@@ -43,13 +43,13 @@ export function DetailsModal({ columnId, table, modalState }: TransactionModalPr
             <Chart assetHistory={assetHistory} />
             <ul className='flex flex-col gap-2 px-1'>
               <li className='flex w-full justify-between'>
-                <span className='font-medium text-foreground'>Maior Preço Registrado</span>
+                <span className='font-medium text-foreground'>Máximo Histórico</span>
                 <span className='font-medium text-foreground transition-all'>
                   {formatCurrency(highestValue || assetCurrentPrice, 'BRL', 'pt-BR')}
                 </span>
               </li>
               <li className='flex w-full justify-between'>
-                <span className='font-medium text-foreground'>Menor Preço Registrado</span>
+                <span className='font-medium text-foreground'>Mínimo Histórico</span>
                 <span className='font-medium text-foreground transition-all'>
                   {formatCurrency(lowestValue || assetCurrentPrice, 'BRL', 'pt-BR')}
                 </span>

@@ -42,7 +42,7 @@ export const Chart = ({ assetHistory }: Chart) => {
             <AreaChart
               accessibilityLayer
               data={lastTenEntries}
-              margin={{ left: 15, right: 15, top: 10, bottom: 10 }}
+              margin={{ left: 15, right: 15, top: 15, bottom: 15 }}
             >
               <CartesianGrid strokeDasharray='4 4' />
               <XAxis

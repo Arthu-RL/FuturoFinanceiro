@@ -63,8 +63,7 @@ function assetCalculateChanceOfLoss(
 
 function calculateAssetTrend(assetHistory: Assets['history']) {
   const TENDENCY_THRESHOLD = 0.005;
-  const stableAsset = { text: 'Estável', color: 'text-blue-500' };
-  if (assetHistory.length < 2) return stableAsset;
+  if (assetHistory.length < 2) return { text: 'Indisponível', color: 'text-gray-500' };
 
   const totalChange = assetHistory.slice(1).reduce((total, _, index) => {
     const change = (assetHistory[index + 1].value - assetHistory[index].value) / assetHistory[index].value;
@@ -79,13 +78,14 @@ function calculateAssetTrend(assetHistory: Assets['history']) {
   } else if (averageChange < -TENDENCY_THRESHOLD) {
     return { text: 'Tendência de Baixa', color: 'text-red-500' };
   } else {
-    return stableAsset;
+    return { text: 'Estável', color: 'text-blue-500' };
   }
 }
 
 function calculateVolatility(assetHistory: Assets['history']) {
   const HIGH_VOLATILITY_THRESHOLD = 0.05;
   const LOW_VOLATILITY_THRESHOLD = 0.02;
+  if (assetHistory.length < 2) return { text: 'Indisponível', color: 'text-gray-300' };
 
   const mean = assetHistory.reduce((sum, { value }) => sum + value, 0) / assetHistory.length;
   const squaredDiffs = assetHistory.map(({ value }) => ((value - mean) / mean) ** 2);
