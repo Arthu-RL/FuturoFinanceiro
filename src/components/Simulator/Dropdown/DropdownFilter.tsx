@@ -52,43 +52,31 @@ export const DropdownFilter = ({ table }: DropdownFilterProps) => {
           </Button>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuGroup>
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger className={`${hasProfileFilter && 'bg-accent'}`}>
-                <span>Filtrar por Risco</span>
-              </DropdownMenuSubTrigger>
-              <DropdownMenuPortal>
-                <DropdownMenuSubContent className='flex w-36 flex-col gap-1'>
-                  <DropdownFilterOption table={table} column='profile' filter='high-risk' label='Agressivo' />
-                  <DropdownFilterOption
-                    table={table}
-                    column='profile'
-                    filter='medium-risk'
-                    label='Moderado'
-                  />
-                  <DropdownFilterOption
-                    table={table}
-                    column='profile'
-                    filter='low-risk'
-                    label='Conservador'
-                  />
-                </DropdownMenuSubContent>
-              </DropdownMenuPortal>
-            </DropdownMenuSub>
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger className={`${hasTypeFilter && 'bg-accent'}`}>
-                <span>Filtrar por Categoria</span>
-              </DropdownMenuSubTrigger>
-              <DropdownMenuPortal>
-                <DropdownMenuSubContent className='flex w-36 flex-col gap-1'>
-                  <DropdownFilterOption table={table} column='type' filter='Fiat' label='Moedas' />
-                  <DropdownFilterOption table={table} column='type' filter='Crypto' label='Criptomoedas' />
-                  <DropdownFilterOption table={table} column='type' filter='Commodity' label='Commodities' />
-                </DropdownMenuSubContent>
-              </DropdownMenuPortal>
-            </DropdownMenuSub>
-          </DropdownMenuGroup>
+        <DropdownMenuGroup className='flex flex-col gap-1'>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger className={`${hasProfileFilter && 'bg-accent'}`}>
+              <span>Filtrar por Risco</span>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent className='flex w-36 flex-col gap-1'>
+                <DropdownFilterOption table={table} column='profile' filter='high-risk' label='Agressivo' />
+                <DropdownFilterOption table={table} column='profile' filter='medium-risk' label='Moderado' />
+                <DropdownFilterOption table={table} column='profile' filter='low-risk' label='Conservador' />
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger className={`${hasTypeFilter && 'bg-accent'}`}>
+              <span>Filtrar por Categoria</span>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent className='flex w-36 flex-col gap-1'>
+                <DropdownFilterOption table={table} column='type' filter='Fiat' label='Moedas' />
+                <DropdownFilterOption table={table} column='type' filter='Crypto' label='Criptomoedas' />
+                <DropdownFilterOption table={table} column='type' filter='Commodity' label='Commodities' />
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

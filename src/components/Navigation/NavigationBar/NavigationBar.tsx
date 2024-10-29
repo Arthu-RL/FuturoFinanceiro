@@ -74,7 +74,7 @@ export const NavigationBar = () => {
           return (
             <NavigationLinks key={index} Icon={Icon}>
               {sections.map(({ heading, links }) => (
-                <NavigationContent heading={heading} links={links} />
+                <NavigationContent key={heading} heading={heading} links={links} />
               ))}
             </NavigationLinks>
           );
