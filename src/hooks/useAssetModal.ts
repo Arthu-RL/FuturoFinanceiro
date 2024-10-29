@@ -37,8 +37,15 @@ export const useAssetModal = ({ table, columnId, modalState }: UseAssetModal) =>
   }
 
   function handleConfirmAction(transaction: TransactionType) {
-    if (transaction === 'Purchase') buyAsset(assetId, assetToPurchaseQuantity, assetCurrentPrice);
-    if (transaction === 'Sale') sellAsset(assetId, assetToPurchaseQuantity, assetCurrentPrice);
+    if (transaction === 'Purchase') {
+      buyAsset(assetId, assetToPurchaseQuantity, assetCurrentPrice);
+    }
+
+    if (transaction === 'Sale') {
+      table.getColumn('id')?.setFilterValue(true);
+      sellAsset(assetId, assetToPurchaseQuantity, assetCurrentPrice);
+    }
+
     modalState.setState(false);
   }
 
