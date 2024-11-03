@@ -4,18 +4,94 @@ import { useManageUserAccount } from '@/hooks/useManageUserAccount';
 
 export type UserData = { user: User; updateUser: (user: User) => void };
 
-const userInitialState = {
-  updateUser: () => {},
-  user: {
-    currentBalance: 10000,
-    currentProfitability: 0,
-    currentWallet: [],
-    transactionHistory: [],
-    balanceHistory: [],
-    profitabilityHistory: [],
-    walletHistory: [],
-  },
+const user = {
+  currentBalance: 10000,
+  currentProfitability: 0,
+  currentWallet: [],
+  transactionHistory: [],
+  balanceHistory: [],
+  profitabilityHistory: [],
+  walletHistory: [],
+  achievements: [
+    {
+      name: 'Primeira Aquisição',
+      description: 'Faça sua primeira compra e comece sua trajetória como investidor!',
+      isCompleted: false,
+    },
+    {
+      name: 'Primeiro Lucro',
+      description: 'Venda um ativo a um preço mais alto do que o valor de compra.',
+      isCompleted: false,
+    },
+    {
+      name: 'Vendedor Experiente',
+      description: 'Realize sua 100ª venda e se torne um comerciante veterano.',
+      isCompleted: false,
+    },
+    {
+      name: 'Diversificador de Portfólio',
+      description: 'Mantenha ativos de pelo menos dois tipos diferentes em seu portfólio.',
+      isCompleted: false,
+    },
+    {
+      name: 'Investidor Conservador',
+      description: 'Invista em mais de cinco ativos de baixo risco para uma carteira estável.',
+      isCompleted: false,
+    },
+    {
+      name: 'Explorador de Cripto',
+      description: 'Adicione dez criptomoedas ao seu portfólio e explore o mercado digital.',
+      isCompleted: false,
+    },
+    {
+      name: 'Comerciante de Commodities',
+      description: 'Mantenha pelo menos três commodities em seu portfólio.',
+      isCompleted: false,
+    },
+    {
+      name: 'Caçador de Riscos',
+      description: 'Invista em pelo menos cinco ativos de alto risco e abrace a volatilidade.',
+      isCompleted: false,
+    },
+    {
+      name: 'Milionário do Dia',
+      description: 'Consiga uma rentabilidade total diária superior a R$10.000.',
+      isCompleted: false,
+    },
+    {
+      name: 'Gênio da Semana',
+      description: 'Alcance uma rentabilidade semanal superior a R$100.000.',
+      isCompleted: false,
+    },
+    {
+      name: 'Trader Ativo',
+      description: 'Complete 50 transações (compra ou venda) no simulador.',
+      isCompleted: false,
+    },
+    {
+      name: 'Colecionador de Ativos',
+      description: 'Adquira 20 ativos diferentes e diversifique seu portfólio.',
+      isCompleted: false,
+    },
+    {
+      name: 'Grande Lucro',
+      description: 'Realize uma venda com lucro superior a R$10.000.',
+      isCompleted: false,
+    },
+    {
+      name: 'Primeiro Milhão',
+      description: 'Alcance um saldo de R$1.000.000 e entre para o clube dos milionários.',
+      isCompleted: false,
+    },
+    {
+      name: 'Mestre dos Investimentos',
+      description: 'Complete todos os achievements disponíveis e conquiste o reconhecimento supremo.',
+      isCompleted: false,
+    },
+  ],
 };
+
+const userInitialState = { user, updateUser: () => {} };
 
 const UserAccountProviderContext = createContext<UserData>(userInitialState);
 

@@ -2,6 +2,12 @@ import { z } from 'zod';
 
 const transactionType = ['Purchase', 'Sale'] as const;
 
+const achievementsSchema = z.object({
+  name: z.string(),
+  description: z.string(),
+  isCompleted: z.boolean(),
+});
+
 const purchasedAssetSchema = z.object({
   id: z.string().uuid(),
   quantity: z.number(),
@@ -14,6 +20,7 @@ const purchasedAssetSchema = z.object({
 const userSchema = z.object({
   currentBalance: z.number(),
   currentProfitability: z.number(),
+  achievements: z.array(achievementsSchema),
   currentWallet: z.array(purchasedAssetSchema),
   transactionHistory: z.array(purchasedAssetSchema),
   balanceHistory: z.array(z.object({ date: z.coerce.date(), balance: z.number() })),

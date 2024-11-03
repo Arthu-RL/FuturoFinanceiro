@@ -38,7 +38,7 @@ export const NavigationBar = () => {
     },
   ];
 
-  const profileTestLinks = [{ title: 'Iniciar Avaliação', href: '/teste/perfil' }];
+  const achievementsLinks = [{ title: 'Mostrar Meu Progresso', href: () => {} }];
 
   const additionalLinks = [
     { title: 'Tesouro Direto', href: 'https://www.tesourodireto.com.br' },
@@ -60,7 +60,7 @@ export const NavigationBar = () => {
       Icon: Gamepad,
       sections: [
         { heading: 'Simulador', links: simulatorLinks },
-        { heading: 'Descubra Seu Perfil', links: profileTestLinks },
+        { heading: 'Minhas Conquistas', links: achievementsLinks },
       ],
     },
     { Icon: Link, sections: [{ heading: 'Recursos Externos', links: additionalLinks }] },
