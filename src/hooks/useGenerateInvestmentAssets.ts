@@ -2,12 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useProccessInvestmentAssets } from './useProccessInvestmentAssets';
 import { useLocalStorage } from './useLocalStorage';
 import { Assets, assetsSchemaArray } from '@/lib/schemas/assets.schema';
-import { investmentAssets } from '@/data/investmentAssets';
 
 export const useGenerateInvestmentAssets = () => {
   const { setStorageItem, getStorageItem } = useLocalStorage<Assets[]>(assetsSchemaArray);
   const [assets, setAssets] = useState<Assets[]>(getStorageItem('investmentAssets') || []);
-  const { processedAssets } = useProccessInvestmentAssets(investmentAssets);
+  const { processedAssets } = useProccessInvestmentAssets();
 
   const updateAssets = useCallback(
     (assets: Assets[]) => {

@@ -6,7 +6,9 @@ import { currencyExchangeRate, getCurrencyDisplayName } from '@/utils/currency';
 import { useEffect, useState } from 'react';
 import { Assets } from '@/lib/schemas/assets.schema';
 
-export const useProccessInvestmentAssets = (investmentAssets: InvestmentAssets) => {
+import investmentAssets from '@/data/investmentAssets.json';
+
+export const useProccessInvestmentAssets = () => {
   const BRLConversionRates = useFetch<ConversionRates>(() => fetchCurrencyByCode('BRL')).data?.['brl'];
   const [processedAssets, setProcessedAssets] = useState<Assets[]>([]);
 
@@ -15,7 +17,7 @@ export const useProccessInvestmentAssets = (investmentAssets: InvestmentAssets) 
 
     const data = assetCodes.reduce<Assets[]>((processedAssets, assetCode) => {
       const assetPriceInBRL = currencyExchangeRate(assetCode, 'BRL', 1, BRLConversionRates);
-      const assetData = investmentAssets[assetCode];
+      const assetData = (investmentAssets as InvestmentAssets)[assetCode];
 
       const isPriceValid = !isNaN(assetPriceInBRL) && assetPriceInBRL >= 0.01;
       if (isPriceValid) {
@@ -32,7 +34,7 @@ export const useProccessInvestmentAssets = (investmentAssets: InvestmentAssets) 
     }, []);
 
     setProcessedAssets(data);
-  }, [investmentAssets, BRLConversionRates]);
+  }, [BRLConversionRates]);
 
   return { processedAssets };
 };
