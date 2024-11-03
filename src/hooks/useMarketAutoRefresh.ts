@@ -3,6 +3,7 @@ import { toast } from 'sonner';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useAssetFluctuation } from './useAssetFluctuation';
 import { useTutorial } from '@/providers/tutorialProvider';
+import { useLocation } from 'react-router-dom';
 
 const ONE_SECOND_IN_MS = 1000;
 const ONE_MINUTE = 60;
@@ -12,12 +13,15 @@ export const useMarketAutoRefresh = () => {
   const { assets, updateAssets } = useInvestmentAssets();
   const { computedAssets } = useAssetFluctuation(assets);
   const { isTutorialActive } = useTutorial();
+  const { pathname } = useLocation();
 
   const refreshMarket = useCallback(() => {
     updateAssets(computedAssets);
   }, [computedAssets, updateAssets]);
 
   useEffect(() => {
+    const isAtHomePage = pathname === '/';
+
     let timeout: NodeJS.Timeout;
 
     function decrementRemainingSeconds() {
@@ -35,7 +39,7 @@ export const useMarketAutoRefresh = () => {
             return ONE_MINUTE;
           }
 
-          if (isTutorialActive) return currentSeconds;
+          if (isTutorialActive || isAtHomePage) return currentSeconds;
           return --currentSeconds;
         });
 
@@ -47,7 +51,7 @@ export const useMarketAutoRefresh = () => {
 
     decrementRemainingSeconds();
     return () => clearTimeout(timeout);
-  }, [isTutorialActive, refreshMarket]);
+  }, [pathname, isTutorialActive, refreshMarket]);
 
   return { remainingSeconds };
 };
