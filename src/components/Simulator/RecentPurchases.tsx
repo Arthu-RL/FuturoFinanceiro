@@ -22,7 +22,7 @@ export const RecentPurchases = () => {
         </div>
       </CardHeader>
       <CardContent className='px-4'>
-        <ScrollArea className='relative h-[27.6rem] pr-4'>
+        <ScrollArea className='relative h-[27.6rem] pr-4 2xl:h-[29.6rem]'>
           {reversedHistory.length > 0 ? (
             <Table>
               <TableHeader>
