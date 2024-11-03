@@ -2,10 +2,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useUserAccount } from '@/providers/userAccountProvider';
 import { calculateTotalHoldingsValue, getAssetVariation } from '@/utils/number';
-import { Coins, DollarSign, Wallet } from 'lucide-react';
+import { CircleHelp, Coins, DollarSign, Wallet } from 'lucide-react';
 import { Countdown } from './Countdown';
 import { NumberDisplay } from './NumberDisplay';
 import { Chart } from './Chart';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 export function Summary() {
   const { assets } = useInvestmentAssets();
@@ -43,8 +44,20 @@ export function Summary() {
             <CardTitle className='text-sm font-medium'>Saldo</CardTitle>
             <Wallet className='h-4 w-4 text-muted-foreground' />
           </CardHeader>
-          <CardContent>
+          <CardContent className='relative'>
             <NumberDisplay value={user.currentBalance} valueDifference={balanceDifference} animated />
+            <TooltipProvider>
+              <Tooltip>
+                <div className='absolute bottom-6 right-6 flex justify-end'>
+                  <TooltipTrigger>
+                    <CircleHelp className='h-4 w-4 text-muted-foreground' />
+                  </TooltipTrigger>
+                </div>
+                <TooltipContent className='max-w-56 font-poppins font-medium'>
+                  Atenção: Este saldo é fictício e se refere a um simulador. Não representa valores reais.
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </CardContent>
         </Card>
       </div>
