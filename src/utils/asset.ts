@@ -108,7 +108,12 @@ function calculateHighsAndLows(assetHistory: Assets['history']) {
   return { highestValue, lowestValue };
 }
 
+function getAssetValue<T extends Assets, K extends keyof T>(assetId: string, assets: T[], key: K) {
+  return assets.find(({ id }) => id === assetId)?.[key] ?? null;
+}
+
 export {
+  getAssetValue,
   getAssetVariationStatus,
   assetCalculateDrift,
   assetCalculateVolatility,

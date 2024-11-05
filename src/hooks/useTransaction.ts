@@ -4,8 +4,10 @@ import { formatCurrency } from '@/utils/currency';
 import { calculateTransactionProfitDetails } from '@/utils/number';
 import { isToday, startOfToday } from 'date-fns';
 import { toast } from 'sonner';
+import { useAchievements } from './useAchievements.tsx';
 
 export const useTransaction = () => {
+  const { verifyAchievements } = useAchievements();
   const { user, updateUser } = useUserAccount();
   const { assets } = useInvestmentAssets();
 
@@ -64,14 +66,20 @@ export const useTransaction = () => {
       description: `Você acaba de comprar ${quantity} unidades de ${marketAsset.name}.`,
     });
 
-    updateUser(user);
+    const userWithUpdatedAchievements = verifyAchievements({
+      user,
+      currentTransaction,
+      transactionType: currentTransaction.type,
+    });
+
+    updateUser(userWithUpdatedAchievements);
   }
 
   function sellAsset(id: string, quantity: number, price: number) {
     const walletAsset = user.currentWallet.find((asset) => asset.id === id);
     if (!walletAsset) return;
 
-    const { assetProfit, proportionateInvestment, transactionValue } = calculateTransactionProfitDetails(
+    const transaction = calculateTransactionProfitDetails(
       price,
       quantity,
       walletAsset.totalInvestment,
@@ -79,8 +87,8 @@ export const useTransaction = () => {
     );
 
     const isAssetBeingRemoved = quantity === walletAsset.quantity;
-    const currentBalance = user.currentBalance + transactionValue;
-    const currentProfitability = user.currentProfitability + assetProfit;
+    const currentBalance = user.currentBalance + transaction.transactionValue;
+    const currentProfitability = user.currentProfitability + transaction.assetProfit;
     const filteredAssets = user.currentWallet.filter((asset) => asset.id !== id);
 
     const currentWallet = isAssetBeingRemoved
@@ -93,7 +101,7 @@ export const useTransaction = () => {
             type: 'Sale' as const,
             purchasePrice: walletAsset.purchasePrice,
             quantity: walletAsset.quantity - quantity,
-            totalInvestment: walletAsset.totalInvestment - proportionateInvestment,
+            totalInvestment: walletAsset.totalInvestment - transaction.proportionateInvestment,
           },
         ];
 
@@ -124,18 +132,18 @@ export const useTransaction = () => {
     } else walletHistory.wallet = currentWallet;
 
     if (!profitabilityHistory || !isToday(profitabilityHistory.date)) {
-      user.profitabilityHistory.push({ date: startOfToday(), profitability: assetProfit });
-    } else profitabilityHistory.profitability = profitabilityHistory.profitability + assetProfit;
+      user.profitabilityHistory.push({ date: startOfToday(), profitability: transaction.assetProfit });
+    } else profitabilityHistory.profitability = profitabilityHistory.profitability + transaction.assetProfit;
 
-    if (assetProfit > 0) {
+    if (transaction.assetProfit > 0) {
       toast.message('Parabéns! 🎉', {
         duration: 5000,
-        description: `Você registrou um lucro de ${formatCurrency(assetProfit, 'BRL', 'pt-BR')}. Continue assim!`,
+        description: `Você registrou um lucro de ${formatCurrency(transaction.assetProfit, 'BRL', 'pt-BR')}. Continue assim!`,
       });
-    } else if (assetProfit < 0) {
+    } else if (transaction.assetProfit < 0) {
       toast.message('Não foi dessa vez... 😕', {
         duration: 5000,
-        description: `Você registrou uma perda de ${formatCurrency(assetProfit, 'BRL', 'pt-BR')}. Não desanime, é parte do processo.`,
+        description: `Você registrou uma perda de ${formatCurrency(transaction.assetProfit, 'BRL', 'pt-BR')}. Não desanime, é parte do processo.`,
       });
     } else {
       toast.message('Tudo em equilíbrio!', {
@@ -144,7 +152,14 @@ export const useTransaction = () => {
       });
     }
 
-    updateUser(user);
+    const userWithUpdatedAchievements = verifyAchievements({
+      user,
+      transaction,
+      currentTransaction,
+      transactionType: currentTransaction.type,
+    });
+
+    updateUser(userWithUpdatedAchievements);
   }
 
   return { buyAsset, sellAsset };
