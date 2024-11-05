@@ -1,11 +1,28 @@
 import { z } from 'zod';
 
 const transactionType = ['Purchase', 'Sale'] as const;
+const achievementsNames = [
+  'Primeira Aquisição',
+  'Primeiro Lucro',
+  'Vendedor Experiente',
+  'Diversificador de Portfólio',
+  'Investidor Conservador',
+  'Explorador de Cripto',
+  'Comerciante de Commodities',
+  'Caçador de Riscos',
+  'Milionário do Dia',
+  'Mestre dos Investimentos',
+  'Primeiro Milhão',
+  'Grande Lucro',
+  'Colecionador de Ativos',
+  'Gênio da Semana',
+  'Trader Ativo',
+] as const;
 
 const achievementsSchema = z.object({
-  name: z.string(),
   description: z.string(),
   isCompleted: z.boolean(),
+  name: z.enum(achievementsNames),
 });
 
 const purchasedAssetSchema = z.object({
@@ -29,8 +46,9 @@ const userSchema = z.object({
 });
 
 type User = z.infer<typeof userSchema>;
+type Achievement = (typeof achievementsNames)[number];
 type TransactionType = (typeof transactionType)[number];
 type PurchasedAsset = z.infer<typeof purchasedAssetSchema>;
 
-export type { User, PurchasedAsset, TransactionType };
+export type { User, Achievement, PurchasedAsset, TransactionType };
 export { userSchema, purchasedAssetSchema };
