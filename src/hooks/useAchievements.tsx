@@ -28,7 +28,7 @@ export const useAchievements = () => {
       toast.message(
         <div className='flex items-center justify-center pb-0.5'>
           <Trophy className='ml-3 min-h-8 min-w-8 stroke-foreground' />
-          <div className='flex flex-col items-center gap-0.5 text-center'>
+          <div className='flex flex-col items-center text-center'>
             <b className='w-fit text-base font-bold'>Conquista Desbloqueada!</b>
             <div className='flex flex-col items-center'>
               <span className='text-sm font-medium'>{achievement.name}</span>
@@ -36,7 +36,7 @@ export const useAchievements = () => {
             </div>
           </div>
         </div>,
-        { duration: 8000, position: 'top-center' },
+        { duration: 8000, position: 'top-center', className: 'p-2.5' },
       );
 
       handleShootConfetti();
