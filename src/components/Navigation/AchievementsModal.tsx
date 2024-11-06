@@ -170,7 +170,7 @@ export const AchievementsModal = ({ modalState }: AchievementsModal) => {
                   >
                     {icon}
                     <div className='flex w-full flex-col text-left dark:text-muted-foreground'>
-                      <div className='flex w-full items-center gap-1'>
+                      <div className='flex w-full flex-wrap items-center gap-1 max-[385px]:gap-0'>
                         <b className='font-bold text-foreground'>{name}</b>
                         {!isCompleted && hasAchievementStatus && (
                           <span className='text-xs font-semibold text-foreground'>
