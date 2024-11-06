@@ -85,7 +85,7 @@ const user = {
     },
     {
       name: 'Mestre dos Investimentos' as const,
-      description: 'Complete todos os achievements disponíveis e conquiste o reconhecimento supremo.',
+      description: 'Complete todas as conquistas disponíveis e obtenha o reconhecimento supremo.',
       isCompleted: false,
     },
   ],

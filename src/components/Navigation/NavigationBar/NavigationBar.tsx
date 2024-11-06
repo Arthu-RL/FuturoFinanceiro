@@ -5,8 +5,11 @@ import { ThemeButton } from '../ThemeButton';
 import { NavigationContent } from './NavigationContent';
 import { useNavigate } from 'react-router-dom';
 import { useTutorial } from '@/providers/tutorialProvider';
+import { Fragment, useState } from 'react';
+import { AchievementsModal } from '../AchievementsModal';
 
 export const NavigationBar = () => {
+  const [isAchievementModalActive, setIsAchievementModalActive] = useState(false);
   const { updateTutorialModalState } = useTutorial();
   const navigate = useNavigate();
 
@@ -38,7 +41,9 @@ export const NavigationBar = () => {
     },
   ];
 
-  const achievementsLinks = [{ title: 'Mostrar Meu Progresso', href: () => {} }];
+  const achievementsLinks = [
+    { title: 'Mostrar Meu Progresso', href: () => setIsAchievementModalActive(true) },
+  ];
 
   const additionalLinks = [
     { title: 'Tesouro Direto', href: 'https://www.tesourodireto.com.br' },
@@ -67,20 +72,25 @@ export const NavigationBar = () => {
   ];
 
   return (
-    <header className='fixed left-0 top-0 z-[999] h-screen bg-stone-900 px-2.5 py-4 max-sm:h-fit max-sm:w-full max-sm:px-3.5 max-sm:py-1.5'>
-      <div className='container mx-auto flex h-full max-w-screen-2xl flex-col items-center gap-2 max-sm:flex-row'>
-        <NavigationLogo />
-        {navigation.map(({ sections, Icon }, index) => {
-          return (
-            <NavigationLinks key={index} Icon={Icon}>
-              {sections.map(({ heading, links }) => (
-                <NavigationContent key={heading} heading={heading} links={links} />
-              ))}
-            </NavigationLinks>
-          );
-        })}
-        <ThemeButton />
-      </div>
-    </header>
+    <Fragment>
+      <AchievementsModal
+        modalState={{ currentState: isAchievementModalActive, setState: setIsAchievementModalActive }}
+      />
+      <header className='fixed left-0 top-0 z-[999] h-screen bg-stone-900 px-2.5 py-4 max-sm:h-fit max-sm:w-full max-sm:px-3.5 max-sm:py-1.5'>
+        <div className='container mx-auto flex h-full max-w-screen-2xl flex-col items-center gap-2 max-sm:flex-row'>
+          <NavigationLogo />
+          {navigation.map(({ sections, Icon }, index) => {
+            return (
+              <NavigationLinks key={index} Icon={Icon}>
+                {sections.map(({ heading, links }) => (
+                  <NavigationContent key={heading} heading={heading} links={links} />
+                ))}
+              </NavigationLinks>
+            );
+          })}
+          <ThemeButton />
+        </div>
+      </header>
+    </Fragment>
   );
 };

@@ -1,6 +1,5 @@
 import type { CurrencyRates } from '@/@types/currency';
-
-type Locale = 'pt-BR' | 'en-US';
+import { Locale } from '@/@types/locale';
 
 function currencyExchangeRate(
   fromCurrency: string,

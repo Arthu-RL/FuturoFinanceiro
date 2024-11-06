@@ -1,3 +1,4 @@
+import { Locale } from '@/@types/locale';
 import { Assets } from '@/lib/schemas/assets.schema';
 import { User } from '@/lib/schemas/user.schema';
 
@@ -8,6 +9,11 @@ function getAssetVariation(previousValue: number, currentValue: number) {
 
 function formatNumberWithSign(number: number) {
   return `${(number > 0 && '+') || ''}${number.toFixed(2)}`;
+}
+
+function formatNumberWithoutFractionDigits(amount: number, locale: Locale) {
+  const formatter = new Intl.NumberFormat(locale, { maximumFractionDigits: 0 });
+  return formatter.format(amount);
 }
 
 function calculateTotalHoldingsValue(
@@ -50,4 +56,5 @@ export {
   calculateTransactionProfitDetails,
   roundIfTooSmall,
   calculateWeekTotalProfit,
+  formatNumberWithoutFractionDigits,
 };
