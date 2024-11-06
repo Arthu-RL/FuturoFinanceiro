@@ -43,12 +43,17 @@ export const useTransaction = () => {
       totalInvestment: purchasedAsset.totalInvestment,
     };
 
+    const currentTransactionHistory =
+      user.transactionHistory.length === 300
+        ? [...user.transactionHistory.slice(-150), currentTransaction]
+        : [...user.transactionHistory, currentTransaction];
+
     const currentBalance = user.currentBalance - transactionValue;
     const currentWallet = [...user.currentWallet.filter((asset) => asset.id !== id), purchasedAsset];
 
     user.currentWallet = currentWallet;
     user.currentBalance = currentBalance;
-    user.transactionHistory.push(currentTransaction);
+    user.transactionHistory = currentTransactionHistory;
 
     const walletHistory = user.walletHistory.at(-1);
     const balanceHistory = user.balanceHistory.at(-1);
@@ -114,10 +119,15 @@ export const useTransaction = () => {
       totalInvestment: walletAsset.totalInvestment,
     };
 
+    const currentTransactionHistory =
+      user.transactionHistory.length === 300
+        ? [...user.transactionHistory.slice(-150), currentTransaction]
+        : [...user.transactionHistory, currentTransaction];
+
     user.currentWallet = currentWallet;
     user.currentBalance = currentBalance;
     user.currentProfitability = currentProfitability;
-    user.transactionHistory.push(currentTransaction);
+    user.transactionHistory = currentTransactionHistory;
 
     const walletHistory = user.walletHistory.at(-1);
     const balanceHistory = user.balanceHistory.at(-1);

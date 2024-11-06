@@ -1,3 +1,4 @@
+import { isLocalStorageAvailable, pruneAssetHistory } from '@/utils/localStorage';
 import { z } from 'zod';
 
 export const useLocalStorage = <T>(schema: z.Schema<T>) => {
@@ -16,7 +17,11 @@ export const useLocalStorage = <T>(schema: z.Schema<T>) => {
   }
 
   function setStorageItem(storageKey: string, value: TData): null {
-    const storageValue = schema.safeParse(value);
+    let storageValue = schema.safeParse(value);
+
+    if (!isLocalStorageAvailable(storageKey, JSON.stringify(value))) {
+      if (storageKey === 'investmentAssets') storageValue = schema.safeParse(pruneAssetHistory(value));
+    }
 
     if (!storageValue.success) {
       const errors = storageValue.error.flatten();
