@@ -7,6 +7,7 @@ import {
   assetCalculateTypeMultiplier,
   assetCalculateChanceOfLoss,
 } from '@/utils/asset';
+import { log } from 'console';
 
 const MINIMUM_PRICE = 0.01;
 
@@ -29,8 +30,9 @@ export const useAssetFluctuation = (assets: Assets[]) => {
     const adjustedDrift = Math.random() < chanceOfLoss ? -Math.abs(drift) : drift;
 
     // Variação de preço
-    const randomShock = (Math.random() * volatility - volatility * 0.5) * typeMultiplier;
-    const randomVariation = adjustedDrift + randomShock;
+    const randomShock = (Math.random() * volatility) * typeMultiplier;
+    const cutBigVariation = asset.value.current > 100000 ? 0.1 : asset.value.current > 10000 ? 0.3 : 1
+    const randomVariation = (adjustedDrift + randomShock)*cutBigVariation;
     const newValue = asset.value.current * (1 + randomVariation);
     const adjustedValue =
       newValue < MINIMUM_PRICE ? MINIMUM_PRICE * (1 + Math.abs(randomVariation)) : newValue;

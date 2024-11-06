@@ -1,4 +1,5 @@
 import { Assets } from '@/lib/schemas/assets.schema';
+import { Profile, AssetType } from '@/@types/investment';
 
 function getAssetVariationStatus(previous: number, current: number) {
   if (previous < current) return 'increase';
@@ -7,15 +8,15 @@ function getAssetVariationStatus(previous: number, current: number) {
 }
 
 // Calcula movimentação do ativo
-function assetCalculateDrift(profile: 'low-risk' | 'medium-risk' | 'high-risk') {
+function assetCalculateDrift(profile: Profile) {
   const baseDrift = { 'low-risk': 0.005, 'medium-risk': 0.05, 'high-risk': 0.08 };
 
   return baseDrift[profile] || 0.01;
 }
 
 // Variação de preço baseado no perfil
-function assetCalculateVolatility(profile: 'low-risk' | 'medium-risk' | 'high-risk') {
-  const baseVolatility = { 'low-risk': 0.02, 'medium-risk': 0.05, 'high-risk': 0.08 };
+function assetCalculateVolatility(profile: Profile) {
+  const baseVolatility = { 'low-risk': 0.002, 'medium-risk': 0.005, 'high-risk': 0.008 };
   let volatility = baseVolatility[profile] || 0.05;
 
   if (profile === 'high-risk') {
@@ -28,15 +29,15 @@ function assetCalculateVolatility(profile: 'low-risk' | 'medium-risk' | 'high-ri
 }
 
 // Variação por tipo de produto
-function assetCalculateTypeMultiplier(type: 'Crypto' | 'Commodity' | 'Fiat') {
-  let typeMultiplier = 1;
+function assetCalculateTypeMultiplier(assetType: AssetType) {
+  let typeMultiplier = 0.5;
 
-  if (type === 'Crypto' && Math.random() < 0.2) {
-    typeMultiplier = 1.2;
-  } else if (type === 'Commodity' && Math.random() < 0.15) {
-    typeMultiplier = 1.1;
-  } else if (type === 'Fiat') {
-    typeMultiplier = 0.8;
+  if (assetType === 'Crypto' && Math.random() < 0.2) {
+    typeMultiplier = 0.2;
+  } else if (assetType === 'Commodity' && Math.random() < 0.15) {
+    typeMultiplier = 0.1;
+  } else if (assetType === 'Fiat') {
+    typeMultiplier = 0.15;
   }
 
   return typeMultiplier;
@@ -44,7 +45,7 @@ function assetCalculateTypeMultiplier(type: 'Crypto' | 'Commodity' | 'Fiat') {
 
 // Calculo chancede perda
 function assetCalculateChanceOfLoss(
-  profile: 'low-risk' | 'medium-risk' | 'high-risk',
+  profile: Profile,
   valuationFactor: number,
 ) {
   const baseChanceOfLoss = { 'low-risk': 0.075, 'medium-risk': 0.15, 'high-risk': 0.5 };
