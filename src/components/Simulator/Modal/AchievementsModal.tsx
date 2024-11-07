@@ -1,5 +1,5 @@
 import { useUserAccount } from '@/providers/userAccountProvider';
-import { ScrollArea } from '../ui/scroll-area';
+import { ScrollArea } from '../../ui/scroll-area';
 import { Achievement } from '@/lib/schemas/user.schema';
 import { cloneElement, ReactElement } from 'react';
 import { getAssetValue } from '@/utils/asset';
@@ -160,7 +160,7 @@ export const AchievementsModal = ({ modalState }: AchievementsModal) => {
                 const hasAchievementStatus = current !== null && complete !== null;
 
                 const icon = cloneElement(achievementsIcons[name]['icon'], {
-                  className: 'size-9 stroke-foreground',
+                  className: 'size-9 stroke-foreground max-[400px]:size-8 min-[400px]:stroke-1',
                 });
 
                 return (
@@ -170,10 +170,10 @@ export const AchievementsModal = ({ modalState }: AchievementsModal) => {
                   >
                     {icon}
                     <div className='flex w-full flex-col text-left dark:text-muted-foreground'>
-                      <div className='flex w-full flex-wrap items-center gap-1 max-[385px]:gap-0'>
+                      <div className='flex w-full flex-wrap items-center'>
                         <b className='font-bold text-foreground'>{name}</b>
                         {!isCompleted && hasAchievementStatus && (
-                          <span className='text-xs font-semibold text-foreground'>
+                          <span className='ml-1 text-xs font-semibold text-foreground'>
                             - {`${current}/${complete}`}
                           </span>
                         )}

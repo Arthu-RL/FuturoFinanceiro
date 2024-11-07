@@ -6,7 +6,7 @@ import { NavigationContent } from './NavigationContent';
 import { useNavigate } from 'react-router-dom';
 import { useTutorial } from '@/providers/tutorialProvider';
 import { Fragment, useState } from 'react';
-import { AchievementsModal } from '../AchievementsModal';
+import { AchievementsModal } from '../../Simulator/Modal/AchievementsModal';
 
 export const NavigationBar = () => {
   const [isAchievementModalActive, setIsAchievementModalActive] = useState(false);
