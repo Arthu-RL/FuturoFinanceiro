@@ -49,10 +49,7 @@ function assetCalculateTypeMultiplier(assetType: AssetType) {
 }
 
 // Calculo chancede perda
-function assetCalculateChanceOfLoss(
-  profile: Profile,
-  valuationFactor: number,
-) {
+function assetCalculateChanceOfLoss(profile: Profile, valuationFactor: number) {
   let chanceOfLoss = baseChanceOfLoss[profile];
 
   if (valuationFactor > 1.1) {
@@ -124,4 +121,5 @@ export {
   calculateAssetTrend,
   calculateVolatility,
   calculateHighsAndLows,
+  assetCalculateChanceOfLoss,
 };
