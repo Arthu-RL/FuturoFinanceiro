@@ -2,7 +2,9 @@ import { Button } from '../../ui/button';
 import { DropdownFilterOption } from './DropdownFilterOption';
 import type { Table } from '@tanstack/react-table';
 import { Check, Filter } from 'lucide-react';
+import { handleSetSearchParams } from '@/utils/searchParams';
 import type { Assets } from '@/lib/schemas/assets.schema';
+import { useSearchParams } from 'react-router-dom';
 
 import {
   DropdownMenu,
@@ -25,12 +27,14 @@ export const DropdownFilter = ({ table }: DropdownFilterProps) => {
   const isUserWalletFilterActive = table.getColumn('id')?.getFilterValue() === true;
   const hasProfileFilter = table.getColumn('profile')?.getFilterValue();
   const hasTypeFilter = table.getColumn('type')?.getFilterValue();
+  const [_, setSearchParams] = useSearchParams();
 
   const hasActiveFilters = table.getColumn('id')?.getFilterValue() || hasTypeFilter || hasProfileFilter;
 
   function toggleUserAssetsFilter() {
     if (isUserWalletFilterActive) table.getColumn('id')?.setFilterValue('');
     else table.getColumn('id')?.setFilterValue(true);
+    handleSetSearchParams({ page: String(1) }, setSearchParams);
   }
 
   return (

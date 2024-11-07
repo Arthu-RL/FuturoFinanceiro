@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../ui/card';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Input } from '../../ui/input';
 import { DropdownFilter } from '../Dropdown/DropdownFilter';
 import { useAssetColumns } from '@/hooks/useAssetColumns';
@@ -9,6 +9,8 @@ import { X } from 'lucide-react';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { TransactionModal } from '../Modal/TransactionModal';
 import { DetailsModal } from '../Modal/DetailsModal';
+import { useSearchParams } from 'react-router-dom';
+import { handleSetSearchParams } from '@/utils/searchParams';
 
 import {
   ColumnFiltersState,
@@ -22,14 +24,26 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
+const ITEMS_PER_PAGE = 6;
+
 export function AssetsTable() {
   const [sorting, setSorting] = useState<SortingState>([{ id: 'value', desc: false }]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({ id: false });
   const [rowSelection, setRowSelection] = useState({});
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 6 });
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: ITEMS_PER_PAGE });
+  const [totalItems, setTotalItems] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { columns, rowId, saleState, purchaseState, detailsState } = useAssetColumns();
   const { assets } = useInvestmentAssets();
+
+  const pageParam = searchParams.get('page');
+  const pageNumber = !pageParam || isNaN(Number(pageParam)) ? 1 : Math.round(Number(pageParam));
+  const totalPages = Math.ceil(totalItems / 6);
+  const currentPage = Math.min(Math.max(pageNumber, 1), totalPages);
+  const pageItemLast = Math.min(currentPage * pagination.pageSize, totalItems);
+  const pageItemFirst = totalItems > 0 ? (currentPage - 1) * pagination.pageSize + 1 : 0;
 
   const table = useReactTable({
     data: assets,
@@ -44,19 +58,20 @@ export function AssetsTable() {
     onRowSelectionChange: setRowSelection,
     onPaginationChange: setPagination,
     state: {
-      pagination,
       sorting,
       columnFilters,
       columnVisibility,
       rowSelection,
+      pagination: { pageIndex: currentPage - 1, pageSize: ITEMS_PER_PAGE },
     },
   });
 
-  const totalItems = table.getRowCount();
+  const rowCount = table.getFilteredRowModel().flatRows.length;
   const hasNoVisibleItems = totalItems <= 0;
-  const currentPage = pagination.pageIndex + 1;
-  const pageItemLast = Math.min(currentPage * pagination.pageSize, totalItems);
-  const pageItemFirst = totalItems > 0 ? (currentPage - 1) * pagination.pageSize + 1 : 0;
+
+  useEffect(() => {
+    setTotalItems(rowCount);
+  }, [rowCount]);
 
   return (
     <Card className='col-span-3 flex h-full flex-col max-2xl:col-span-4'>
@@ -101,11 +116,17 @@ export function AssetsTable() {
               className='w-full'
               placeholder='Buscar por nome...'
               value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-              onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
+              onChange={(event) => {
+                table.getColumn('name')?.setFilterValue(event.target.value);
+                handleSetSearchParams({ page: String(1) }, setSearchParams);
+              }}
             />
             {table.getColumn('name')?.getFilterValue() ? (
               <button
-                onClick={() => table.getColumn('name')?.setFilterValue(null)}
+                onClick={() => {
+                  table.getColumn('name')?.setFilterValue(null);
+                  handleSetSearchParams({ page: String(1) }, setSearchParams);
+                }}
                 className='group absolute right-0 h-full px-2 pb-0.5'
               >
                 <X className='size-4 transition-all delay-100 ease-in dark:stroke-stone-400 dark:group-hover:stroke-white' />
@@ -165,7 +186,10 @@ export function AssetsTable() {
           <Button
             variant='outline'
             size='sm'
-            onClick={() => table.previousPage()}
+            onClick={() => {
+              table.previousPage();
+              handleSetSearchParams({ page: String(currentPage - 1) }, setSearchParams);
+            }}
             disabled={!table.getCanPreviousPage()}
           >
             Anterior
@@ -173,7 +197,10 @@ export function AssetsTable() {
           <Button
             variant='outline'
             size='sm'
-            onClick={() => table.nextPage()}
+            onClick={() => {
+              table.nextPage();
+              handleSetSearchParams({ page: String(currentPage + 1) }, setSearchParams);
+            }}
             disabled={!table.getCanNextPage()}
           >
             Próxima
