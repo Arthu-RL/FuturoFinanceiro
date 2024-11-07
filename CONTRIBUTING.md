@@ -38,6 +38,18 @@ git add .
 git commit -m "Descrição clara e concisa das alterações"
 ```
 
+#### Convenção de Commits 
+
+| Tipo de Commit |                             Descrição                                | Exemplo
+| ---------------|----------------------------------------------------------------------|-----------
+| `feat`         | Adiciona uma nova funcionalidade ao projeto.                         | `feat: add achievements modal`
+| `fix`          | Corrige um bug ou problema no projeto.                               | `fix: disable simulator at home page`
+| `docs`         | Altera a documentação do projeto.                                    | `docs: update README.md`
+| `style`        | Realiza mudanças na aparência, sem alterar a funcionalidade.         | `style: reduce achievement toast size`
+| `refactor`     | Realiza mudanças no código que não alteram a funcionalidade.         | `refactor: improve some namings in 'useAssetColumns'`
+| `test`         | Adiciona ou modifica testes no projeto.                              | `test: add unit test for UserService`
+| `chore`        | Atualização de tarefas que não ocasionam alteração no código de produção, mas mudanças de ferramentas, mudanças de configuração e bibliotecas que realmente não entram em produção                                        | `chore: increase favicon size`
+
 ### 6. Envie Suas Alterações
 
 Envie as alterações para o seu repositório forkado:
