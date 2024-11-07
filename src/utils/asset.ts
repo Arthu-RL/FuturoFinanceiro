@@ -1,6 +1,14 @@
 import { Assets } from '@/lib/schemas/assets.schema';
 import { Profile, AssetType } from '@/@types/investment';
 
+const TENDENCY_THRESHOLD = 0.005;
+const HIGH_VOLATILITY_THRESHOLD = 0.05;
+const LOW_VOLATILITY_THRESHOLD = 0.02;
+
+const baseDrift = { 'low-risk': 0.005, 'medium-risk': 0.05, 'high-risk': 0.08 };
+const baseVolatility = { 'low-risk': 0.002, 'medium-risk': 0.005, 'high-risk': 0.008 };
+const baseChanceOfLoss = { 'low-risk': 0.03, 'medium-risk': 0.17, 'high-risk': 0.5 };
+
 function getAssetVariationStatus(previous: number, current: number) {
   if (previous < current) return 'increase';
   if (previous > current) return 'decrease';
@@ -9,14 +17,11 @@ function getAssetVariationStatus(previous: number, current: number) {
 
 // Calcula movimentação do ativo
 function assetCalculateDrift(profile: Profile) {
-  const baseDrift = { 'low-risk': 0.005, 'medium-risk': 0.05, 'high-risk': 0.08 };
-
   return baseDrift[profile] || 0.01;
 }
 
 // Variação de preço baseado no perfil
 function assetCalculateVolatility(profile: Profile) {
-  const baseVolatility = { 'low-risk': 0.002, 'medium-risk': 0.005, 'high-risk': 0.008 };
   let volatility = baseVolatility[profile] || 0.05;
 
   if (profile === 'high-risk') {
@@ -48,22 +53,20 @@ function assetCalculateChanceOfLoss(
   profile: Profile,
   valuationFactor: number,
 ) {
-  const baseChanceOfLoss = { 'low-risk': 0.075, 'medium-risk': 0.15, 'high-risk': 0.5 };
-  let chanceOfLoss = baseChanceOfLoss[profile] || 0.2;
+  let chanceOfLoss = baseChanceOfLoss[profile];
 
   if (valuationFactor > 1.1) {
-    chanceOfLoss *= 1.5;
+    chanceOfLoss *= 1.2;
   } else if (valuationFactor > 1.2 && (profile === 'medium-risk' || profile === 'high-risk')) {
-    chanceOfLoss *= 3;
+    chanceOfLoss *= 1.6;
   } else if (valuationFactor > 1.5 && (profile === 'medium-risk' || profile === 'high-risk')) {
-    chanceOfLoss *= 6;
+    chanceOfLoss *= 2;
   }
 
   return chanceOfLoss;
 }
 
 function calculateAssetTrend(assetHistory: Assets['history']) {
-  const TENDENCY_THRESHOLD = 0.005;
   if (assetHistory.length < 2) return { text: 'Indisponível', color: 'text-gray-500' };
 
   const totalChange = assetHistory.slice(1).reduce((total, _, index) => {
@@ -84,8 +87,6 @@ function calculateAssetTrend(assetHistory: Assets['history']) {
 }
 
 function calculateVolatility(assetHistory: Assets['history']) {
-  const HIGH_VOLATILITY_THRESHOLD = 0.05;
-  const LOW_VOLATILITY_THRESHOLD = 0.02;
   if (assetHistory.length < 2) return { text: 'Indisponível', color: 'text-gray-300' };
 
   const mean = assetHistory.reduce((sum, { value }) => sum + value, 0) / assetHistory.length;
@@ -119,7 +120,7 @@ export {
   assetCalculateDrift,
   assetCalculateVolatility,
   assetCalculateTypeMultiplier,
-  assetCalculateChanceOfLoss,
+  baseChanceOfLoss,
   calculateAssetTrend,
   calculateVolatility,
   calculateHighsAndLows,
