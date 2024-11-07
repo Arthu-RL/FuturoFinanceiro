@@ -178,7 +178,7 @@ export const AchievementsModal = ({ modalState }: AchievementsModal) => {
                           </span>
                         )}
                         {isCompleted && (
-                          <span className='text-xs font-semibold text-green-500'>
+                          <span className='ml-1 text-xs font-semibold text-green-500'>
                             <span className='text-foreground'>-</span> Completo!
                           </span>
                         )}
