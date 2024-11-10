@@ -22,7 +22,7 @@ export default function App() {
               <MarketRefreshProvider>
                 <ConfettiProvider>
                   <NavigationBar />
-                  <main className='min-h-screen pb-12 pl-28 pr-14 pt-6 dark:bg-black max-2xl:pl-24 max-2xl:pr-9 max-2xl:pt-8 max-sm:px-4 max-sm:pt-20 2xl:h-screen 2xl:pb-10'>
+                  <main className='min-h-screen dark:bg-black'>
                     <Routes />
                   </main>
                   <Toaster position='top-right' richColors visibleToasts={3} />

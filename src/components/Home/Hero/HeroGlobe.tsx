@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { World } from '../ui/globe';
+import { World } from '../../ui/globe';
 
 export const HeroGlobe = () => {
   const globeConfig = {
@@ -389,23 +389,23 @@ export const HeroGlobe = () => {
   ];
 
   return (
-    <div className='relative flex h-screen w-full flex-row items-center justify-center bg-transparent max-2xl:mt-10 max-xl:h-[25rem] md:h-auto'>
-      <div className='relative mx-auto h-full w-full max-w-7xl overflow-hidden px-4 max-xl:h-[25rem] md:h-[40rem]'>
+    <div className='relative flex h-auto w-full flex-row items-center justify-center bg-transparent max-2xl:mt-10'>
+      <div className='relative mx-auto h-[40rem] w-full max-w-7xl overflow-hidden max-sm:h-[25rem]'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className='div'
         >
-          <h2 className='text-center text-xl font-bold text-black dark:text-white md:text-4xl'>
+          <h2 className='text-center text-4xl font-bold text-black dark:text-white max-xl:text-2xl max-sm:text-xl'>
             Conecte-se ao Mercado Global
           </h2>
-          <p className='mx-auto mt-2 max-w-md text-center text-base font-normal text-neutral-700 dark:text-neutral-200 max-xl:text-sm max-xl:leading-5 md:text-lg'>
+          <p className='mx-auto mt-2 max-w-md text-center text-lg font-normal text-neutral-700 dark:text-neutral-200 max-xl:text-sm max-xl:leading-5'>
             Simule investimentos em ativos do mundo todo e expanda seu conhecimento financeiro.
           </p>
         </motion.div>
         <div className='pointer-events-none absolute inset-x-0 bottom-0 z-40 h-40 w-full select-none bg-gradient-to-b from-transparent to-white dark:to-black' />
-        <div className='absolute z-10 h-72 w-full max-xl:-bottom-0 max-xl:left-0 md:h-full'>
+        <div className='absolute z-10 h-full w-full max-xl:-bottom-0 max-xl:left-0 max-xl:h-[80%]'>
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>
