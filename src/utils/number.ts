@@ -1,6 +1,7 @@
 import { Locale } from '@/@types/locale';
 import { Assets } from '@/lib/schemas/assets.schema';
 import { User } from '@/lib/schemas/user.schema';
+import { generateCurrentWeekData } from './chart';
 
 function getAssetVariation(previousValue: number, currentValue: number) {
   if (previousValue === 0) return currentValue;
@@ -44,7 +45,7 @@ function calculateTransactionProfitDetails(
 }
 
 function calculateWeekTotalProfit(currentWeekProfitability: User['profitabilityHistory']) {
-  return currentWeekProfitability.reduce((weekProfitability, { profitability }) => {
+  return generateCurrentWeekData(currentWeekProfitability).reduce((weekProfitability, { profitability }) => {
     return weekProfitability + profitability;
   }, 0);
 }
