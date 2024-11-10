@@ -2,8 +2,8 @@ import { Assets } from '@/lib/schemas/assets.schema';
 import { Profile, AssetType } from '@/@types/investment';
 
 const TENDENCY_THRESHOLD = 0.005;
-const HIGH_VOLATILITY_THRESHOLD = 0.05;
-const LOW_VOLATILITY_THRESHOLD = 0.02;
+const HIGH_VOLATILITY_THRESHOLD = 6.5;
+const MEDIUM_VOLATILITY_THRESHOLD = 2.5;
 
 const baseDrift = { 'low-risk': 0.005, 'medium-risk': 0.05, 'high-risk': 0.08 };
 const baseVolatility = { 'low-risk': 0.002, 'medium-risk': 0.005, 'high-risk': 0.008 };
@@ -86,17 +86,23 @@ function calculateAssetTrend(assetHistory: Assets['history']) {
 function calculateVolatility(assetHistory: Assets['history']) {
   if (assetHistory.length < 2) return { text: 'Indisponível', color: 'text-gray-300' };
 
-  const mean = assetHistory.reduce((sum, { value }) => sum + value, 0) / assetHistory.length;
-  const squaredDiffs = assetHistory.map(({ value }) => ((value - mean) / mean) ** 2);
-  const averageSquaredDiff = squaredDiffs.reduce((sum, diff) => sum + diff, 0) / squaredDiffs.length;
-  const standardDeviation = Math.sqrt(averageSquaredDiff);
+  const logReturns = assetHistory.slice(1).map((asset, index) => {
+    const previousValue = assetHistory[index].value;
+    const currentValue = asset.value;
+    return Math.log(currentValue / previousValue);
+  });
 
-  if (standardDeviation < LOW_VOLATILITY_THRESHOLD) {
-    return { text: 'Baixa Volatilidade', color: 'text-green-600' };
-  } else if (standardDeviation >= LOW_VOLATILITY_THRESHOLD && standardDeviation < HIGH_VOLATILITY_THRESHOLD) {
+  const meanLogReturn = logReturns.reduce((acc, val) => acc + val, 0) / logReturns.length;
+  const sumSquaredDifferences = logReturns.reduce((acc, val) => acc + Math.pow(val - meanLogReturn, 2), 0);
+  const variance = sumSquaredDifferences / (logReturns.length - 1);
+  const volatilityPercentage = Math.sqrt(variance) * 100;
+
+  if (volatilityPercentage >= HIGH_VOLATILITY_THRESHOLD) {
+    return { text: 'Alta Volatilidade', color: 'text-red-600' };
+  } else if (volatilityPercentage >= MEDIUM_VOLATILITY_THRESHOLD) {
     return { text: 'Média Volatilidade', color: 'text-orange-500' };
   } else {
-    return { text: 'Alta Volatilidade', color: 'text-red-600' };
+    return { text: 'Baixa Volatilidade', color: 'text-green-600' };
   }
 }
 
