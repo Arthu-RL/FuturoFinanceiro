@@ -6,13 +6,23 @@ import { Spotlight } from '@/components/ui/spotlight';
 import { InView } from '@/components/ui/in-view';
 
 export const AboutUsHeading = () => {
-  const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>();
+  const { ref: containerRef, isIntersecting: isContainerIntersecting } = useIsIntersecting<HTMLDivElement>({
+    options: { rootMargin: '300px', threshold: 1 },
+    isResetEnabled: true,
+  });
+
+  const { ref: headingRef, isIntersecting: isHeadingIntersecting } = useIsIntersecting<HTMLDivElement>({
+    options: { rootMargin: '0px', threshold: 1 },
+  });
 
   return (
-    <div className='max-sm:gap-15 z-10 grid w-fit grid-cols-2 items-center gap-[9.75rem] font-manrope max-2xl:gap-28 max-xl:grid-cols-1 max-xl:gap-14'>
-      <div ref={ref} className='flex flex-col gap-6 py-9 max-xl:order-1 max-sm:gap-3 max-sm:py-0'>
+    <div
+      ref={containerRef}
+      className='max-sm:gap-15 z-10 grid w-fit grid-cols-2 items-center gap-[9.75rem] font-manrope max-2xl:gap-28 max-xl:grid-cols-1 max-xl:gap-14'
+    >
+      <div ref={headingRef} className='flex flex-col gap-6 py-9 max-xl:order-1 max-sm:gap-3 max-sm:py-0'>
         <TextEffect
-          trigger={isIntersecting}
+          trigger={isContainerIntersecting}
           className='text-5xl font-bold max-2xl:text-4xl max-xl:text-2xl max-sm:text-xl'
           variants={{
             container: {
@@ -29,7 +39,7 @@ export const AboutUsHeading = () => {
         </TextEffect>
         <TextEffect
           delay={0.5}
-          trigger={isIntersecting}
+          trigger={isHeadingIntersecting}
           className='text-pretty text-lg max-2xl:text-base max-sm:text-sm'
         >
           Nossa plataforma tem o objetivo de capacitar jovens com conhecimentos práticos sobre finanças e
@@ -38,7 +48,7 @@ export const AboutUsHeading = () => {
           extensão do UniFOA, unindo teoria e prática para uma formação completa.
         </TextEffect>
       </div>
-      <Spotlight className='self-start max-xl:-top-56' trigger={isIntersecting} />
+      <Spotlight className='self-start max-xl:-top-56' trigger={isContainerIntersecting} />
       <InView
         variants={{
           hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
