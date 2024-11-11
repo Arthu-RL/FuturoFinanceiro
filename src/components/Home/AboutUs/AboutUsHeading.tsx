@@ -1,4 +1,4 @@
-import LogoVariant from '@/assets/logos/svgs/logo_variant.svg?react';
+import Logo from '@/assets/logos/svgs/logo.svg?react';
 
 import { TextEffect } from '@/components/ui/text-effect';
 import { useIsIntersecting } from '@/hooks/useIsIntersecting';
@@ -9,8 +9,8 @@ export const AboutUsHeading = () => {
   const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>();
 
   return (
-    <div className='z-10 grid w-fit grid-cols-2 items-center gap-28 font-manrope max-2xl:gap-20 max-xl:grid-cols-1 max-xl:gap-16 max-sm:gap-8'>
-      <div ref={ref} className='flex flex-col gap-3 max-xl:order-1'>
+    <div className='max-sm:gap-15 z-10 grid w-fit grid-cols-2 items-center gap-[9.75rem] font-manrope max-2xl:gap-28 max-xl:grid-cols-1 max-xl:gap-14'>
+      <div ref={ref} className='flex flex-col gap-6 py-9 max-xl:order-1 max-sm:gap-3 max-sm:py-0'>
         <TextEffect
           trigger={isIntersecting}
           className='text-5xl font-bold max-2xl:text-4xl max-xl:text-2xl max-sm:text-xl'
@@ -47,7 +47,12 @@ export const AboutUsHeading = () => {
         viewOptions={{ margin: '0px 0px -200px 0px' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
-        <LogoVariant className='h-fit w-full max-w-[40rem] text-[#0B2333] drop-shadow-xl dark:text-gray-200 max-xl:max-w-full' />
+        <div className='flex items-center gap-7 drop-shadow-xl max-xl:justify-center max-sm:w-full max-sm:gap-4 max-sm:pt-7'>
+          <Logo className='h-fit w-full max-w-[14rem] max-2xl:max-w-[12rem] max-sm:max-w-[9rem]' />
+          <b className='bg-gradient-to-b from-[#0B2333]/80 to-[#0B2333] bg-clip-text font-manrope text-6xl font-extrabold text-transparent dark:from-white dark:to-slate-400 max-2xl:text-5xl max-sm:max-w-[12.85rem] max-sm:text-[2.5rem]'>
+            Futuro Financeiro
+          </b>
+        </div>
       </InView>
     </div>
   );
