@@ -49,7 +49,7 @@ export const AboutUsHeading = () => {
       >
         <div className='flex items-center gap-7 drop-shadow-xl max-xl:justify-center max-sm:w-full max-sm:gap-4 max-sm:pt-7'>
           <Logo className='h-fit w-full max-w-[14rem] max-2xl:max-w-[12rem] max-sm:max-w-[9rem]' />
-          <b className='bg-gradient-to-b from-[#0B2333]/80 to-[#0B2333] bg-clip-text font-manrope text-6xl font-extrabold text-transparent dark:from-white dark:to-slate-400 max-2xl:text-5xl max-sm:max-w-[12.85rem] max-sm:text-[2.5rem]'>
+          <b className='bg-gradient-to-b from-[#0B2333]/80 to-[#0B2333] bg-clip-text font-manrope text-6xl font-extrabold text-transparent dark:from-white dark:to-slate-400 max-2xl:text-5xl max-sm:max-w-[12.85rem] max-sm:text-[2.5rem] max-[385px]:max-w-[10.35rem] max-[385px]:text-[2rem]'>
             Futuro Financeiro
           </b>
         </div>
