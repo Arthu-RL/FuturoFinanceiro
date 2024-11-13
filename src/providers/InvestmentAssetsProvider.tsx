@@ -1,28 +1,24 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { Assets } from '@/lib/schemas/assets.schema';
 import { useGenerateInvestmentAssets } from '@/hooks/useGenerateInvestmentAssets';
-import { AssetGlobalVariation, KeyVariation, VariationAssetsSettings } from "@/@types/investment";
+import { VariationAssetsSettings } from '@/@types/investment';
 import { useVariation, baseDrift, baseVolatility, baseChanceOfLoss } from '@/hooks/useVariation';
 
-
-type InvestmentAssetsState = {
+export type InvestmentAssetsState = {
   assets: Assets[];
   updateAssets: (assets: Assets[]) => void;
-  variationSettings: VariationAssetsSettings
+  variationSettings: VariationAssetsSettings;
 };
 
 const InvestmentAssetsContext = createContext<InvestmentAssetsState>({
-  assets: [], updateAssets: () => {}, 
-  variationSettings: { 
-    drift: baseDrift, 
-    volatility: baseVolatility, 
-    loss: baseChanceOfLoss, 
-    setVariationAsset: (
-      variationAssetValue: number, 
-      profileAssetKey: keyof AssetGlobalVariation, 
-      variationAssetKey: KeyVariation
-    )=>{}
-  }
+  assets: [],
+  updateAssets: () => {},
+  variationSettings: {
+    drift: baseDrift,
+    volatility: baseVolatility,
+    loss: baseChanceOfLoss,
+    setVariationAsset: null,
+  },
 });
 
 const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) => {
@@ -30,7 +26,7 @@ const InvestmentAssetsProvider = ({ children }: { children: ReactNode }) => {
   const variationSettings = useVariation();
 
   return (
-    <InvestmentAssetsContext.Provider value={{ assets, updateAssets, variationSettings}}>
+    <InvestmentAssetsContext.Provider value={{ assets, updateAssets, variationSettings }}>
       {children}
     </InvestmentAssetsContext.Provider>
   );
@@ -43,4 +39,3 @@ const useInvestmentAssets = () => {
 };
 
 export { InvestmentAssetsProvider, useInvestmentAssets };
-export type { AssetGlobalVariation }

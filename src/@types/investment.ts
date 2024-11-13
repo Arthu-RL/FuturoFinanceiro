@@ -6,14 +6,23 @@ type AssetGlobalVariation = Record<Profile, number>;
 type KeyVariation = 'drift' | 'volatility' | 'loss';
 
 type VariationAssetsSettings = {
-    drift: AssetGlobalVariation;
-    volatility: AssetGlobalVariation;
-    loss: AssetGlobalVariation;
-    setVariationAsset: (
-            variationAssetValue: number, 
-            profileAssetKey: keyof AssetGlobalVariation, 
-            variationAssetKey: KeyVariation
-    ) => void
-}
+  drift: AssetGlobalVariation;
+  volatility: AssetGlobalVariation;
+  loss: AssetGlobalVariation;
+  setVariationAsset:
+    | ((
+        variationAssetValue: number,
+        profileAssetKey: keyof AssetGlobalVariation,
+        variationAssetKey: KeyVariation,
+      ) => void)
+    | null;
+};
 
-export type { InvestmentAssets, Profile, AssetType, AssetGlobalVariation, KeyVariation, VariationAssetsSettings };
+export type {
+  InvestmentAssets,
+  Profile,
+  AssetType,
+  AssetGlobalVariation,
+  KeyVariation,
+  VariationAssetsSettings,
+};

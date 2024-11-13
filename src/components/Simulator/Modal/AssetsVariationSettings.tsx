@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { Settings } from "lucide-react"
-import { AssetGlobalVariation, KeyVariation } from "@/@types/investment"
+import { AssetGlobalVariation, KeyVariation, VariationAssetsSettings } from "@/@types/investment"
 import { useInvestmentAssets } from "@/providers/InvestmentAssetsProvider"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -24,14 +24,14 @@ function InputSettings({
         desc: string; 
         variationType: AssetGlobalVariation;
         variationTypeKey: KeyVariation;
-        callback: (variationAssetValue: number, profileAssetKey: keyof AssetGlobalVariation, variationAssetKey: KeyVariation) => void 
+        callback:VariationAssetsSettings['setVariationAsset'] 
     }) {
     return (
         <div>
             <Label>{desc}</Label>
-            <Input value={variationType["low-risk"]} onChange={(e) => callback(Number(e.target.value), "low-risk", variationTypeKey)} />
-            <Input value={variationType["medium-risk"]} onChange={(e) => callback(Number(e.target.value), "medium-risk", variationTypeKey)} />
-            <Input value={variationType["high-risk"]} onChange={(e) => callback(Number(e.target.value), "high-risk", variationTypeKey)} />
+            <Input value={variationType["low-risk"]} onChange={(e) => callback?.(Number(e.target.value), "low-risk", variationTypeKey)} />
+            <Input value={variationType["medium-risk"]} onChange={(e) => callback?.(Number(e.target.value), "medium-risk", variationTypeKey)} />
+            <Input value={variationType["high-risk"]} onChange={(e) => callback?.(Number(e.target.value), "high-risk", variationTypeKey)} />
         </div>
     )
 }

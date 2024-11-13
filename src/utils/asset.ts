@@ -61,18 +61,19 @@ function calculateAssetTrend(assetHistory: Assets['history']) {
 
   const totalChange = assetHistory.slice(1).reduce((total, _, index) => {
     const change = (assetHistory[index + 1].value - assetHistory[index].value) / assetHistory[index].value;
-    return total + change;
+    total += change;
+    return total;
   }, 0);
 
   const averageChange = totalChange / (assetHistory.length - 1);
 
   if (averageChange > TENDENCY_THRESHOLD) {
     return { text: 'Tendência de Alta', color: 'text-green-500' };
-  }
-  if (averageChange < -TENDENCY_THRESHOLD) {
+  } else if (averageChange < -TENDENCY_THRESHOLD) {
     return { text: 'Tendência de Baixa', color: 'text-red-500' };
+  } else {
+    return { text: 'Estável', color: 'text-blue-500' };
   }
-  return { text: 'Estável', color: 'text-blue-500' };
 }
 
 // Volatility calculation based on standard deviation
@@ -97,7 +98,6 @@ function calculateVolatility(assetHistory: Assets['history']) {
   } else {
     return { text: 'Baixa Volatilidade', color: 'text-green-600' };
   }
-  return { text: 'Alta Volatilidade', color: 'text-red-600' };
 }
 
 // Historical highs and lows
