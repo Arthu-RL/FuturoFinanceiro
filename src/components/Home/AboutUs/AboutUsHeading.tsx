@@ -7,8 +7,7 @@ import { InView } from '@/components/ui/in-view';
 
 export const AboutUsHeading = () => {
   const { ref: containerRef, isIntersecting: isContainerIntersecting } = useIsIntersecting<HTMLDivElement>({
-    options: { rootMargin: '300px', threshold: 1 },
-    isResetEnabled: true,
+    options: { rootMargin: '0px', threshold: 1 },
   });
 
   const { ref: headingRef, isIntersecting: isHeadingIntersecting } = useIsIntersecting<HTMLDivElement>({
@@ -20,7 +19,7 @@ export const AboutUsHeading = () => {
       ref={containerRef}
       className='max-sm:gap-15 z-10 grid w-fit grid-cols-2 items-center gap-[9.75rem] font-manrope max-2xl:gap-28 max-xl:grid-cols-1 max-xl:gap-14'
     >
-      <div ref={headingRef} className='flex flex-col gap-6 py-9 max-xl:order-1 max-sm:gap-3 max-sm:py-0'>
+      <div ref={headingRef} className='flex flex-col gap-4 py-9 max-xl:order-1 max-sm:gap-3 max-sm:py-0'>
         <TextEffect
           trigger={isContainerIntersecting}
           className='text-5xl font-bold max-2xl:text-4xl max-xl:text-2xl max-sm:text-xl'
@@ -59,7 +58,7 @@ export const AboutUsHeading = () => {
       >
         <div className='flex items-center gap-7 drop-shadow-xl max-xl:justify-center max-sm:w-full max-sm:gap-4 max-sm:pt-7'>
           <Logo className='h-fit w-full max-w-[14rem] max-2xl:max-w-[12rem] max-sm:max-w-[9rem]' />
-          <b className='bg-gradient-to-b from-[#0B2333]/80 to-[#0B2333] bg-clip-text font-manrope text-6xl font-extrabold text-transparent dark:from-white dark:to-slate-400 max-2xl:text-5xl max-sm:max-w-[12.85rem] max-sm:text-[2.5rem] max-[385px]:max-w-[10.35rem] max-[385px]:text-[2rem]'>
+          <b className='bg-gradient-to-b from-[#0B2333]/80 to-[#0B2333] bg-clip-text font-manrope text-6xl font-extrabold text-transparent dark:from-slate-50 dark:to-slate-400 max-2xl:text-5xl max-sm:max-w-[12.85rem] max-sm:text-[2.5rem] max-[385px]:max-w-[10.35rem] max-[385px]:text-[2rem]'>
             Futuro Financeiro
           </b>
         </div>
