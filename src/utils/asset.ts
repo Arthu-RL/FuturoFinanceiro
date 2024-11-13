@@ -1,13 +1,10 @@
 import { Assets } from '@/lib/schemas/assets.schema';
 import { Profile, AssetType } from '@/@types/investment';
+import { AssetGlobalVariation } from '@/providers/InvestmentAssetsProvider';
 
 const TENDENCY_THRESHOLD = 0.005;
 const HIGH_VOLATILITY_THRESHOLD = 6.5;
 const MEDIUM_VOLATILITY_THRESHOLD = 2.5;
-
-const baseDrift = { 'low-risk': 0.005, 'medium-risk': 0.05, 'high-risk': 0.08 };
-const baseVolatility = { 'low-risk': 0.002, 'medium-risk': 0.005, 'high-risk': 0.008 };
-const baseChanceOfLoss = { 'low-risk': 0.03, 'medium-risk': 0.17, 'high-risk': 0.5 };
 
 function getAssetVariationStatus(previous: number, current: number) {
   if (previous < current) return 'increase';
@@ -15,74 +12,70 @@ function getAssetVariationStatus(previous: number, current: number) {
   return 'stable';
 }
 
-// Calcula movimentação do ativo
-function assetCalculateDrift(profile: Profile) {
+// Drift calculation based on profile
+function assetCalculateDrift(profile: Profile, baseDrift: AssetGlobalVariation) {
   return baseDrift[profile] || 0.01;
 }
 
-// Variação de preço baseado no perfil
-function assetCalculateVolatility(profile: Profile) {
+// Volatility calculation based on profile, with higher spikes for high-risk
+function assetCalculateVolatility(profile: Profile, baseVolatility: AssetGlobalVariation) {
   let volatility = baseVolatility[profile] || 0.05;
 
-  if (profile === 'high-risk') {
-    if (Math.random() < 0.1) {
-      volatility *= 2;
-    }
+  if (profile === 'high-risk' && Math.random() < 0.1) {
+    volatility *= 2;
   }
 
   return volatility;
 }
 
-// Variação por tipo de produto
+// Type-based multiplier
 function assetCalculateTypeMultiplier(assetType: AssetType) {
-  let typeMultiplier = 0.5;
-
-  if (assetType === 'Crypto' && Math.random() < 0.2) {
-    typeMultiplier = 0.2;
-  } else if (assetType === 'Commodity' && Math.random() < 0.15) {
-    typeMultiplier = 0.1;
-  } else if (assetType === 'Fiat') {
-    typeMultiplier = 0.15;
-  }
-
-  return typeMultiplier;
+  if (assetType === 'Crypto' && Math.random() < 0.2) return 0.2;
+  if (assetType === 'Commodity' && Math.random() < 0.15) return 0.1;
+  if (assetType === 'Fiat') return 0.15;
+  return 0.5;
 }
 
 // Calculo chancede perda
-function assetCalculateChanceOfLoss(profile: Profile, valuationFactor: number) {
+function assetCalculateChanceOfLoss(profile: Profile, baseChanceOfLoss: AssetGlobalVariation, valuationFactor?: number) {
   let chanceOfLoss = baseChanceOfLoss[profile];
+
+  if (!valuationFactor) return chanceOfLoss;
 
   if (valuationFactor > 1.1) {
     chanceOfLoss *= 1.2;
-  } else if (valuationFactor > 1.2 && (profile === 'medium-risk' || profile === 'high-risk')) {
+  }
+  if (valuationFactor > 1.2 && ['medium-risk', 'high-risk'].includes(profile)) {
     chanceOfLoss *= 1.6;
-  } else if (valuationFactor > 1.5 && (profile === 'medium-risk' || profile === 'high-risk')) {
+  }
+  if (valuationFactor > 1.5 && ['medium-risk', 'high-risk'].includes(profile)) {
     chanceOfLoss *= 2;
   }
 
   return chanceOfLoss;
 }
 
+// Asset trend calculation based on recent history
 function calculateAssetTrend(assetHistory: Assets['history']) {
   if (assetHistory.length < 2) return { text: 'Indisponível', color: 'text-gray-500' };
 
   const totalChange = assetHistory.slice(1).reduce((total, _, index) => {
     const change = (assetHistory[index + 1].value - assetHistory[index].value) / assetHistory[index].value;
-    total += change;
-    return total;
+    return total + change;
   }, 0);
 
   const averageChange = totalChange / (assetHistory.length - 1);
 
   if (averageChange > TENDENCY_THRESHOLD) {
     return { text: 'Tendência de Alta', color: 'text-green-500' };
-  } else if (averageChange < -TENDENCY_THRESHOLD) {
-    return { text: 'Tendência de Baixa', color: 'text-red-500' };
-  } else {
-    return { text: 'Estável', color: 'text-blue-500' };
   }
+  if (averageChange < -TENDENCY_THRESHOLD) {
+    return { text: 'Tendência de Baixa', color: 'text-red-500' };
+  }
+  return { text: 'Estável', color: 'text-blue-500' };
 }
 
+// Volatility calculation based on standard deviation
 function calculateVolatility(assetHistory: Assets['history']) {
   if (assetHistory.length < 2) return { text: 'Indisponível', color: 'text-gray-300' };
 
@@ -104,8 +97,10 @@ function calculateVolatility(assetHistory: Assets['history']) {
   } else {
     return { text: 'Baixa Volatilidade', color: 'text-green-600' };
   }
+  return { text: 'Alta Volatilidade', color: 'text-red-600' };
 }
 
+// Historical highs and lows
 function calculateHighsAndLows(assetHistory: Assets['history']) {
   if (!assetHistory.length) return { highestValue: null, lowestValue: null };
   const highestValue = Math.max(...assetHistory.map(({ value }) => value));
@@ -123,7 +118,6 @@ export {
   assetCalculateDrift,
   assetCalculateVolatility,
   assetCalculateTypeMultiplier,
-  baseChanceOfLoss,
   calculateAssetTrend,
   calculateVolatility,
   calculateHighsAndLows,
