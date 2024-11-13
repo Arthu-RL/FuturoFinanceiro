@@ -1,6 +1,6 @@
 import { Assets } from '@/lib/schemas/assets.schema';
-import { Profile, AssetType } from '@/@types/investment';
-import { AssetGlobalVariation } from '@/providers/InvestmentAssetsProvider';
+import { Profile, AssetType, AssetGlobalVariation } from '@/@types/investment';
+
 
 const TENDENCY_THRESHOLD = 0.005;
 const HIGH_VOLATILITY_THRESHOLD = 6.5;
