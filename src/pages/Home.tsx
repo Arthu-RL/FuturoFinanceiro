@@ -5,6 +5,7 @@ import { AboutUsBackground } from '@/components/Home/AboutUs/AboutUsBackground';
 import { AboutUsHeading } from '@/components/Home/AboutUs/AboutUsHeading';
 import { Fragment } from 'react/jsx-runtime';
 import { AboutUsCards } from '@/components/Home/AboutUs/AboutUsCards';
+import { Footer } from '@/components/Home/Footer/Footer';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <AboutUsHeading />
         <AboutUsCards />
       </section>
+      <Footer />
     </Fragment>
   );
 }
