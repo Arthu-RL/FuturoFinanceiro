@@ -17,7 +17,8 @@ export const useIsIntersecting = <T extends HTMLElement>({
     if (!elementRef) return;
 
     const callback = ([entry]: IntersectionObserverEntry[]) => {
-      return isResetEnabled ? setIsIntersecting(entry.isIntersecting) : setIsIntersecting(true);
+      if (isResetEnabled) setIsIntersecting(entry.isIntersecting);
+      if (!isResetEnabled && entry.isIntersecting) setIsIntersecting(true);
     };
 
     const intersectionObserver = new IntersectionObserver(callback, { ...options, root: null });
