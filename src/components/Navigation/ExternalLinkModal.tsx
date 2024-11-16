@@ -27,7 +27,7 @@ export function ExternalLinkModal({ link }: ExternalLinkModal) {
 
   return (
     <AlertDialog open={isExternalLinkModalOpen}>
-      <AlertDialogContent>
+      <AlertDialogContent className='max-sm:max-w-[90%]'>
         <AlertDialogHeader>
           <AlertDialogTitle>Deseja Prosseguir?</AlertDialogTitle>
           <AlertDialogDescription>
