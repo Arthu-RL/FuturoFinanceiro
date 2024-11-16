@@ -20,7 +20,7 @@ dd {
 }
 
 /* Resolve body overflow issue in Firefox due to dynamic text content at Hero Heading */
-.body {
+#root {
   overflow-x: hidden;
 }
 
