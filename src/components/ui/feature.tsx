@@ -15,7 +15,7 @@ export const Feature = ({
   return (
     <div
       className={cn(
-        'group/feature relative flex h-full w-full cursor-pointer select-none flex-col py-10 dark:border-neutral-800 max-sm:py-4 lg:border-r',
+        'group/feature relative flex h-full w-full cursor-pointer select-none flex-col py-10 dark:border-neutral-800 max-sm:py-6 lg:border-r',
         (index === 0 || index === 4) && 'dark:border-neutral-800 lg:border-l',
         index < 4 && 'dark:border-neutral-800 lg:border-b',
       )}
