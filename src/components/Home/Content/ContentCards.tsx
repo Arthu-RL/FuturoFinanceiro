@@ -254,7 +254,7 @@ export const ContentCards = () => {
   ];
 
   const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>({
-    options: { rootMargin: '-50px', threshold: 0 },
+    options: { rootMargin: '-75px', threshold: 0 },
   });
 
   return (
