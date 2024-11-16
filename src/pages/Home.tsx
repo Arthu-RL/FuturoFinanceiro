@@ -6,6 +6,10 @@ import { AboutUsHeading } from '@/components/Home/AboutUs/AboutUsHeading';
 import { Fragment } from 'react/jsx-runtime';
 import { AboutUsCards } from '@/components/Home/AboutUs/AboutUsCards';
 import { Footer } from '@/components/Home/Footer/Footer';
+import { ContentCards } from '@/components/Home/Content/ContentCards';
+import { ContentHeading } from '@/components/Home/Content/ContentHeading';
+import { ShootingStars } from '@/components/ui/shooting-stars';
+import { StarsBackground } from '@/components/ui/stars-background';
 
 export default function Home() {
   return (
@@ -22,6 +26,21 @@ export default function Home() {
         <AboutUsBackground />
         <AboutUsHeading />
         <AboutUsCards />
+      </section>
+      <section
+        id='#content'
+        className='relative grid w-full justify-center gap-40 overflow-hidden pb-20 pl-56 pr-40 pt-36 max-2xl:pl-36 max-2xl:pr-20 max-2xl:pt-24 max-xl:gap-24 max-xl:pb-8 max-xl:pl-[6.5rem] max-xl:pr-10 max-sm:gap-10 max-sm:px-4 max-sm:pt-10'
+      >
+        <div className='absolute -left-[10%] top-0 z-20 hidden h-[1px] w-[120%] bg-line-horizontal-dark bg-line-pattern-horizontal line-mask-horizontal dark:block'></div>
+        <div className='absolute -left-[10%] top-0 z-20 h-[1px] w-[120%] bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal dark:hidden'></div>
+        <ContentHeading />
+        <ContentCards />
+        <StarsBackground allStarsTwinkle twinkleProbability={0.7} />
+        <ShootingStars
+          className='h-0 w-0 dark:h-full dark:w-full'
+          starColor='hsl(var(--primary))'
+          trailColor='hsl(var(--secondary))'
+        />
       </section>
       <Footer />
     </Fragment>

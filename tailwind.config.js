@@ -75,6 +75,31 @@ export default {
           },
         },
       },
+      backgroundImage: {
+        'line-horizontal-dark':
+          'linear-gradient(to right, hsla(0, 0%, 100%, 0.2), hsla(0, 0%, 100%, 0.2) 50%, transparent 0, transparent)',
+        'line-horizontal-light':
+          'linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 50%, transparent 0, transparent)',
+        'line-vertical-dark':
+          'linear-gradient(to bottom, hsla(0, 0%, 100%, 0.2), hsla(0, 0%, 100%, 0.2) 50%, transparent 0, transparent)',
+        'line-vertical-light':
+          'linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 50%, transparent 0, transparent)',
+      },
+      backgroundSize: {
+        'line-pattern-horizontal': '5px 1px',
+        'line-pattern-vertical': '1px 5px',
+      },
+      maskImage: {
+        'fade-ends': `linear-gradient(to left, #fff 90%, transparent),
+                      linear-gradient(to right, #fff 90%, transparent),
+                      linear-gradient(#000, #000)`,
+      },
+      maskComposite: {
+        exclude: 'exclude',
+      },
+      WebkitMaskComposite: {
+        exclude: 'exclude',
+      },
     },
   },
   plugins: [
@@ -100,6 +125,24 @@ export default {
         },
         { values: flattenColorPalette(theme('backgroundColor')), type: 'color' },
       );
+    },
+    function ({ addUtilities }) {
+      addUtilities({
+        '.line-mask-horizontal': {
+          '-webkit-mask': `linear-gradient(to left, #fff 90%, transparent),
+                           linear-gradient(to right, #fff 90%, transparent),
+                           linear-gradient(#000, #000)`,
+          '-webkit-mask-composite': 'exclude',
+          'mask-composite': 'exclude',
+        },
+        '.line-mask-vertical': {
+          '-webkit-mask': `linear-gradient(to top, #fff 85%, transparent),
+                           linear-gradient(to bottom, #fff 85%, transparent),
+                           linear-gradient(#000, #000)`,
+          '-webkit-mask-composite': 'exclude',
+          'mask-composite': 'exclude',
+        },
+      });
     },
   ],
 };
