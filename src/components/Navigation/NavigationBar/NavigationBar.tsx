@@ -7,9 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { useTutorial } from '@/providers/tutorialProvider';
 import { Fragment, useState } from 'react';
 import { AchievementsModal } from '../../Simulator/Modal/AchievementsModal';
+import { ExternalLinkModal } from '../ExternalLinkModal';
+import { ExternalLink } from '@/@types/link';
 
 export const NavigationBar = () => {
   const [isAchievementModalActive, setIsAchievementModalActive] = useState(false);
+  const [externalLink, setExternalLink] = useState<ExternalLink>(null);
+
   const { updateTutorialModalState } = useTutorial();
   const navigate = useNavigate();
 
@@ -46,11 +50,37 @@ export const NavigationBar = () => {
   ];
 
   const additionalLinks = [
-    { title: 'Tesouro Direto', href: 'https://www.tesourodireto.com.br' },
-    { title: 'BM&FBovespa', href: 'https://www.b3.com.br' },
-    { title: 'Banco Central', href: 'https://www.bcb.gov.br/' },
-    { title: 'InfoMoney', href: 'https://www.infomoney.com.br' },
-    { title: 'Valor Econômico', href: 'https://valor.globo.com' },
+    {
+      title: 'Tesouro Direto',
+      href: () => setExternalLink({ title: 'Tesouro Direto', href: 'https://www.tesourodireto.com.br' }),
+    },
+    {
+      title: 'BM&FBovespa',
+      href: () => setExternalLink({ title: 'BM&FBovespa', href: 'https://www.b3.com.br' }),
+    },
+    {
+      title: 'Banco Central',
+      href: () => setExternalLink({ title: 'Banco Central', href: 'https://www.bcb.gov.br/' }),
+    },
+    {
+      title: 'InfoMoney',
+      href: () => setExternalLink({ title: 'InfoMoney', href: 'https://www.infomoney.com.br' }),
+    },
+    {
+      title: 'Valor Econômico',
+      href: () => setExternalLink({ title: 'Valor Econômico', href: 'https://valor.globo.com' }),
+    },
+  ];
+
+  const profileTestLinks = [
+    {
+      title: 'Iniciar Avaliação Sicredi',
+      href: () =>
+        setExternalLink({
+          title: 'Sicredi',
+          href: 'https://sicredipioneira.com.br/educacao-financeira/teste',
+        }),
+    },
   ];
 
   const navigation = [
@@ -68,11 +98,18 @@ export const NavigationBar = () => {
         { heading: 'Minhas Conquistas', links: achievementsLinks },
       ],
     },
-    { Icon: Link, sections: [{ heading: 'Recursos Externos', links: additionalLinks }] },
+    {
+      Icon: Link,
+      sections: [
+        { heading: 'Descubra Seu Perfil', links: profileTestLinks },
+        { heading: 'Recursos Externos', links: additionalLinks },
+      ],
+    },
   ];
 
   return (
     <Fragment>
+      <ExternalLinkModal link={externalLink} />
       <AchievementsModal
         modalState={{ currentState: isAchievementModalActive, setState: setIsAchievementModalActive }}
       />
