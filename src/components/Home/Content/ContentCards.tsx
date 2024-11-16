@@ -265,7 +265,7 @@ export const ContentCards = () => {
       <div className='absolute -left-[10%] bottom-0 z-20 h-[1px] w-[120%] bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal dark:hidden max-sm:opacity-0'></div>
       <AnimatedGroup
         trigger={isIntersecting}
-        className='relative z-10 mx-auto grid auto-rows-fr grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+        className='relative z-10 mx-auto grid auto-rows-fr grid-cols-1 max-sm:auto-rows-auto max-sm:gap-6 md:grid-cols-2 lg:grid-cols-4'
         variants={{
           container: { visible: { transition: { staggerChildren: 0.05 } } },
           item: {
