@@ -3,35 +3,45 @@ import { Gamepad, Link, TrendingUp } from 'lucide-react';
 import { NavigationLogo } from './NavigationLogo';
 import { ThemeButton } from '../ThemeButton';
 import { NavigationContent } from './NavigationContent';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useTutorial } from '@/providers/tutorialProvider';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { AchievementsModal } from '../../Simulator/Modal/AchievementsModal';
 import { ExternalLinkModal } from '../ExternalLinkModal';
 import { ExternalLink } from '@/@types/link';
+import { scrollToHash } from '@/utils/navigation';
 
 export const NavigationBar = () => {
   const [isAchievementModalActive, setIsAchievementModalActive] = useState(false);
   const [externalLink, setExternalLink] = useState<ExternalLink>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const { updateTutorialModalState } = useTutorial();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const investmentLinks = [
-    { title: 'Ações e Títulos', href: '/investimentos/acoes-titulos' },
-    { title: 'Renda Fixa', href: '/investimentos/renda-fixa' },
-    { title: 'Imóveis Físicos', href: '/investimentos/imoveis' },
-    { title: 'Fundos Imobiliários (FIIs)', href: '/investimentos/fundos-imobiliarios' },
-    { title: 'Fundos de Investimento', href: '/investimentos/fundos' },
-    { title: 'Commodities', href: '/investimentos/commodities' },
-    { title: 'Moedas Estrangeiras', href: '/investimentos/moedas-estrangeiras' },
-    { title: 'Criptomoedas', href: '/investimentos/criptomoedas' },
-  ];
+  function handleOpenModal(index: number) {
+    const params = new URLSearchParams({ modal: String(index) });
 
-  const riskProfileLinks = [
-    { title: 'Baixo Risco', href: '/perfil/baixo-risco' },
-    { title: 'Médio Risco', href: '/perfil/medio-risco' },
-    { title: 'Alto Risco', href: '/perfil/alto-risco' },
+    if (pathname === '/') {
+      setSearchParams(params);
+    } else navigate(`/?${params}`);
+  }
+
+  useEffect(() => {
+    const modal = searchParams.get('modal');
+    if (modal) scrollToHash('#content');
+  }, [searchParams]);
+
+  const investmentLinks = [
+    { title: 'Tipos de Investimentos', href: () => handleOpenModal(0) },
+    { title: 'Perfis de Risco', href: () => handleOpenModal(1) },
+    { title: 'Planejamento Financeiro', href: () => handleOpenModal(2) },
+    { title: 'Gestão de Dívidas', href: () => handleOpenModal(3) },
+    { title: 'Juros Financeiros', href: () => handleOpenModal(4) },
+    { title: 'Diversificação de Portfólio', href: () => handleOpenModal(5) },
+    { title: 'Mercados Globais', href: () => handleOpenModal(6) },
+    { title: 'Ciclos Econômicos', href: () => handleOpenModal(7) },
   ];
 
   const simulatorLinks = [
@@ -87,8 +97,15 @@ export const NavigationBar = () => {
     {
       Icon: TrendingUp,
       sections: [
-        { heading: 'Investimentos', links: investmentLinks },
-        { heading: 'Perfis de Risco', links: riskProfileLinks },
+        { heading: 'Futuro Financeiro', links: investmentLinks },
+        {
+          heading: 'Sobre a Plataforma',
+          links: [{ title: 'Entenda o Futuro Financeiro', href: () => scrollToHash('#about') }],
+        },
+        {
+          heading: 'Dúvidas Comuns',
+          links: [{ title: 'Veja as Respostas', href: () => scrollToHash('#faq') }],
+        },
       ],
     },
     {

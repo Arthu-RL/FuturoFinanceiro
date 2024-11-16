@@ -75,6 +75,31 @@ export default {
           },
         },
       },
+      backgroundImage: {
+        'line-horizontal-dark':
+          'linear-gradient(to right, hsla(0, 0%, 100%, 0.2), hsla(0, 0%, 100%, 0.2) 50%, transparent 0, transparent)',
+        'line-horizontal-light':
+          'linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 50%, transparent 0, transparent)',
+        'line-vertical-dark':
+          'linear-gradient(to bottom, hsla(0, 0%, 100%, 0.2), hsla(0, 0%, 100%, 0.2) 50%, transparent 0, transparent)',
+        'line-vertical-light':
+          'linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 50%, transparent 0, transparent)',
+      },
+      backgroundSize: {
+        'line-pattern-horizontal': '5px 1px',
+        'line-pattern-vertical': '1px 5px',
+      },
+      maskImage: {
+        'fade-ends': `linear-gradient(to left, #fff 90%, transparent),
+                      linear-gradient(to right, #fff 90%, transparent),
+                      linear-gradient(#000, #000)`,
+      },
+      maskComposite: {
+        exclude: 'exclude',
+      },
+      WebkitMaskComposite: {
+        exclude: 'exclude',
+      },
     },
   },
   plugins: [
@@ -97,9 +122,90 @@ export default {
               `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none"><circle fill="${value}" id="pattern-circle" cx="10" cy="10" r="1.6257413380501518"></circle></svg>`,
             )}")`,
           }),
+          'bg-diagonal': (value) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}">
+       <path d="M0 0L32 32" />
+       <path d="M32 0L0 32" />
+     </svg>`,
+            )}")`,
+          }),
+          'bg-dot-grid': (value) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="${value}">
+       <circle cx="4" cy="4" r="2"></circle>
+       <circle cx="28" cy="4" r="2"></circle>
+       <circle cx="4" cy="28" r="2"></circle>
+       <circle cx="28" cy="28" r="2"></circle>
+     </svg>`,
+            )}")`,
+          }),
+          'bg-zigzag': (value) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}">
+       <path d="M0 16L8 8L16 24L24 8L32 16" />
+     </svg>`,
+            )}")`,
+          }),
+          'bg-vertical': (value) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}">
+       <path d="M8 0V32M16 0V32M24 0V32" />
+     </svg>`,
+            )}")`,
+          }),
+          'bg-triangle': (value) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}">
+       <path d="M0 32L16 0L32 32H0Z" fill="${value}" />
+     </svg>`,
+            )}")`,
+          }),
+          'bg-checkered': (value) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="none">
+       <rect width="8" height="8" fill="${value}" />
+       <rect x="8" y="8" width="8" height="8" fill="${value}" />
+     </svg>`,
+            )}")`,
+          }),
+          'bg-dashed-grid': (value) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}">
+       <path d="M0 0L32 32" stroke-dasharray="4 2" />
+       <path d="M32 0L0 32" stroke-dasharray="4 2" />
+     </svg>`,
+            )}")`,
+          }),
+          'bg-dashed-diagonal': (value) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}">
+       <path d="M0 16L32 0" stroke-dasharray="4 2" />
+       <path d="M0 32L32 16" stroke-dasharray="4 2" />
+     </svg>`,
+            )}")`,
+          }),
         },
         { values: flattenColorPalette(theme('backgroundColor')), type: 'color' },
       );
+    },
+    function ({ addUtilities }) {
+      addUtilities({
+        '.line-mask-horizontal': {
+          '-webkit-mask': `linear-gradient(to left, #fff 90%, transparent),
+                           linear-gradient(to right, #fff 90%, transparent),
+                           linear-gradient(#000, #000)`,
+          '-webkit-mask-composite': 'exclude',
+          'mask-composite': 'exclude',
+        },
+        '.line-mask-vertical': {
+          '-webkit-mask': `linear-gradient(to top, #fff 85%, transparent),
+                           linear-gradient(to bottom, #fff 85%, transparent),
+                           linear-gradient(#000, #000)`,
+          '-webkit-mask-composite': 'exclude',
+          'mask-composite': 'exclude',
+        },
+      });
     },
   ],
 };
