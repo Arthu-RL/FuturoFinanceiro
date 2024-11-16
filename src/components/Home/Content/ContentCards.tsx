@@ -1,7 +1,7 @@
 import { AnimatedGroup } from '@/components/ui/animated-group';
 import { Feature } from '@/components/ui/feature';
 import { useIsIntersecting } from '@/hooks/useIsIntersecting';
-import { Calculator, Calendar, ChartLine, CreditCard, Layers, Shield } from 'lucide-react';
+import { Calculator, Calendar, ChartLine, CreditCard, Globe, Layers, Shield, TrendingUp } from 'lucide-react';
 import { ContentDialog } from './ContentDialog';
 
 import DebtManagement from '@/assets/logos/svgs/debt-management.svg?react';
@@ -10,6 +10,8 @@ import FinancialPlanning from '@/assets/logos/svgs/financial-planning.svg?react'
 import InvestmentTypes from '@/assets/logos/svgs/investment-types.svg?react';
 import PortifolioDiversification from '@/assets/logos/svgs/portfolio-diversification.svg?react';
 import RiskProfiles from '@/assets/logos/svgs/risk-profiles.svg?react';
+import GlobalMarket from '@/assets/logos/svgs/global-market.svg?react';
+import EconomicCycles from '@/assets/logos/svgs/economic-cycles.svg?react';
 
 export const ContentCards = () => {
   const cards = [
@@ -189,18 +191,81 @@ export const ContentCards = () => {
         ],
       },
     },
+    {
+      Icon: Globe,
+      Image: GlobalMarket,
+      title: 'Mercados Globais',
+      description:
+        'Explore como os mercados internacionais funcionam e como eles podem influenciar suas decisões de investimento.',
+      content: {
+        title: 'Mercados Globais',
+        subtitle:
+          'Os mercados internacionais oferecem oportunidades e desafios únicos. Descubra os principais aspectos que os tornam importantes:',
+        slides: [
+          {
+            heading: 'Ações Internacionais',
+            text: 'Investir em empresas estrangeiras permite diversificar o portfólio e acessar mercados em crescimento, como tecnologia nos EUA ou consumo na Ásia.',
+          },
+          {
+            heading: 'Taxas de Câmbio',
+            text: 'Flutuações cambiais podem impactar o retorno dos investimentos internacionais, sendo importante monitorar o dólar, euro e outras moedas.',
+          },
+          {
+            heading: 'Riscos Geopolíticos',
+            text: 'Eventos como mudanças políticas, guerras ou tensões econômicas podem influenciar negativamente os mercados globais.',
+          },
+          {
+            heading: 'Tendências de Mercado',
+            text: 'Acompanhar inovações e setores em alta globalmente, como energia limpa e inteligência artificial, pode trazer vantagens estratégicas.',
+          },
+        ],
+      },
+    },
+    {
+      Icon: TrendingUp,
+      Image: EconomicCycles,
+      title: 'Ciclos Econômicos',
+      description:
+        'Compreenda os ciclos econômicos e como eles afetam o mercado, ajudando você a ajustar sua estratégia de investimentos.',
+      content: {
+        title: 'Ciclos Econômicos',
+        subtitle:
+          'Os mercados passam por fases distintas que impactam investimentos. Conheça os estágios dos ciclos econômicos:',
+        slides: [
+          {
+            heading: 'Expansão',
+            text: 'Fase de crescimento econômico, com aumento no consumo, geração de empregos e valorização de ativos.',
+          },
+          {
+            heading: 'Pico',
+            text: 'Momento de maior aquecimento econômico, geralmente seguido de um ajuste ou desaceleração.',
+          },
+          {
+            heading: 'Recessão',
+            text: 'Período de contração econômica, em que os mercados tendem a apresentar quedas e maior volatilidade.',
+          },
+          {
+            heading: 'Recuperação',
+            text: 'A economia começa a se estabilizar e retomar o crescimento, criando oportunidades de investimento.',
+          },
+        ],
+      },
+    },
   ];
 
   const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>({
-    delay: 500,
     options: { rootMargin: '-50px', threshold: 0 },
   });
 
   return (
-    <div ref={ref} className='relative min-h-[60vh] w-full'>
+    <div ref={ref} className='relative w-full'>
+      <div className='absolute -left-[10%] top-0 z-20 hidden h-[1px] w-[120%] bg-line-horizontal-dark bg-line-pattern-horizontal line-mask-horizontal dark:block'></div>
+      <div className='absolute -left-[10%] top-0 z-20 h-[1px] w-[120%] bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal dark:hidden'></div>
+      <div className='absolute -left-[10%] bottom-0 z-20 hidden h-[1px] w-[120%] bg-line-horizontal-dark bg-line-pattern-horizontal line-mask-horizontal dark:block'></div>
+      <div className='absolute -left-[10%] bottom-0 z-20 h-[1px] w-[120%] bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal dark:hidden'></div>
       <AnimatedGroup
-        className='relative z-10 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
         trigger={isIntersecting}
+        className='relative z-10 mx-auto grid auto-rows-fr grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
         variants={{
           container: { visible: { transition: { staggerChildren: 0.05 } } },
           item: {

@@ -40,6 +40,8 @@ export const NavigationBar = () => {
     { title: 'Gestão de Dívidas', href: () => handleOpenModal(3) },
     { title: 'Juros Financeiros', href: () => handleOpenModal(4) },
     { title: 'Diversificação de Portfólio', href: () => handleOpenModal(5) },
+    { title: 'Mercados Globais', href: () => handleOpenModal(6) },
+    { title: 'Ciclos Econômicos', href: () => handleOpenModal(7) },
   ];
 
   const simulatorLinks = [
