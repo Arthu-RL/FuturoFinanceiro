@@ -36,7 +36,7 @@ export const ContentDialog = ({
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContainer modalParam={modalParam}>
         <DialogContent className='relative h-auto w-[500px] rounded-xl border bg-card max-sm:max-w-[90%]'>
-          <ScrollArea className='h-fit max-sm:h-[90vh]' type='scroll'>
+          <ScrollArea className='h-fit' type='scroll'>
             <div className='relative px-6 py-8 max-sm:px-4 max-sm:py-6'>
               <div className='flex flex-col gap-4'>
                 <DialogTitle className='flex items-center gap-3 text-xl font-semibold text-foreground max-sm:text-lg'>
