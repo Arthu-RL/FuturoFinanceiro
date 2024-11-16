@@ -8,14 +8,14 @@ export const ContentHeading = () => {
 
   return (
     <div ref={ref} className='relative flex flex-col gap-4 px-48 py-10 text-center max-lg:px-14 max-sm:px-4'>
-      <div className='bg-line-horizontal-dark bg-line-pattern-horizontal line-mask-horizontal absolute -left-[10%] top-0 z-20 hidden h-[1px] w-[120%] dark:block'></div>
-      <div className='bg-line-vertical-dark bg-line-pattern-vertical line-mask-vertical absolute -top-[40%] right-0 z-20 hidden h-[180%] w-[1px] dark:block max-sm:-top-[20%] max-sm:h-[140%]'></div>
-      <div className='bg-line-vertical-dark bg-line-pattern-vertical line-mask-vertical absolute -top-[40%] left-0 z-20 hidden h-[180%] w-[1px] dark:block max-sm:-top-[20%] max-sm:h-[140%]'></div>
-      <div className='bg-line-horizontal-dark bg-line-pattern-horizontal line-mask-horizontal absolute -left-[10%] bottom-0 z-20 hidden h-[1px] w-[120%] dark:block'></div>
-      <div className='bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal absolute -left-[10%] top-0 z-20 h-[1px] w-[120%] dark:hidden'></div>
-      <div className='bg-line-vertical-light bg-line-pattern-vertical line-mask-vertical absolute -top-[40%] right-0 z-20 h-[180%] w-[1px] dark:hidden max-sm:-top-[20%] max-sm:h-[140%]'></div>
-      <div className='bg-line-vertical-light bg-line-pattern-vertical line-mask-vertical absolute -top-[40%] left-0 z-20 h-[180%] w-[1px] dark:hidden max-sm:-top-[20%] max-sm:h-[140%]'></div>
-      <div className='bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal absolute -left-[10%] bottom-0 z-20 h-[1px] w-[120%] dark:hidden'></div>
+      <div className='absolute -left-[10%] top-0 z-20 hidden h-[1px] w-[120%] bg-line-horizontal-dark bg-line-pattern-horizontal line-mask-horizontal dark:block max-sm:opacity-0'></div>
+      <div className='absolute -top-[40%] right-0 z-20 hidden h-[180%] w-[1px] bg-line-vertical-dark bg-line-pattern-vertical line-mask-vertical dark:block max-sm:-top-[20%] max-sm:h-[140%] max-sm:opacity-0'></div>
+      <div className='absolute -top-[40%] left-0 z-20 hidden h-[180%] w-[1px] bg-line-vertical-dark bg-line-pattern-vertical line-mask-vertical dark:block max-sm:-top-[20%] max-sm:h-[140%] max-sm:opacity-0'></div>
+      <div className='absolute -left-[10%] bottom-0 z-20 hidden h-[1px] w-[120%] bg-line-horizontal-dark bg-line-pattern-horizontal line-mask-horizontal dark:block max-sm:opacity-0'></div>
+      <div className='absolute -left-[10%] top-0 z-20 h-[1px] w-[120%] bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal dark:hidden max-sm:opacity-0'></div>
+      <div className='absolute -top-[40%] right-0 z-20 h-[180%] w-[1px] bg-line-vertical-light bg-line-pattern-vertical line-mask-vertical dark:hidden max-sm:-top-[20%] max-sm:h-[140%] max-sm:opacity-0'></div>
+      <div className='absolute -top-[40%] left-0 z-20 h-[180%] w-[1px] bg-line-vertical-light bg-line-pattern-vertical line-mask-vertical dark:hidden max-sm:-top-[20%] max-sm:h-[140%] max-sm:opacity-0'></div>
+      <div className='absolute -left-[10%] bottom-0 z-20 h-[1px] w-[120%] bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal dark:hidden max-sm:opacity-0'></div>
       <TextEffect
         trigger={isIntersecting}
         className='text-5xl font-bold max-2xl:text-4xl max-xl:text-2xl max-sm:mx-auto max-sm:max-w-56 max-sm:text-xl'
