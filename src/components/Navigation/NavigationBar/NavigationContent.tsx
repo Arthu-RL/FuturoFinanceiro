@@ -22,7 +22,7 @@ export const NavigationContent = ({ heading, links }: NavigationContentProps) =>
               className='w-full cursor-pointer text-nowrap rounded-sm hover:bg-stone-100 hover:dark:bg-slate-900'
             >
               {typeof href === 'function' ? (
-                <button onClick={() => href()} className='flex w-full'>
+                <button onClick={href} className='flex w-full'>
                   <SheetClose className='h-full w-full p-2 text-start font-poppins text-sm font-medium'>
                     {title}
                   </SheetClose>

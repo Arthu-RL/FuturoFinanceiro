@@ -14,6 +14,7 @@ import { scrollToHash } from '@/utils/navigation';
 export const NavigationBar = () => {
   const [isAchievementModalActive, setIsAchievementModalActive] = useState(false);
   const [externalLink, setExternalLink] = useState<ExternalLink>(null);
+  const [activeHash, setActiveHash] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { updateTutorialModalState } = useTutorial();
@@ -32,6 +33,17 @@ export const NavigationBar = () => {
     const modal = searchParams.get('modal');
     if (modal) scrollToHash('#content');
   }, [searchParams]);
+
+  function navigateToHash(path: string, hash: string) {
+    navigate(path);
+    setActiveHash(hash);
+  }
+
+  useEffect(() => {
+    if (!activeHash) return;
+    scrollToHash(activeHash);
+    setActiveHash(null);
+  }, [activeHash]);
 
   const investmentLinks = [
     { title: 'Tipos de Investimentos', href: () => handleOpenModal(0) },
@@ -100,11 +112,11 @@ export const NavigationBar = () => {
         { heading: 'Futuro Financeiro', links: investmentLinks },
         {
           heading: 'Sobre a Plataforma',
-          links: [{ title: 'Entenda o Futuro Financeiro', href: () => scrollToHash('#about') }],
+          links: [{ title: 'Entenda o Futuro Financeiro', href: () => navigateToHash('/', '#about') }],
         },
         {
           heading: 'Dúvidas Comuns',
-          links: [{ title: 'Veja as Respostas', href: () => scrollToHash('#faq') }],
+          links: [{ title: 'Veja as Respostas', href: () => navigateToHash('/', '#faq') }],
         },
       ],
     },
