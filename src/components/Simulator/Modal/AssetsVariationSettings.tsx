@@ -42,7 +42,7 @@ export function AssetsVariationSettings() {
     return (
         <AlertDialog>
         <AlertDialogTrigger asChild>
-            <Button variant="outline"><Settings /></Button>
+            <Button variant="outline" className="p-2"><Settings /></Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>

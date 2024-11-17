@@ -22,7 +22,7 @@ export const HeroHeading = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='z-10 flex flex-col gap-6 max-2xl:mt-36 max-xl:mt-3 max-xl:gap-2'>
+    <div className='z-10 mt-8 flex flex-col gap-6 max-2xl:mt-36 max-xl:mt-3 max-xl:gap-2'>
       <span className='font-manrope text-6xl font-bold max-2xl:text-5xl max-xl:text-3xl xl:-mb-4'>
         Futuro Financeiro
       </span>

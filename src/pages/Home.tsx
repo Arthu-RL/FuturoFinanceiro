@@ -43,7 +43,7 @@ export default function Home() {
         id='#faq'
         className='relative grid w-full justify-center gap-40 overflow-hidden pb-20 pl-56 pr-40 pt-36 max-2xl:pl-36 max-2xl:pr-20 max-2xl:pt-24 max-xl:gap-24 max-xl:pb-8 max-xl:pl-[6.5rem] max-xl:pr-10 max-sm:gap-10 max-sm:px-4 max-sm:pt-16'
       >
-        <StarsBackground allStarsTwinkle twinkleProbability={0.7} />
+        <StarsBackground allStarsTwinkle twinkleProbability={1} starDensity={0.0005} />
       </section>
       <Footer />
     </Fragment>
