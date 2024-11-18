@@ -14,6 +14,16 @@ export const Questions = () => {
         'Na plataforma, você aprenderá conceitos essenciais de finanças, como tipos de investimentos, planejamento financeiro, diversificação de portfólio e estratégias para gerenciar riscos.',
     },
     {
+      question: 'A plataforma é gratuita?',
+      answer:
+        'Sim, a plataforma é completamente gratuita. Nosso objetivo é democratizar o acesso à educação financeira.',
+    },
+    {
+      question: 'Posso usar a plataforma pelo celular?',
+      answer:
+        'Sim, a plataforma é responsiva e pode ser acessada tanto pelo computador quanto por dispositivos móveis.',
+    },
+    {
       question: 'É seguro simular investimentos aqui?',
       answer: 'Sim, todas as simulações são educacionais e não envolvem dinheiro real.',
     },
@@ -37,6 +47,15 @@ export const Questions = () => {
       answer:
         'Você pode realizar um teste para identificar seu perfil de investimento acessando a área de “Recursos Externos”, localizada na barra de navegação da plataforma.',
     },
+    {
+      question: 'Os dados utilizados nas simulações são atualizados?',
+      answer:
+        'As simulações são baseadas em dados reais para você conseguir extrair experiência da vida real e refletir tendências de mercado.',
+    },
+    {
+      question: 'Há recompensas no simulador?',
+      answer: 'É possível ganhar conquistas na plataforma a fim de trazer um estímulo a mais aos usuários. Você pode acessar suas conquistas clicando em “Minhas Conquistas” na barra de navegação da plataforma.' 
+    }
   ];
 
   return (
