@@ -1,7 +1,7 @@
 import { TextEffect } from '@/components/ui/text-effect';
 import { useIsIntersecting } from '@/hooks/useIsIntersecting';
 
-export const ContentHeading = () => {
+export const Heading = () => {
   const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>({
     options: { rootMargin: '0px', threshold: 0 },
   });

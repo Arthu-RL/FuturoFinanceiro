@@ -1,9 +1,9 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ElementType, ReactNode } from 'react';
-import { ContentCarousel } from './ContentCarousel';
+import { Content } from '.';
 
 import {
-  Dialog,
+  Dialog as AnimatedDialog,
   DialogClose,
   DialogContainer,
   DialogContent,
@@ -22,7 +22,7 @@ type ContentDialogProps = {
   slides: { heading: string; text: string }[];
 };
 
-export const ContentDialog = ({
+export const Dialog = ({
   Icon,
   Image,
   modalParam,
@@ -32,7 +32,7 @@ export const ContentDialog = ({
   children,
 }: ContentDialogProps) => {
   return (
-    <Dialog transition={{ type: 'spring', stiffness: 200, damping: 24 }}>
+    <AnimatedDialog transition={{ type: 'spring', stiffness: 200, damping: 24 }}>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContainer modalParam={modalParam}>
         <DialogContent className='relative h-auto w-[500px] rounded-xl border bg-card max-sm:max-w-[90%]'>
@@ -48,12 +48,12 @@ export const ContentDialog = ({
                   {subtitle}
                 </DialogSubtitle>
               </div>
-              <ContentCarousel slides={slides} />
+              <Content.Carousel slides={slides} />
             </div>
           </ScrollArea>
           <DialogClose className='fill-accent outline-none' />
         </DialogContent>
       </DialogContainer>
-    </Dialog>
+    </AnimatedDialog>
   );
 };

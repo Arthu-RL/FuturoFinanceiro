@@ -4,7 +4,7 @@ import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 import { scrollToHash } from '@/utils/navigation';
 import { useNavigate } from 'react-router-dom';
 
-export const HeroHeading = () => {
+export const Heading = () => {
   const words = [
     'dinâmica',
     'intuitiva',

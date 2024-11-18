@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { World } from '../../ui/globe';
 
-export const HeroGlobe = () => {
+export const Globe = () => {
   const globeConfig = {
     pointSize: 4,
     globeColor: '#062056',

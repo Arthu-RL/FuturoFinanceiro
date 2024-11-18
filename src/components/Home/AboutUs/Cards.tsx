@@ -2,7 +2,7 @@ import { AnimatedGroup } from '@/components/ui/animated-group';
 import { useIsIntersecting } from '@/hooks/useIsIntersecting';
 import { BookText, DollarSign, Plus, Trophy } from 'lucide-react';
 
-export const AboutUsCards = () => {
+export const Cards = () => {
   const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>({
     options: { threshold: 0, rootMargin: '-150px' },
   });

@@ -5,7 +5,7 @@ import { useIsIntersecting } from '@/hooks/useIsIntersecting';
 import { Spotlight } from '@/components/ui/spotlight';
 import { InView } from '@/components/ui/in-view';
 
-export const AboutUsHeading = () => {
+export const Heading = () => {
   const { ref: containerRef, isIntersecting: isContainerIntersecting } = useIsIntersecting<HTMLDivElement>({
     options: { rootMargin: '-300px', threshold: 0 },
   });

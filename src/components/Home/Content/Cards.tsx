@@ -2,7 +2,7 @@ import { AnimatedGroup } from '@/components/ui/animated-group';
 import { Feature } from '@/components/ui/feature';
 import { useIsIntersecting } from '@/hooks/useIsIntersecting';
 import { Calculator, Calendar, ChartLine, CreditCard, Globe, Layers, Shield, TrendingUp } from 'lucide-react';
-import { ContentDialog } from './ContentDialog';
+import { Content } from '.';
 
 import DebtManagement from '@/assets/logos/svgs/debt-management.svg?react';
 import FinancialInterest from '@/assets/logos/svgs/financial-interest.svg?react';
@@ -13,7 +13,7 @@ import RiskProfiles from '@/assets/logos/svgs/risk-profiles.svg?react';
 import GlobalMarket from '@/assets/logos/svgs/global-market.svg?react';
 import EconomicCycles from '@/assets/logos/svgs/economic-cycles.svg?react';
 
-export const ContentCards = () => {
+export const Cards = () => {
   const cards = [
     {
       Icon: ChartLine,
@@ -281,7 +281,7 @@ export const ContentCards = () => {
         }}
       >
         {cards.map((feature, index) => (
-          <ContentDialog
+          <Content.Dialog
             modalParam={String(index)}
             key={feature.title}
             Icon={feature.Icon}
@@ -291,7 +291,7 @@ export const ContentCards = () => {
             subtitle={feature.content.subtitle}
           >
             <Feature {...feature} index={index} />
-          </ContentDialog>
+          </Content.Dialog>
         ))}
       </AnimatedGroup>
     </div>
