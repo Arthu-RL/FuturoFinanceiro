@@ -7,7 +7,10 @@ export const Heading = () => {
   });
 
   return (
-    <div ref={ref} className='relative flex flex-col gap-4 px-48 py-10 text-center max-lg:px-14 max-sm:px-4'>
+    <div
+      ref={ref}
+      className='relative flex flex-col gap-4 px-48 py-10 text-center max-2xl:gap-2 max-2xl:px-44 max-lg:px-14 max-sm:px-0'
+    >
       <div className='absolute -left-[10%] top-0 z-20 hidden h-[1px] w-[120%] bg-line-horizontal-dark bg-line-pattern-horizontal line-mask-horizontal dark:block max-sm:opacity-0'></div>
       <div className='absolute -top-[40%] right-0 z-20 hidden h-[180%] w-[1px] bg-line-vertical-dark bg-line-pattern-vertical line-mask-vertical dark:block max-sm:-top-[20%] max-sm:h-[140%] max-sm:opacity-0'></div>
       <div className='absolute -top-[40%] left-0 z-20 hidden h-[180%] w-[1px] bg-line-vertical-dark bg-line-pattern-vertical line-mask-vertical dark:block max-sm:-top-[20%] max-sm:h-[140%] max-sm:opacity-0'></div>
@@ -18,7 +21,7 @@ export const Heading = () => {
       <div className='absolute -left-[10%] bottom-0 z-20 h-[1px] w-[120%] bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal dark:hidden max-sm:opacity-0'></div>
       <TextEffect
         trigger={isIntersecting}
-        className='text-5xl font-bold max-2xl:text-4xl max-xl:text-2xl max-sm:mx-auto max-sm:max-w-56 max-sm:text-xl'
+        className='font-manrope text-5xl font-bold max-2xl:text-4xl max-xl:text-2xl max-sm:mx-auto max-sm:max-w-64 max-sm:text-xl'
         per='char'
         delay={0.5}
         variants={{
@@ -55,7 +58,7 @@ export const Heading = () => {
             visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
           },
         }}
-        className='text-pretty text-lg max-2xl:text-base max-sm:text-sm'
+        className='text-pretty font-manrope text-lg max-2xl:text-base max-sm:text-sm'
       >
         Explore uma variedade de conteúdos educativos voltados para o desenvolvimento de habilidades
         financeiras. Cada módulo traz informações claras e diretas sobre tópicos essenciais, para que você

@@ -397,10 +397,10 @@ export const Globe = () => {
           transition={{ duration: 1 }}
           className='div'
         >
-          <h2 className='text-center text-4xl font-bold text-black dark:text-white max-xl:text-2xl max-sm:text-xl'>
+          <h2 className='text-center font-manrope text-4xl font-bold text-black dark:text-white max-xl:text-2xl max-sm:text-xl'>
             Conecte-se ao Mercado Global
           </h2>
-          <p className='mx-auto mt-2 max-w-md text-center text-lg font-normal text-neutral-700 dark:text-neutral-200 max-xl:text-sm max-xl:leading-5'>
+          <p className='mx-auto mt-2 max-w-md text-center font-manrope text-lg font-normal leading-6 text-neutral-700 dark:text-neutral-200 max-xl:text-sm max-xl:leading-5'>
             Simule investimentos em ativos do mundo todo e expanda seu conhecimento financeiro.
           </p>
         </motion.div>

@@ -37,9 +37,22 @@ export const Heading = () => {
           O Que é a Plataforma de Educação Financeira?
         </TextEffect>
         <TextEffect
+          as='p'
+          per='line'
           delay={0.5}
-          trigger={isHeadingIntersecting}
           className='text-pretty text-lg max-2xl:text-base max-sm:text-sm'
+          trigger={isHeadingIntersecting}
+          segmentWrapperClassName='overflow-hidden block'
+          variants={{
+            container: {
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+            },
+            item: {
+              hidden: { opacity: 0, y: 40 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+            },
+          }}
         >
           Nossa plataforma tem o objetivo de capacitar jovens com conhecimentos práticos sobre finanças e
           investimentos. Com foco em simulações e conteúdos diretos, queremos ajudar você a desenvolver
