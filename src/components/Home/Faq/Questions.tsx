@@ -14,11 +14,6 @@ export const Questions = () => {
         'Na plataforma, você aprenderá conceitos essenciais de finanças, como tipos de investimentos, planejamento financeiro, diversificação de portfólio e estratégias para gerenciar riscos.',
     },
     {
-      question: 'A plataforma é gratuita?',
-      answer:
-        'Sim, a plataforma é completamente gratuita. Nosso objetivo é democratizar o acesso à educação financeira.',
-    },
-    {
       question: 'Posso usar a plataforma pelo celular?',
       answer:
         'Sim, a plataforma é responsiva e pode ser acessada tanto pelo computador quanto por dispositivos móveis.',
@@ -54,8 +49,9 @@ export const Questions = () => {
     },
     {
       question: 'Há recompensas no simulador?',
-      answer: 'É possível ganhar conquistas na plataforma a fim de trazer um estímulo a mais aos usuários. Você pode acessar suas conquistas clicando em “Minhas Conquistas” na barra de navegação da plataforma.' 
-    }
+      answer:
+        'É possível ganhar conquistas na plataforma a fim de trazer um estímulo a mais aos usuários. Você pode acessar suas conquistas clicando em “Minhas Conquistas” na barra de navegação da plataforma.',
+    },
   ];
 
   return (
@@ -67,7 +63,7 @@ export const Questions = () => {
         <AccordionItem
           key={question}
           value={question}
-          className='flex flex-col rounded-md border bg-neutral-100 px-3 py-2 backdrop-blur-[1px] dark:bg-neutral-900/35'
+          className='flex flex-col rounded-md border bg-neutral-100 px-3 py-2 dark:bg-neutral-900/35 sm:backdrop-blur-[1px]'
         >
           <AccordionTrigger className='w-full py-0.5 text-left text-card-foreground'>
             <div className='relative flex items-center'>
