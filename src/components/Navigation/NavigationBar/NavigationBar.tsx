@@ -130,8 +130,8 @@ export const NavigationBar = () => {
     {
       Icon: Link,
       sections: [
-        { heading: 'Descubra Seu Perfil', links: profileTestLinks },
         { heading: 'Recursos Externos', links: additionalLinks },
+        { heading: 'Descubra Seu Perfil', links: profileTestLinks },
       ],
     },
   ];
