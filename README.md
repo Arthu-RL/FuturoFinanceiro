@@ -73,7 +73,7 @@ Antes de começar, certifique-se de ter instalado:
 
 4. Configure arquivo `.env` na raíz do projeto:
 
-   ```.env
+   ```env
    VITE_CURRENCY_API_URL="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1"
    ```
 

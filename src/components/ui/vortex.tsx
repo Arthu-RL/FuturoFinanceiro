@@ -174,7 +174,7 @@ export const Vortex = (props: VortexProps) => {
     ctx.save();
     ctx.lineCap = 'round';
     ctx.lineWidth = radius;
-    ctx.strokeStyle = `hsla(${hue},0%,50%,${fadeInOut(life, ttl)})`;
+    ctx.strokeStyle = `hsla(${hue},0%,40%,${fadeInOut(life, ttl)})`;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x2, y2);
