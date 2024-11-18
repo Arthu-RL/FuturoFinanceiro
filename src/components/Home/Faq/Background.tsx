@@ -13,6 +13,7 @@ export const Background = ({ children }: BackgroundProps) => {
       </div>
       <Vortex
         rangeY={800}
+        containerClassName='py-20 pl-56 pr-40 max-2xl:pl-36 max-2xl:pr-20 max-xl:pl-[6.5rem] max-xl:pr-10 max-xl:pt-10 max-sm:px-4 max-sm:pb-16'
         particleCount={500}
         baseHue={125}
         baseSpeed={0.05}

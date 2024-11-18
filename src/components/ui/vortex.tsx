@@ -237,7 +237,7 @@ export const Vortex = (props: VortexProps) => {
         ref={containerRef}
         className='absolute inset-0 z-0 flex h-full w-full items-center justify-center bg-transparent'
       >
-        <canvas className='hidden dark:block max-sm:dark:hidden' ref={canvasRef}></canvas>
+        <canvas className='hidden h-full w-full dark:block max-sm:dark:hidden' ref={canvasRef}></canvas>
       </motion.div>
       <div className={cn('relative z-10', props.className)}>{props.children}</div>
     </div>
