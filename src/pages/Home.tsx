@@ -3,6 +3,7 @@ import { Footer } from '@/components/Home/Footer/Footer';
 import { Content } from '@/components/Home/Content';
 import { AboutUs } from '@/components/Home/AboutUs';
 import { Hero } from '@/components/Home/Hero';
+import { Faq } from '@/components/Home/Faq';
 
 export default function Home() {
   return (
@@ -32,7 +33,14 @@ export default function Home() {
         <div className='absolute -left-[10%] bottom-0 z-20 hidden h-[1px] w-[120%] bg-line-horizontal-dark bg-line-pattern-horizontal line-mask-horizontal dark:block'></div>
         <div className='absolute -left-[10%] bottom-0 z-20 h-[1px] w-[120%] bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal dark:hidden'></div>
       </section>
-
+      <section
+        id='#faq'
+        className='relative grid w-full grid-cols-1 items-center gap-16 overflow-hidden py-20 pl-56 pr-40 max-2xl:pl-36 max-2xl:pr-20 max-xl:gap-20 max-xl:pl-[6.5rem] max-xl:pr-10 max-xl:pt-10 max-sm:gap-8 max-sm:px-4 max-sm:pb-16'
+      >
+        <Faq.Background />
+        <Faq.Heading />
+        <Faq.Questions />
+      </section>
       <Footer />
     </Fragment>
   );
