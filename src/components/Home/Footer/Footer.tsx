@@ -10,7 +10,9 @@ export const Footer = () => {
       <div className='text-center text-sm font-medium text-foreground dark:text-muted-foreground'>
         <p>
           © {currentYear} {''}
-          <TextShimmer duration={1.2}>Futuro Financeiro.</TextShimmer>
+          <TextShimmer duration={1.2} className='[--base-color:#000] [--base-gradient-color:#a1a1aa]'>
+            Futuro Financeiro.
+          </TextShimmer>
         </p>
         <p>Todos os direitos reservados.</p>
       </div>

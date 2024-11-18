@@ -48,7 +48,7 @@ export const Questions = () => {
         <AccordionItem
           key={question}
           value={question}
-          className='flex flex-col rounded-md border bg-neutral-100 px-3 py-2 dark:bg-neutral-900/35'
+          className='flex flex-col rounded-md border bg-neutral-100 px-3 py-2 backdrop-blur-[1px] dark:bg-neutral-900/35'
         >
           <AccordionTrigger className='w-full py-0.5 text-left text-card-foreground'>
             <div className='relative flex items-center'>
