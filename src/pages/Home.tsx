@@ -35,11 +35,12 @@ export default function Home() {
       </section>
       <section
         id='#faq'
-        className='relative grid w-full grid-cols-1 items-center gap-16 overflow-hidden py-20 pl-56 pr-40 max-2xl:pl-36 max-2xl:pr-20 max-xl:gap-20 max-xl:pl-[6.5rem] max-xl:pr-10 max-xl:pt-10 max-sm:gap-8 max-sm:px-4 max-sm:pb-16'
+        className='relative overflow-hidden py-20 pl-56 pr-40 max-2xl:pl-36 max-2xl:pr-20 max-xl:pl-[6.5rem] max-xl:pr-10 max-xl:pt-10 max-sm:px-4 max-sm:pb-16'
       >
-        <Faq.Background />
-        <Faq.Heading />
-        <Faq.Questions />
+        <Faq.Background>
+          <Faq.Heading />
+          <Faq.Questions />
+        </Faq.Background>
       </section>
       <Footer />
     </Fragment>

@@ -1,7 +1,5 @@
 import { Minus } from 'lucide-react';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
-import { AnimatedGroup } from '@/components/ui/animated-group';
-import { useIsIntersecting } from '@/hooks/useIsIntersecting';
 
 export const Questions = () => {
   const questions = [
@@ -41,58 +39,31 @@ export const Questions = () => {
     },
   ];
 
-  const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>({
-    options: { rootMargin: '-100px', threshold: 0 },
-  });
-
   return (
-    <div ref={ref}>
-      <AnimatedGroup
-        trigger={isIntersecting}
-        variants={{
-          container: {
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-          },
-          item: {
-            hidden: { opacity: 0, y: 40, filter: 'blur(4px)' },
-            visible: {
-              opacity: 1,
-              y: 0,
-              filter: 'blur(0px)',
-              transition: { duration: 1.2, type: 'spring', bounce: 0.3 },
-            },
-          },
-        }}
-      >
-        <Accordion
-          className='mx-auto flex w-full max-w-[70%] flex-col gap-4 max-2xl:max-w-[80%] max-sm:max-w-full max-sm:gap-2'
-          transition={{ duration: 0.2, ease: 'easeInOut' }}
+    <Accordion
+      className='mx-auto flex w-full max-w-[70%] flex-col gap-4 max-2xl:max-w-[80%] max-sm:max-w-full max-sm:gap-2'
+      transition={{ duration: 0.2, ease: 'easeInOut' }}
+    >
+      {questions.map(({ question, answer }) => (
+        <AccordionItem
+          key={question}
+          value={question}
+          className='flex flex-col rounded-md border bg-neutral-100 px-3 py-2 dark:bg-neutral-900/35'
         >
-          {questions.map(({ question, answer }) => (
-            <AccordionItem
-              key={question}
-              value={question}
-              className='flex flex-col rounded-md bg-neutral-100 px-3 py-2 dark:bg-neutral-900'
-            >
-              <AccordionTrigger className='w-full py-0.5 text-left text-card-foreground'>
-                <div className='relative flex items-center'>
-                  <div className='flex items-center justify-center rounded-full bg-neutral-300 p-4 dark:bg-accent max-sm:p-3.5'>
-                    <Minus className='absolute size-4 -rotate-90 stroke-foreground transition-transform duration-200 group-data-[expanded]:rotate-0' />
-                    <Minus className='absolute size-4 stroke-foreground' />
-                  </div>
-                  <p className='ml-4 text-xl font-medium text-card-foreground max-sm:ml-3 max-sm:text-sm'>
-                    {question}
-                  </p>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <p className='ml-6 pl-6 pr-2 text-muted-foreground max-sm:ml-4 max-sm:text-xs'>{answer}</p>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </AnimatedGroup>
-    </div>
+          <AccordionTrigger className='w-full py-0.5 text-left text-card-foreground'>
+            <div className='relative flex items-center'>
+              <div className='flex items-center justify-center rounded-full bg-neutral-300 p-4 dark:bg-accent max-sm:p-3.5'>
+                <Minus className='absolute size-4 -rotate-90 stroke-foreground transition-transform duration-200 group-data-[expanded]:rotate-0' />
+                <Minus className='absolute size-4 stroke-foreground' />
+              </div>
+              <p className='ml-4 text-xl text-card-foreground max-sm:ml-3 max-sm:text-sm'>{question}</p>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent>
+            <p className='ml-6 pl-6 pr-2 text-muted-foreground max-sm:ml-4 max-sm:text-xs'>{answer}</p>
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 };
