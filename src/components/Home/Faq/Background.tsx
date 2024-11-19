@@ -12,13 +12,11 @@ export const Background = ({ children }: BackgroundProps) => {
         <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_top,transparent_5%,black)] dark:bg-black'></div>
       </div>
       <Vortex
-        rangeY={800}
         containerClassName='py-20 pl-56 pr-40 max-2xl:pl-36 max-2xl:pr-20 max-xl:pl-[6.5rem] max-xl:pr-10 max-xl:pt-10 max-sm:px-4 max-sm:pb-16'
-        particleCount={500}
-        baseHue={125}
-        baseSpeed={0.05}
-        rangeSpeed={0.05}
         className='grid w-full grid-cols-1 items-center gap-16 max-xl:gap-20 max-sm:gap-8'
+        rangeY={500}
+        rangeSpeed={0.5}
+        particleCount={500}
       >
         {children}
       </Vortex>
