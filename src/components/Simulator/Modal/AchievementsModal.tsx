@@ -140,7 +140,11 @@ export const AchievementsModal = ({ modalState }: AchievementsModal) => {
 
   return (
     <AlertDialog open={modalState.currentState}>
-      <AlertDialogContent className='px-0 pb-3 pt-0 max-sm:max-w-[90%]'>
+      <AlertDialogContent
+        className='px-0 pb-3 pt-0 max-sm:max-w-[90%]'
+        onEscapeKeyDown={() => modalState.setState(false)}
+        onInteractOutside={() => modalState.setState(false)}
+      >
         <AlertDialogHeader>
           <AlertDialogTitle className='relative flex items-center gap-2 border-b border-border px-2.5 py-1'>
             <AlertDialogAction

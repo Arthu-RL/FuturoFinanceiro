@@ -61,7 +61,11 @@ export function TransactionModal({
 
   return (
     <AlertDialog open={modalState.currentState}>
-      <AlertDialogContent className='gap-4 outline-none max-sm:w-[90%]'>
+      <AlertDialogContent
+        className='gap-4 outline-none max-sm:w-[90%]'
+        onEscapeKeyDown={() => modalState.setState(false)}
+        onInteractOutside={() => modalState.setState(false)}
+      >
         <AlertDialogHeader className='gap-2'>
           <AlertDialogTitle>
             <ModalHeading row={row} />
