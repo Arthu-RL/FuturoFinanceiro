@@ -2,6 +2,7 @@
 *,
 *::before,
 *::after {
+  user-select: none;
   box-sizing: border-box;
 }
 

@@ -21,7 +21,7 @@ export const Heading = () => {
       <div className='absolute -left-[10%] bottom-0 z-20 h-[1px] w-[120%] bg-line-horizontal-light bg-line-pattern-horizontal line-mask-horizontal dark:hidden max-sm:opacity-0'></div>
       <TextEffect
         trigger={isIntersecting}
-        className='font-manrope text-5xl font-bold max-2xl:text-4xl max-xl:text-2xl max-sm:mx-auto max-sm:max-w-64 max-sm:text-xl'
+        className='font-manrope text-5xl font-bold max-2xl:text-4xl max-xl:text-2xl max-lg:mx-auto max-lg:max-w-[25rem] max-sm:max-w-64 max-sm:text-xl'
         per='char'
         delay={0.5}
         variants={{
