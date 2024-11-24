@@ -1,10 +1,9 @@
 import { Assets } from '@/lib/schemas/assets.schema';
 import { Profile, AssetType, AssetGlobalVariation } from '@/@types/investment';
 
-
 const TENDENCY_THRESHOLD = 0.005;
-const HIGH_VOLATILITY_THRESHOLD = 6.5;
-const MEDIUM_VOLATILITY_THRESHOLD = 2.5;
+const HIGH_VOLATILITY_THRESHOLD = 3.25;
+const MEDIUM_VOLATILITY_THRESHOLD = 0.95;
 
 function getAssetVariationStatus(previous: number, current: number) {
   if (previous < current) return 'increase';
@@ -37,7 +36,11 @@ function assetCalculateTypeMultiplier(assetType: AssetType) {
 }
 
 // Calculo chancede perda
-function assetCalculateChanceOfLoss(profile: Profile, baseChanceOfLoss: AssetGlobalVariation, valuationFactor?: number) {
+function assetCalculateChanceOfLoss(
+  profile: Profile,
+  baseChanceOfLoss: AssetGlobalVariation,
+  valuationFactor?: number,
+) {
   let chanceOfLoss = baseChanceOfLoss[profile];
 
   if (!valuationFactor) return chanceOfLoss;
