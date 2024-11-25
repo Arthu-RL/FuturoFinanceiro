@@ -4,12 +4,9 @@ function getWeekdayLabelFromDate(date: Date) {
 }
 
 function formatRemainingTime(seconds: number) {
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const hours = Math.floor(seconds / 3600);
-
-  if (hours > 0) return `${hours}h`;
-  if (minutes > 0) return `${minutes}m`;
-  return `${seconds}s`;
+  const remainingMinutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return remainingMinutes > 0 ? `${remainingMinutes}m ${remainingSeconds}s` : `${remainingSeconds}s`;
 }
 
 function formatLabelTimestamp(date: Date) {

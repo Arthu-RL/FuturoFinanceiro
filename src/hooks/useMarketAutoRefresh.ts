@@ -6,10 +6,10 @@ import { useTutorial } from '@/providers/tutorialProvider';
 import { useLocation } from 'react-router-dom';
 
 const ONE_SECOND_IN_MS = 1000;
-const ONE_MINUTE = 60;
+const THREE_MINUTES = 180;
 
 export const useMarketAutoRefresh = () => {
-  const [remainingSeconds, setRemainingSeconds] = useState(ONE_MINUTE);
+  const [remainingSeconds, setRemainingSeconds] = useState(THREE_MINUTES);
   const { assets, updateAssets } = useInvestmentAssets();
   const { computedAssets } = useAssetFluctuation(assets);
   const { isTutorialActive } = useTutorial();
@@ -32,11 +32,12 @@ export const useMarketAutoRefresh = () => {
 
             toast.message('Novas Cotações Disponíveis!', {
               duration: 5000,
+              position: 'bottom-right',
               description:
                 'Os preços foram atualizados com sucesso. Confira as novas mudanças no mercado e ajuste seus investimentos!',
             });
 
-            return ONE_MINUTE;
+            return THREE_MINUTES;
           }
 
           if (isTutorialActive || isAtHomePage) return currentSeconds;
