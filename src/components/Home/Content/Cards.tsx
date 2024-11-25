@@ -20,7 +20,7 @@ export const Cards = () => {
       Image: InvestmentTypes,
       title: 'Tipos de Investimentos',
       description:
-        'Conheça as principais modalidades de investimentos, como ações, renda fixa e fundos, para escolher as melhores opções de acordo com seu perfil financeiro.',
+        'Conheça as principais modalidades de investimentos, como ações, renda fixa, fundos e criptomoedas, para escolher as melhores opções de acordo com seu perfil financeiro.',
       content: {
         title: 'Tipos de Investimentos',
         subtitle:
@@ -41,6 +41,10 @@ export const Cards = () => {
           {
             heading: 'Poupança',
             text: 'Conhecida por sua simplicidade e segurança, a poupança oferece liquidez imediata, mas uma rentabilidade geralmente inferior a outras opções de investimento.',
+          },
+          {
+            heading: 'Criptomoedas',
+            text: 'Ativos digitais descentralizados como Bitcoin e Ethereum, que operam em tecnologias blockchain. Apesar de promissoras, as criptomoedas possuem alta volatilidade e riscos elevados, sendo mais indicadas para investidores com perfil agressivo.',
           },
         ],
       },
@@ -254,7 +258,7 @@ export const Cards = () => {
   ];
 
   const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>({
-    options: { rootMargin: '-100px', threshold: 0 },
+    options: { rootMargin: '-50px', threshold: 1 },
   });
 
   return (

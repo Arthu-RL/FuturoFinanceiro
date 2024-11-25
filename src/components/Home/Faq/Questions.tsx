@@ -16,7 +16,7 @@ export const Questions = () => {
     {
       question: 'Posso usar a plataforma pelo celular?',
       answer:
-        'Sim, a plataforma é responsiva e pode ser acessada tanto pelo computador quanto por dispositivos móveis.',
+        'Sim, você pode acessar a plataforma pelo celular, mas para a melhor experiência de navegação e uso das funcionalidades, recomendamos utilizá-la em um computador.',
     },
     {
       question: 'É seguro simular investimentos aqui?',
