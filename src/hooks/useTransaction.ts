@@ -68,6 +68,7 @@ export const useTransaction = () => {
 
     toast.message('Ativo adquirido! 🎉', {
       duration: 5000,
+      position: 'bottom-right',
       description: `Você acaba de comprar ${quantity} unidades de ${marketAsset.name}.`,
     });
 
@@ -148,16 +149,19 @@ export const useTransaction = () => {
     if (transaction.assetProfit > 0) {
       toast.message('Parabéns! 🎉', {
         duration: 5000,
+        position: 'bottom-right',
         description: `Você registrou um lucro de ${formatCurrency(transaction.assetProfit, 'BRL', 'pt-BR')}. Continue assim!`,
       });
     } else if (transaction.assetProfit < 0) {
       toast.message('Não foi dessa vez... 😕', {
         duration: 5000,
+        position: 'bottom-right',
         description: `Você registrou uma perda de ${formatCurrency(transaction.assetProfit, 'BRL', 'pt-BR')}. Não desanime, é parte do processo.`,
       });
     } else {
       toast.message('Tudo em equilíbrio!', {
         duration: 5000,
+        position: 'bottom-right',
         description: 'Você não teve lucros nem perdas. Um bom momento para revisar suas estratégias!',
       });
     }

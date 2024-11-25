@@ -121,7 +121,7 @@ select {
 }
 
 .shepherd-text {
-  line-height: 1.1;
+  line-height: 1.25;
   font-family: var(--font-poppins) !important;
   color: hsl(var(--foreground)) !important;
   padding: 1rem 1rem 0.75rem !important;

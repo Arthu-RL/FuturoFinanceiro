@@ -26,12 +26,12 @@ export const useAchievements = () => {
       achievement.isCompleted = true;
 
       toast.message(
-        <div className='flex items-center justify-center pb-0.5'>
+        <div className='flex items-center justify-center pb-0.5 leading-4'>
           <Trophy className='ml-3 min-h-8 min-w-8 stroke-foreground' />
           <div className='flex flex-col items-center text-center'>
-            <b className='w-fit text-base font-bold'>Conquista Desbloqueada!</b>
+            <span className='w-fit text-lg font-bold'>{achievement.name}</span>
             <div className='flex flex-col items-center'>
-              <span className='text-sm font-medium'>{achievement.name}</span>
+              <b className='-mt-[2.5px] mb-0.5 text-xs font-semibold'>Conquista Desbloqueada!</b>
               <span className='px-4 text-xs'>{achievement.description}</span>
             </div>
           </div>
@@ -99,7 +99,7 @@ export const useAchievements = () => {
 
     const hasBigProfit = context.transactionType === 'Sale' && context.transaction.assetProfit >= 10_000;
 
-    const hasOneMillion = context.transactionType === 'Sale' && context.user.currentBalance >= 1_000_000_000;
+    const hasOneMillion = context.transactionType === 'Sale' && context.user.currentBalance >= 1_000_000;
 
     if (isFirstAcquisition) validateAchievementStatus(context.user, 'Primeira Aquisição');
     if (isFirstProfit) validateAchievementStatus(context.user, 'Primeiro Lucro');
