@@ -3,7 +3,7 @@ import { useIsIntersecting } from '@/hooks/useIsIntersecting';
 
 export const Heading = () => {
   const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>({
-    options: { rootMargin: '0px', threshold: 0 },
+    options: { rootMargin: '-100px', threshold: 1 },
   });
 
   return (

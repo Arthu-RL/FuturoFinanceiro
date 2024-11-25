@@ -4,7 +4,7 @@ import { BookText, DollarSign, Plus, Trophy } from 'lucide-react';
 
 export const Cards = () => {
   const { ref, isIntersecting } = useIsIntersecting<HTMLDivElement>({
-    options: { threshold: 0, rootMargin: '-150px' },
+    options: { threshold: 1, rootMargin: '-100px' },
   });
 
   return (

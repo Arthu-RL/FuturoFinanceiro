@@ -7,11 +7,11 @@ import { InView } from '@/components/ui/in-view';
 
 export const Heading = () => {
   const { ref: containerRef, isIntersecting: isContainerIntersecting } = useIsIntersecting<HTMLDivElement>({
-    options: { rootMargin: '-300px', threshold: 0 },
+    options: { rootMargin: '-100px', threshold: 1 },
   });
 
   const { ref: headingRef, isIntersecting: isHeadingIntersecting } = useIsIntersecting<HTMLDivElement>({
-    options: { rootMargin: '-300px', threshold: 0 },
+    options: { rootMargin: '-100px', threshold: 1 },
   });
 
   return (
