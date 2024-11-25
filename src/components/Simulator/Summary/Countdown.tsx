@@ -15,10 +15,13 @@ export const Countdown = () => {
       >
         Simulador de Investimentos {devMode && <AssetsVariationSettings />}{' '}
       </h1>
-      <p className='text-sm text-muted-foreground max-2xl:text-xs'>
+      <p className='ml-[0.1rem] text-sm text-muted-foreground max-2xl:text-xs'>
         Controle seus investimentos e acompanhe o seu progresso.
       </p>
-      <p id='refresh' className='-mt-1 w-fit text-sm font-medium text-muted-foreground max-2xl:text-xs'>
+      <p
+        id='refresh'
+        className='-mt-1 ml-[0.1rem] w-fit text-sm font-medium text-muted-foreground max-2xl:text-xs'
+      >
         Próxima Atualização em: {formatRemainingTime(remainingSeconds)}
       </p>
     </div>
