@@ -1,39 +1,41 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useUserAccount } from '@/providers/userAccountProvider';
-import { calculateTotalHoldingsValue, getAssetVariation } from '@/utils/number';
+import { calculateTotalHoldingsValue, formatNumberWithSign, getAssetVariation } from '@/utils/number';
 import { CircleAlert, Coins, DollarSign, Wallet } from 'lucide-react';
 import { Countdown } from './Countdown';
 import { NumberDisplay } from './NumberDisplay';
 import { Chart } from './Chart';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { generateDifferenceText } from '@/utils/string';
 
 export function Summary() {
   const { assets } = useInvestmentAssets();
   const { user } = useUserAccount();
 
-  const totalAssets = user.currentWallet.reduce((total, asset) => {
+  const currentHoldings = user.currentWallet.reduce((total, asset) => {
     return calculateTotalHoldingsValue(total, assets, asset);
   }, 0);
 
-  const holdingsDifference = getAssetVariation(
+  const yesterdayHoldings =
     user.walletHistory.at(-2)?.wallet.reduce((total, asset) => {
-      return calculateTotalHoldingsValue(total, assets, asset);
-    }, 0) ?? 0,
+      return total + asset.quantity * asset.purchasePrice;
+    }, 0) ?? 0;
+
+  const todayHoldings =
     user.walletHistory.at(-1)?.wallet.reduce((total, asset) => {
       return calculateTotalHoldingsValue(total, assets, asset);
-    }, 0) ?? 0,
-  );
+    }, 0) ?? 0;
 
-  const profitabilityDifference = getAssetVariation(
-    user.profitabilityHistory.at(-2)?.profitability ?? 0,
-    user.profitabilityHistory.at(-1)?.profitability ?? 0,
-  );
+  const holdingsDifference = getAssetVariation(yesterdayHoldings, todayHoldings);
 
-  const balanceDifference = getAssetVariation(
-    user.balanceHistory.at(-2)?.balance ?? 10000,
-    user.balanceHistory.at(-1)?.balance ?? 10000,
-  );
+  const yesterdayProfitability = user.profitabilityHistory?.at(-2)?.profitability ?? 0;
+  const todayProfitability = user.profitabilityHistory.at(-1)?.profitability ?? 0;
+  const profitabilityDifference = getAssetVariation(yesterdayProfitability, todayProfitability);
+
+  const yesterdayBalance = user.balanceHistory.at(-2)?.balance ?? 10000;
+  const todayBalance = user.balanceHistory.at(-1)?.balance ?? 10000;
+  const balanceDifference = getAssetVariation(yesterdayBalance, todayBalance);
 
   return (
     <div className='row-span-1 grid grid-cols-4 items-stretch gap-4 max-xl:grid-cols-1'>
@@ -45,7 +47,11 @@ export function Summary() {
             <Wallet className='h-4 w-4 text-muted-foreground' />
           </CardHeader>
           <CardContent className='relative'>
-            <NumberDisplay value={user.currentBalance} valueDifference={balanceDifference} animated />
+            <NumberDisplay
+              animated
+              value={user.currentBalance}
+              valueDifference={`${formatNumberWithSign(balanceDifference)}%`}
+            />
             <TooltipProvider>
               <Tooltip>
                 <div className='absolute bottom-6 right-6 flex justify-end'>
@@ -67,7 +73,11 @@ export function Summary() {
           <Coins className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
         <CardContent>
-          <NumberDisplay value={totalAssets} valueDifference={holdingsDifference} animated />
+          <NumberDisplay
+            animated
+            value={currentHoldings}
+            valueDifference={generateDifferenceText(yesterdayHoldings, holdingsDifference)}
+          />
         </CardContent>
       </Card>
       <Card id='profitability' className='self-end'>
@@ -77,9 +87,9 @@ export function Summary() {
         </CardHeader>
         <CardContent>
           <NumberDisplay
-            value={user.currentProfitability}
-            valueDifference={profitabilityDifference}
             animated
+            value={user.currentProfitability}
+            valueDifference={generateDifferenceText(yesterdayProfitability, profitabilityDifference)}
           />
         </CardContent>
       </Card>

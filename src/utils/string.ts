@@ -1,3 +1,5 @@
+import { formatCurrency } from './currency';
+
 function translateAssetCategory(category: string) {
   const translations: Record<string, string> = {
     Fiat: 'Moedas',
@@ -39,10 +41,18 @@ function getProfitTextColor(profit: number) {
   return 'text-foreground';
 }
 
+function generateDifferenceText(previousValue: number, difference: number) {
+  const value = previousValue > 0 ? difference.toFixed(2) : formatCurrency(difference, 'BRL', 'pt-BR');
+  const suffix = previousValue > 0 ? '%' : '';
+  const prefix = difference > 0 ? '+' : '';
+  return `${prefix}${value}${suffix}`;
+}
+
 export {
   getProfitStatus,
   getProfitTextColor,
   translateAssetCategory,
   translateAssetProfile,
   translateTransactionType,
+  generateDifferenceText,
 };

@@ -1,13 +1,12 @@
 import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
 import { usePreviousValue } from '@/hooks/usePreviousValue';
 import { formatCurrency } from '@/utils/currency';
-import { formatNumberWithSign } from '@/utils/number';
 import { Fragment } from 'react/jsx-runtime';
 
 type NumberDisplayProps = {
   value: number;
   animated?: boolean;
-  valueDifference: number;
+  valueDifference: string;
 };
 
 export const NumberDisplay = ({ value, valueDifference, animated = false }: NumberDisplayProps) => {
@@ -19,9 +18,7 @@ export const NumberDisplay = ({ value, valueDifference, animated = false }: Numb
       <div className={`text-2xl font-bold brightness-110 transition-all ${countTextColor}`}>
         {formatCurrency(count, 'BRL', 'pt-BR')}
       </div>
-      <p className='text-xs text-muted-foreground'>
-        {formatNumberWithSign(valueDifference)}% em relação ao dia anterior
-      </p>
+      <p className='text-xs text-muted-foreground'>{valueDifference} em relação ao dia anterior</p>
     </Fragment>
   );
 };
