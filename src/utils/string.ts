@@ -42,8 +42,8 @@ function getProfitTextColor(profit: number) {
 }
 
 function generateDifferenceText(previousValue: number, difference: number) {
-  const value = previousValue > 0 ? difference.toFixed(2) : formatCurrency(difference, 'BRL', 'pt-BR');
-  const suffix = previousValue > 0 ? '%' : '';
+  const value = previousValue !== 0 ? difference.toFixed(2) : formatCurrency(difference, 'BRL', 'pt-BR');
+  const suffix = previousValue !== 0 ? '%' : '';
   const prefix = difference > 0 ? '+' : '';
   return `${prefix}${value}${suffix}`;
 }
