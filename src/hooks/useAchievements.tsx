@@ -29,7 +29,7 @@ export const useAchievements = () => {
         <div className='flex items-center justify-center pb-0.5 leading-4'>
           <Trophy className='ml-3 min-h-8 min-w-8 stroke-foreground' />
           <div className='flex flex-col items-center text-center'>
-            <span className='w-fit text-lg font-bold'>{achievement.name}</span>
+            <span className='w-fit text-base font-bold '>{achievement.name}</span>
             <div className='flex flex-col items-center'>
               <b className='-mt-[2.5px] text-sm font-semibold'>Conquista Desbloqueada!</b>
               <span className='px-4 text-xs'>{achievement.description}</span>
