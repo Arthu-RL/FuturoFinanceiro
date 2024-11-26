@@ -11,7 +11,7 @@ export const Countdown = () => {
   return (
     <div className='my-auto flex flex-col gap-1 px-0.5'>
       <h1
-        className={`flex gap-5 font-manrope text-3xl font-bold max-2xl:text-2xl ${devMode && 'whitespace-nowrap'}`}
+        className={`flex gap-5 font-manrope text-3xl font-bold max-2xl:text-2xl max-sm:-mb-1 ${devMode && 'whitespace-nowrap'}`}
       >
         Simulador de Investimentos {devMode && <AssetsVariationSettings />}{' '}
       </h1>
