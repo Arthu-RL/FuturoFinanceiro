@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useInvestmentAssets } from '@/providers/InvestmentAssetsProvider';
 import { useUserAccount } from '@/providers/userAccountProvider';
-import { calculateTotalHoldingsValue, formatNumberWithSign, getAssetVariation } from '@/utils/number';
+import { calculateTotalHoldingsValue, getAssetVariation } from '@/utils/number';
 import { CircleAlert, Coins, DollarSign, Wallet } from 'lucide-react';
 import { Countdown } from './Countdown';
 import { NumberDisplay } from './NumberDisplay';
@@ -50,7 +50,7 @@ export function Summary() {
             <NumberDisplay
               animated
               value={user.currentBalance}
-              valueDifference={`${formatNumberWithSign(balanceDifference)}%`}
+              valueDifference={generateDifferenceText(yesterdayBalance, balanceDifference)}
             />
             <TooltipProvider>
               <Tooltip>
