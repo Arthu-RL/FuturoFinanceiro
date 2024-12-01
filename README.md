@@ -35,6 +35,14 @@ Este projeto busca preencher a lacuna na educação financeira entre jovens, for
 - **ESLint**: Ferramenta de linting para JavaScript e TypeScript, ajudando a manter um código consistente e livre de erros.
 - **React Router DOM**: Biblioteca de roteamento para React, permitindo navegação dinâmica entre páginas em aplicativos de página única (SPA).
 - **Prettier**: Ferramenta de formatação de código que garante um estilo consistente, facilitando a legibilidade e manutenção do código.
+- **Zod**: Biblioteca de validação de dados que permite criar schemas e garantir segurança e consistência nos dados.
+- **Sonner**: Biblioteca para exibição de notificações e mensagens visuais no front-end.
+- **Three.js**: Biblioteca para criação de gráficos 3D e visualizações interativas no navegador.
+- **Shepherd.js**: Biblioteca para criação de tutoriais interativos e guias de introdução em aplicativos.
+- **Recharts**: Biblioteca para construção de gráficos e visualizações de dados de forma simples e customizável.
+- **Framer Motion**: Biblioteca para animações em React, oferecendo uma API intuitiva e poderosa.
+- **date-fns**: Biblioteca para manipulação de datas de forma simples, eficiente e modular.
+- **TanStack Table**: Biblioteca para criação e manipulação de tabelas em React, com funcionalidades avançadas e flexíveis.
 
 ## Links
 
@@ -171,3 +179,13 @@ Para ver a lista completa de tarefas e pendências do projeto, consulte o [TODO.
 ## Como Contribuir
 
 Se você deseja contribuir com este projeto, por favor, consulte o [CONTRIBUTING.md](./CONTRIBUTING.md) para obter diretrizes detalhadas sobre como proceder.
+
+## Screenshots
+
+- **Home**
+
+![Home](./screenshots/home.png)
+
+- **Simulador**
+
+![Simulador](./screenshots/simulador.png)
