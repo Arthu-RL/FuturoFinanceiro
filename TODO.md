@@ -10,12 +10,12 @@ Este documento lista as tarefas pendentes para a atualização do aplicativo "Fu
 
 - **Status**: Concluído
 - **Subtarefas**:
-  - [ ] 1.1 - **Seção Hero** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 1.2 - **Seção Sobre** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 1.3 - **Seção de Conteúdo** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 1.4 - **Seção de Dúvidas Frequentes** - [@RGomes98](https://github.com/RGomes98) - [@LeonardoRdc](https://github.com/LeonardoRdc)
-  - [ ] 1.5 - **Footer** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 1.6 - **Layout da Home** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 1.1 - **Seção Hero** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 1.2 - **Seção Sobre** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 1.3 - **Seção de Conteúdo** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 1.4 - **Seção de Dúvidas Frequentes** - [@RGomes98](https://github.com/RGomes98) - [@LeonardoRdc](https://github.com/LeonardoRdc)
+  - [x] 1.5 - **Footer** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 1.6 - **Layout da Home** - [@RGomes98](https://github.com/RGomes98)
 
 ---
 
@@ -25,11 +25,11 @@ Este documento lista as tarefas pendentes para a atualização do aplicativo "Fu
 
 - **Status**: Concluído
 - **Subtarefas**:
-  - [ ] 2.1 - **Aba de Investimentos** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 2.2 - **Aba do Simulador** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 2.3 - **Aba de Links Externos** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 2.4 - **Dark/Light Modes** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 2.5 - **Layout da Barra de Navegação** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 2.1 - **Aba de Investimentos** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 2.2 - **Aba do Simulador** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 2.3 - **Aba de Links Externos** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 2.4 - **Dark/Light Modes** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 2.5 - **Layout da Barra de Navegação** - [@RGomes98](https://github.com/RGomes98)
 
 ---
 
@@ -39,9 +39,9 @@ Este documento lista as tarefas pendentes para a atualização do aplicativo "Fu
 
 - **Status**: Concluído
 - **Subtarefas**:
-  - [ ] 3.1 - **Conteúdo do Tutorial** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 3.2 - **Passos do Tutorial** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 3.3 - **Estilização do Tutorial** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 3.1 - **Conteúdo do Tutorial** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 3.2 - **Passos do Tutorial** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 3.3 - **Estilização do Tutorial** - [@RGomes98](https://github.com/RGomes98)
 
 ---
 
@@ -51,10 +51,10 @@ Este documento lista as tarefas pendentes para a atualização do aplicativo "Fu
 
 - **Status**: Concluído
 - **Subtarefas**:
-  - [ ] 4.1 - **Conteúdo das Conquistas** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 4.2 - **Lógica das Conquistas** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 4.3 - **Modal das Conquistas** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 4.4 - **Estilização de Conquista Desbloqueada** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 4.1 - **Conteúdo das Conquistas** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 4.2 - **Lógica das Conquistas** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 4.3 - **Modal das Conquistas** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 4.4 - **Estilização de Conquista Desbloqueada** - [@RGomes98](https://github.com/RGomes98)
 
 ---
 
@@ -64,20 +64,20 @@ Este documento lista as tarefas pendentes para a atualização do aplicativo "Fu
 
 - **Status**: Concluído
 - **Subtarefas**:
-  - [ ] 5.1 - **Layout do Simulador** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.2 - **Lógica de Saldo, Lucro e Prejuízo** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.3 - **Lógica da Atualização do Mercado** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.4 - **Lógica de Compra/Venda de Ativo** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.5 - **Cálculos de Patrimônio, Rentabilidade Total e Rentabilidade Semanal** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.6 - **Histórico de Transações** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.7 - **Animação dos Valores Numéricos dos Cards do Simulador** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.8 - **Tabela de Ativos (Filtragem e Busca)** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.9 - **Persistência da Paginação na Tabela de Ativos** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.10 - **Adição de Ativos com Valores Reais de API Externa** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.11 - **Gráfico de Rentabilidade Semanal** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.12 - **Modais de Compra, Venda e Detalhes dos Ativos** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.14 - **Definir Estrutura dos Dados para Armazenamento no Local Storage** - [@RGomes98](https://github.com/RGomes98)
-  - [ ] 5.13 - **Armazenar Dados do Simulador e do Usuário no Local Storage** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.1 - **Layout do Simulador** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.2 - **Lógica de Saldo, Lucro e Prejuízo** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.3 - **Lógica da Atualização do Mercado** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.4 - **Lógica de Compra/Venda de Ativo** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.5 - **Cálculos de Patrimônio, Rentabilidade Total e Rentabilidade Semanal** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.6 - **Histórico de Transações** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.7 - **Animação dos Valores Numéricos dos Cards do Simulador** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.8 - **Tabela de Ativos (Filtragem e Busca)** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.9 - **Persistência da Paginação na Tabela de Ativos** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.10 - **Adição de Ativos com Valores Reais de API Externa** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.11 - **Gráfico de Rentabilidade Semanal** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.12 - **Modais de Compra, Venda e Detalhes dos Ativos** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.14 - **Definir Estrutura dos Dados para Armazenamento no Local Storage** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.13 - **Armazenar Dados do Simulador e do Usuário no Local Storage** - [@RGomes98](https://github.com/RGomes98)
 
 ---
 
@@ -87,11 +87,11 @@ Este documento lista as tarefas pendentes para a atualização do aplicativo "Fu
 
 - **Status**: Concluído
 - **Subtarefas**:
-  - [ ] 6.1 - **Lógica das Variações dos Ativos** - [@Arthu-RL](https://github.com/Arthu-RL)
-  - [ ] 6.2 - **Lógica para Perfis de Investimento (Baixo, Médio e Alto Risco)** - [@Arthu-RL](https://github.com/Arthu-RL)
-  - [ ] 6.3 - **Lógica de Chance de Perda** - [@Arthu-RL](https://github.com/Arthu-RL)
-  - [ ] 6.4 - **Lógica de Volatilidade** - [@Arthu-RL](https://github.com/Arthu-RL)
-  - [ ] 6.5 - **Lógica de Drift** - [@Arthu-RL](https://github.com/Arthu-RL)
+  - [x] 6.1 - **Lógica das Variações dos Ativos** - [@Arthu-RL](https://github.com/Arthu-RL)
+  - [x] 6.2 - **Lógica para Perfis de Investimento (Baixo, Médio e Alto Risco)** - [@Arthu-RL](https://github.com/Arthu-RL)
+  - [x] 6.3 - **Lógica de Chance de Perda** - [@Arthu-RL](https://github.com/Arthu-RL)
+  - [x] 6.4 - **Lógica de Volatilidade** - [@Arthu-RL](https://github.com/Arthu-RL)
+  - [x] 6.5 - **Lógica de Drift** - [@Arthu-RL](https://github.com/Arthu-RL)
 
 ---
 
