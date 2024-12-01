@@ -1,61 +1,97 @@
-# TODO - Projeto de Aplicativo de Investimentos
+# TODO - Projeto Futuro Financeiro
 
-Este documento lista as tarefas pendentes para o desenvolvimento do aplicativo de investimentos. Cada tarefa pode ser assumida por um membro da equipe, que deverá marcar seu nome ao lado e atualizar o progresso regularmente.
+Este documento lista as tarefas pendentes para a atualização do aplicativo "Futuro Financeiro". Cada tarefa pode ser assumida por um membro da equipe, que deverá marcar seu nome ao lado e atualizar o progresso regularmente.
 
 ---
 
-## Rotas de Explicação da Aplicação
+## Página Home
 
-### 1. Rotas para Explicação, Motivação, Contato e Divulgação do Aplicativo
-- **Status**: Aguardando responsável
+### 1. Criar Rota e Conteúdo da Página Home
+
+- **Status**: Concluído
 - **Subtarefas**:
-  - [ ] 1.1 - **Home** - [Responsável: ?]
-  - [ ] 1.2 - **Sobre** - [Responsável: ?]
-  - [ ] 1.3 - **Contato** - [Responsável: ?]
+  - [ ] 1.1 - **Seção Hero** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 1.2 - **Seção Sobre** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 1.3 - **Seção de Conteúdo** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 1.4 - **Seção de Dúvidas Frequentes** - [@RGomes98](https://github.com/RGomes98) - [@LeonardoRdc](https://github.com/LeonardoRdc)
+  - [ ] 1.5 - **Footer** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 1.6 - **Layout da Home** - [@RGomes98](https://github.com/RGomes98)
 
 ---
 
-## Abas de Investimento
+## Barra de Navegação
 
-### 3. Criar Abas de Investimento
-- **Status**: Aguardando responsável
+### 2. Desenvolver e Estilizar Barra de Navegação
+
+- **Status**: Concluído
 - **Subtarefas**:
-  - [ ] 3.1 - **Investimento de Risco Baixo** - [Responsável: Arthur Lima]
-  - [ ] 3.2 - **Investimento de Risco Médio** - [Responsável: ?]
-  - [ ] 3.3 - **Investimento de Risco Alto** - [Responsável: ?]
-
-### 4. Definir Para Onde as Abas de Investimento Redirecionam
-- **Descrição**: Ao clicar em uma aba de investimento, deve-se redirecionar para uma página específica com informações detalhadas (gráficos, detalhes do investimento, etc.).
-- **Status**: Aguardando responsável
-- **Responsável**: ?
+  - [ ] 2.1 - **Aba de Investimentos** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 2.2 - **Aba do Simulador** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 2.3 - **Aba de Links Externos** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 2.4 - **Dark/Light Modes** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 2.5 - **Layout da Barra de Navegação** - [@RGomes98](https://github.com/RGomes98)
 
 ---
 
-## Lógica de Investimento
+## Tutorial do Simulador
 
-### 5. Implementar Lógica de Investimento e Desconto de Saldo
-- **Descrição**: Implementar a lógica que permitirá o investimento e o desconto do saldo para todos os tipos de investimento.
-- **Status**: Aguardando responsável
-- **Responsável**: ?
+### 3. Implementar Tutorial do Simulador
 
-### 6. Implementar Lógica de Oscilação de Preços
-- **Descrição**: Implementar a lógica de oscilação dos preços das moedas sintéticas, simulando mudanças ao longo do tempo.
-- **Status**: Aguardando responsável
+- **Status**: Concluído
 - **Subtarefas**:
-  - [ ] 6.1 - **Lógica para Investimento de Risco Baixo** - [Responsável: ?]
-  - [ ] 6.2 - **Lógica para Investimento de Risco Médio** - [Responsável: ?]
-  - [ ] 6.3 - **Lógica para Investimento de Risco Alto** - [Responsável: ?]
+  - [ ] 3.1 - **Conteúdo do Tutorial** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 3.2 - **Passos do Tutorial** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 3.3 - **Estilização do Tutorial** - [@RGomes98](https://github.com/RGomes98)
 
 ---
 
-## Estilo do Aplicativo
+## Conquistas do Simulador
 
-### 7. Definir e Aplicar o Estilo do Aplicativo
-- **Descrição**: Criar o estilo principal do app e aplicar às rotas e abas de investimento.
-- **Status**:
-  - [ ] 7.1 - **Definir Estilo Principal** - [Responsável: ?]
-  - [ ] 7.2 - **Aplicar Estilo nas Rotas** - [Responsável: ?]
-  - [ ] 7.3 - **Aplicar Estilos nas Abas de Investimento** - [Responsável: ?]
+### 4. Implementar Sistema de Conquistas
+
+- **Status**: Concluído
+- **Subtarefas**:
+  - [ ] 4.1 - **Conteúdo das Conquistas** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 4.2 - **Lógica das Conquistas** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 4.3 - **Modal das Conquistas** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 4.4 - **Estilização de Conquista Desbloqueada** - [@RGomes98](https://github.com/RGomes98)
+
+---
+
+## Simulador de Investimentos
+
+### 5. Desenvolver e Melhorar o Simulador de Investimentos
+
+- **Status**: Concluído
+- **Subtarefas**:
+  - [ ] 5.1 - **Layout do Simulador** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.2 - **Lógica de Saldo, Lucro e Prejuízo** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.3 - **Lógica da Atualização do Mercado** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.4 - **Lógica de Compra/Venda de Ativo** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.5 - **Cálculos de Patrimônio, Rentabilidade Total e Rentabilidade Semanal** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.6 - **Histórico de Transações** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.7 - **Animação dos Valores Numéricos dos Cards do Simulador** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.8 - **Tabela de Ativos (Filtragem e Busca)** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.9 - **Persistência da Paginação na Tabela de Ativos** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.10 - **Adição de Ativos com Valores Reais de API Externa** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.11 - **Gráfico de Rentabilidade Semanal** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.12 - **Modais de Compra, Venda e Detalhes dos Ativos** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.14 - **Definir Estrutura dos Dados para Armazenamento no Local Storage** - [@RGomes98](https://github.com/RGomes98)
+  - [ ] 5.13 - **Armazenar Dados do Simulador e do Usuário no Local Storage** - [@RGomes98](https://github.com/RGomes98)
+
+---
+
+## Lógica do Mercado e Investimentos
+
+### 6. Implementar Lógica do Mercado e Investimentos
+
+- **Status**: Concluído
+- **Subtarefas**:
+  - [ ] 6.1 - **Lógica das Variações dos Ativos** - [@Arthu-RL](https://github.com/Arthu-RL)
+  - [ ] 6.2 - **Lógica para Perfis de Investimento (Baixo, Médio e Alto Risco)** - [@Arthu-RL](https://github.com/Arthu-RL)
+  - [ ] 6.3 - **Lógica de Chance de Perda** - [@Arthu-RL](https://github.com/Arthu-RL)
+  - [ ] 6.4 - **Lógica de Volatilidade** - [@Arthu-RL](https://github.com/Arthu-RL)
+  - [ ] 6.5 - **Lógica de Drift** - [@Arthu-RL](https://github.com/Arthu-RL)
 
 ---
 
