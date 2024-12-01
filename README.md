@@ -64,13 +64,13 @@ Antes de começar, certifique-se de ter instalado:
 1. Clone este repositório em sua máquina local:
 
    ```bash
-   git clone https://github.com/Arthu-RL/SimuladorInvestimentoWeb.git
+   git clone https://github.com/Arthu-RL/FuturoFinanceiro.git
    ```
 
 2. navegue até o diretório do projeto
 
    ```bash
-   cd SimuladorInvestimentoWeb
+   cd FuturoFinanceiro
    ```
 
 3. Instale as dependências do projeto:
@@ -146,7 +146,7 @@ Para garantir a qualidade e a consistência do código no projeto, siga as boas 
 Visão geral da estrutura de arquivos do projeto:
 
 ```
-SimuladorInvestimentoWeb/
+FuturoFinanceiro/
 ├── public/             # Arquivos públicos (ex: robots.txt, favicon)
 ├── src/                # Código-fonte do projeto
 │   ├── assets/         # Arquivos estáticos (imagens, fontes, etc.)
@@ -185,6 +185,10 @@ Se você deseja contribuir com este projeto, por favor, consulte o [CONTRIBUTING
 - **Home**
 
 ![Home](./screenshots/home.png)
+
+- **Navegação**
+
+![Navegação](./screenshots/navegacao.png)
 
 - **Simulador**
 
