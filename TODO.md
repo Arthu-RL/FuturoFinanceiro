@@ -68,7 +68,7 @@ Este documento lista as tarefas pendentes para a atualização do aplicativo "Fu
   - [x] 5.2 - **Lógica de Saldo, Lucro e Prejuízo** - [@RGomes98](https://github.com/RGomes98)
   - [x] 5.3 - **Lógica da Atualização do Mercado** - [@RGomes98](https://github.com/RGomes98)
   - [x] 5.4 - **Lógica de Compra/Venda de Ativo** - [@RGomes98](https://github.com/RGomes98)
-  - [x] 5.5 - **Cálculos de Patrimônio, Rentabilidade Total e Rentabilidade Semanal** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.5 - **Cálculos de Saldo, Patrimônio, Rentabilidade Total e Rentabilidade Semanal** - [@RGomes98](https://github.com/RGomes98)
   - [x] 5.6 - **Histórico de Transações** - [@RGomes98](https://github.com/RGomes98)
   - [x] 5.7 - **Animação dos Valores Numéricos dos Cards do Simulador** - [@RGomes98](https://github.com/RGomes98)
   - [x] 5.8 - **Tabela de Ativos (Filtragem e Busca)** - [@RGomes98](https://github.com/RGomes98)
