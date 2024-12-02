@@ -76,8 +76,8 @@ Este documento lista as tarefas pendentes para a atualização do aplicativo "Fu
   - [x] 5.10 - **Adição de Ativos com Valores Reais de API Externa** - [@RGomes98](https://github.com/RGomes98)
   - [x] 5.11 - **Gráfico de Rentabilidade Semanal** - [@RGomes98](https://github.com/RGomes98)
   - [x] 5.12 - **Modais de Compra, Venda e Detalhes dos Ativos** - [@RGomes98](https://github.com/RGomes98)
-  - [x] 5.14 - **Definir Estrutura dos Dados para Armazenamento no Local Storage** - [@RGomes98](https://github.com/RGomes98)
-  - [x] 5.13 - **Armazenar Dados do Simulador e do Usuário no Local Storage** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.13 - **Definir Estrutura dos Dados para Armazenamento no Local Storage** - [@RGomes98](https://github.com/RGomes98)
+  - [x] 5.14 - **Armazenar Dados do Simulador e do Usuário no Local Storage** - [@RGomes98](https://github.com/RGomes98)
 
 ---
 
