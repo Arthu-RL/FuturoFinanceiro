@@ -10,4 +10,8 @@ async function fetchCurrencyByCode(currency: string) {
   return fetch(currencyURL);
 }
 
-export { fetchAllCurrencies, fetchCurrencyByCode };
+async function fetchFallbackJSON(path: string) {
+  return fetch(path);
+}
+
+export { fetchAllCurrencies, fetchCurrencyByCode, fetchFallbackJSON };

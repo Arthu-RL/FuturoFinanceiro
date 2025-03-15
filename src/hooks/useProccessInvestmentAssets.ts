@@ -1,6 +1,6 @@
 import type { InvestmentAssets } from '@/@types/investment';
 import { useFetch } from './useFetch';
-import { fetchCurrencyByCode } from '@/services/currency';
+import { fetchCurrencyByCode, fetchFallbackJSON } from '@/services/currency';
 import type { ConversionRates } from '@/@types/currency';
 import { currencyExchangeRate, getCurrencyDisplayName } from '@/utils/currency';
 import { useEffect, useState } from 'react';
@@ -9,8 +9,11 @@ import { Assets } from '@/lib/schemas/assets.schema';
 import investmentAssets from '@/data/investmentAssets.json';
 
 export const useProccessInvestmentAssets = () => {
-  const BRLConversionRates = useFetch<ConversionRates>(() => fetchCurrencyByCode('BRL')).data?.['brl'];
   const [processedAssets, setProcessedAssets] = useState<Assets[]>([]);
+
+  const currencyData = useFetch<ConversionRates>(() => fetchCurrencyByCode('BRL'));
+  const currencyDataFallback = useFetch<ConversionRates>(() => fetchFallbackJSON('/snapshot.json'));
+  const BRLConversionRates = (currencyData.data ?? currencyDataFallback.data)?.['brl'];
 
   useEffect(() => {
     const assetCodes = Object.keys(investmentAssets);

@@ -18,7 +18,7 @@ export const useGenerateInvestmentAssets = () => {
   );
 
   useEffect(() => {
-    if (!getStorageItem('investmentAssets')?.length) updateAssets(processedAssets);
+    if (processedAssets.length && !getStorageItem('investmentAssets')?.length) updateAssets(processedAssets);
   }, [processedAssets, updateAssets, setStorageItem, getStorageItem]);
 
   return { assets, updateAssets };
