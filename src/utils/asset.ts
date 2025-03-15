@@ -2,8 +2,8 @@ import { Assets } from '@/lib/schemas/assets.schema';
 import { Profile, AssetType, AssetGlobalVariation } from '@/@types/investment';
 
 const TENDENCY_THRESHOLD = 0.005;
-const HIGH_VOLATILITY_THRESHOLD = 0.075;
-const MEDIUM_VOLATILITY_THRESHOLD = 0.015;
+const HIGH_VOLATILITY_THRESHOLD = 3.25;
+const MEDIUM_VOLATILITY_THRESHOLD = 0.95;
 
 function getAssetVariationStatus(previous: number, current: number) {
   if (previous < current) return 'increase';

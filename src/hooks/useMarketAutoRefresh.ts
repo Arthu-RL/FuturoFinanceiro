@@ -6,10 +6,10 @@ import { useTutorial } from '@/providers/tutorialProvider';
 import { useLocation } from 'react-router-dom';
 
 const ONE_SECOND_IN_MS = 1000;
-const THREE_MINUTES = 180;
+const ONE_MINUTE_IN_SECONDS = 60;
 
 export const useMarketAutoRefresh = () => {
-  const [remainingSeconds, setRemainingSeconds] = useState(THREE_MINUTES);
+  const [remainingSeconds, setRemainingSeconds] = useState(ONE_MINUTE_IN_SECONDS);
   const { assets, updateAssets } = useInvestmentAssets();
   const { computedAssets } = useAssetFluctuation(assets);
   const { isTutorialActive } = useTutorial();
@@ -37,7 +37,7 @@ export const useMarketAutoRefresh = () => {
                 'Os preços foram atualizados com sucesso. Confira as novas mudanças no mercado e ajuste seus investimentos!',
             });
 
-            return THREE_MINUTES;
+            return ONE_MINUTE_IN_SECONDS;
           }
 
           if (isTutorialActive || isAtHomePage) return currentSeconds;

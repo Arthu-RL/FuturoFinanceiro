@@ -54,7 +54,7 @@ export const useTutorialModal = () => {
       title: 'Próxima Atualização',
       attachTo: { element: '#refresh', on: 'bottom-end' },
       buttons: [{ text: 'Próximo', action: tour.next }],
-      text: 'Este é o temporizador que indica quanto tempo falta para a próxima atualização do mercado. Os preços são atualizados a cada 3 minutos, permitindo que você acompanhe as flutuações em tempo real e tome decisões estratégicas.',
+      text: 'Este é o temporizador que indica quanto tempo falta para a próxima atualização do mercado. Os preços são atualizados a cada minuto, permitindo que você acompanhe as flutuações em tempo real e tome decisões estratégicas.',
     });
 
     tour.addStep({

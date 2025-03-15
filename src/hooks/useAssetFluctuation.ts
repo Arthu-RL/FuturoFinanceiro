@@ -10,9 +10,10 @@ import {
 } from '@/utils/asset';
 
 const MINIMUM_PRICE = 0.01;
+const ONE_MINUTE = 1;
 
 export const useAssetFluctuation = (assets: Assets[]) => {
-  const investmentAssetsContext = useInvestmentAssets()
+  const investmentAssetsContext = useInvestmentAssets();
   const computedAssets = assets.map((asset) => {
     // Calcular a média dos últimos 50 (máximo) valores no histórico
     // INCOMPLETO, pois precisa de lógica para aumentar valuation factor com o tempo
@@ -24,9 +25,15 @@ export const useAssetFluctuation = (assets: Assets[]) => {
 
     // Calcula parametros de variação (Drift, Volatility, ChanceOfLoss)
     const drift = assetCalculateDrift(asset.profile, investmentAssetsContext.variationSettings.drift);
-    const volatility = assetCalculateVolatility(asset.profile, investmentAssetsContext.variationSettings.volatility);
+    const volatility = assetCalculateVolatility(
+      asset.profile,
+      investmentAssetsContext.variationSettings.volatility,
+    );
     const typeMultiplier = assetCalculateTypeMultiplier(asset.type);
-    const chanceOfLoss = assetCalculateChanceOfLoss(asset.profile, investmentAssetsContext.variationSettings.loss);
+    const chanceOfLoss = assetCalculateChanceOfLoss(
+      asset.profile,
+      investmentAssetsContext.variationSettings.loss,
+    );
 
     // Determine a direção de variação do drift do ativo de acordo com a chance de perda
     const adjustedDrift = Math.random() < chanceOfLoss ? -Math.abs(drift) : drift;
@@ -40,7 +47,7 @@ export const useAssetFluctuation = (assets: Assets[]) => {
 
     const updatedHistory = !asset.history.length
       ? [
-          { value: asset.value.current, timestamp: subMinutes(new Date(), 3) },
+          { value: asset.value.current, timestamp: subMinutes(new Date(), ONE_MINUTE) },
           { value: adjustedValue, timestamp: new Date() },
         ]
       : [...asset.history, { value: adjustedValue, timestamp: new Date() }];
